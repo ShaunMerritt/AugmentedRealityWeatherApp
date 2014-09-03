@@ -21,6 +21,10 @@
 		28E99FF419B6CB2700E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
 		28E99FFC19B6CB2900E327DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FFA19B6CB2900E327DE /* InfoPlist.strings */; };
 		28E99FFE19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */; };
+		28E9A00719B6D21000E327DE /* AugmentedRealityWeatherApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */; };
+		28E9A00819B6D21000E327DE /* AugmentedRealityWeatherAppTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */; };
+		28E9A00919B6D21100E327DE /* AugmentedRealityWeatherApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */; };
+		28E9A00A19B6D21100E327DE /* AugmentedRealityWeatherAppTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,8 +233,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E9A00819B6D21000E327DE /* AugmentedRealityWeatherAppTests.xctest in Resources */,
 				28E99FEB19B6CB2700E327DE /* Images.xcassets in Resources */,
 				28E99FDD19B6CB2500E327DE /* InfoPlist.strings in Resources */,
+				28E9A00719B6D21000E327DE /* AugmentedRealityWeatherApp.app in Resources */,
 				28E99FE619B6CB2600E327DE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +245,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E9A00919B6D21100E327DE /* AugmentedRealityWeatherApp.app in Resources */,
 				28E99FFC19B6CB2900E327DE /* InfoPlist.strings in Resources */,
+				28E9A00A19B6D21100E327DE /* AugmentedRealityWeatherAppTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
