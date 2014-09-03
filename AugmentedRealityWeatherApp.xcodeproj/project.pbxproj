@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
+		28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD419B6CB2300E327DE /* CoreGraphics.framework */; };
+		28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
+		28E99FDD19B6CB2500E327DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FDB19B6CB2500E327DE /* InfoPlist.strings */; };
+		28E99FDF19B6CB2500E327DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FDE19B6CB2500E327DE /* main.m */; };
+		28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FE219B6CB2600E327DE /* SMAppDelegate.m */; };
+		28E99FE619B6CB2600E327DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FE419B6CB2600E327DE /* Main.storyboard */; };
+		28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FE819B6CB2700E327DE /* SMViewController.m */; };
+		28E99FEB19B6CB2700E327DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FEA19B6CB2700E327DE /* Images.xcassets */; };
+		28E99FF219B6CB2700E327DE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FF119B6CB2700E327DE /* XCTest.framework */; };
+		28E99FF319B6CB2700E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
+		28E99FF419B6CB2700E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
+		28E99FFC19B6CB2900E327DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FFA19B6CB2900E327DE /* InfoPlist.strings */; };
+		28E99FFE19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28E99FF519B6CB2700E327DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28E99FC719B6CB2300E327DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28E99FCE19B6CB2300E327DE;
+			remoteInfo = AugmentedRealityWeatherApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AugmentedRealityWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28E99FD219B6CB2300E327DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		28E99FD419B6CB2300E327DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28E99FD619B6CB2300E327DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		28E99FDA19B6CB2400E327DE /* AugmentedRealityWeatherApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AugmentedRealityWeatherApp-Info.plist"; sourceTree = "<group>"; };
+		28E99FDC19B6CB2500E327DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		28E99FDE19B6CB2500E327DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		28E99FE019B6CB2500E327DE /* AugmentedRealityWeatherApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AugmentedRealityWeatherApp-Prefix.pch"; sourceTree = "<group>"; };
+		28E99FE119B6CB2600E327DE /* SMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMAppDelegate.h; sourceTree = "<group>"; };
+		28E99FE219B6CB2600E327DE /* SMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMAppDelegate.m; sourceTree = "<group>"; };
+		28E99FE519B6CB2600E327DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		28E99FE719B6CB2700E327DE /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMViewController.h; sourceTree = "<group>"; };
+		28E99FE819B6CB2700E327DE /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMViewController.m; sourceTree = "<group>"; };
+		28E99FEA19B6CB2700E327DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AugmentedRealityWeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28E99FF119B6CB2700E327DE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		28E99FF919B6CB2800E327DE /* AugmentedRealityWeatherAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AugmentedRealityWeatherAppTests-Info.plist"; sourceTree = "<group>"; };
+		28E99FFB19B6CB2900E327DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AugmentedRealityWeatherAppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		28E99FCC19B6CB2300E327DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */,
+				28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */,
+				28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28E99FED19B6CB2700E327DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E99FF219B6CB2700E327DE /* XCTest.framework in Frameworks */,
+				28E99FF419B6CB2700E327DE /* UIKit.framework in Frameworks */,
+				28E99FF319B6CB2700E327DE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		28E99FC619B6CB2300E327DE = {
+			isa = PBXGroup;
+			children = (
+				28E99FD819B6CB2400E327DE /* AugmentedRealityWeatherApp */,
+				28E99FF719B6CB2700E327DE /* AugmentedRealityWeatherAppTests */,
+				28E99FD119B6CB2300E327DE /* Frameworks */,
+				28E99FD019B6CB2300E327DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		28E99FD019B6CB2300E327DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */,
+				28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28E99FD119B6CB2300E327DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28E99FD219B6CB2300E327DE /* Foundation.framework */,
+				28E99FD419B6CB2300E327DE /* CoreGraphics.framework */,
+				28E99FD619B6CB2300E327DE /* UIKit.framework */,
+				28E99FF119B6CB2700E327DE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		28E99FD819B6CB2400E327DE /* AugmentedRealityWeatherApp */ = {
+			isa = PBXGroup;
+			children = (
+				28E99FE119B6CB2600E327DE /* SMAppDelegate.h */,
+				28E99FE219B6CB2600E327DE /* SMAppDelegate.m */,
+				28E99FE419B6CB2600E327DE /* Main.storyboard */,
+				28E99FE719B6CB2700E327DE /* SMViewController.h */,
+				28E99FE819B6CB2700E327DE /* SMViewController.m */,
+				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
+				28E99FD919B6CB2400E327DE /* Supporting Files */,
+			);
+			path = AugmentedRealityWeatherApp;
+			sourceTree = "<group>";
+		};
+		28E99FD919B6CB2400E327DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				28E99FDA19B6CB2400E327DE /* AugmentedRealityWeatherApp-Info.plist */,
+				28E99FDB19B6CB2500E327DE /* InfoPlist.strings */,
+				28E99FDE19B6CB2500E327DE /* main.m */,
+				28E99FE019B6CB2500E327DE /* AugmentedRealityWeatherApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28E99FF719B6CB2700E327DE /* AugmentedRealityWeatherAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */,
+				28E99FF819B6CB2800E327DE /* Supporting Files */,
+			);
+			path = AugmentedRealityWeatherAppTests;
+			sourceTree = "<group>";
+		};
+		28E99FF819B6CB2800E327DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				28E99FF919B6CB2800E327DE /* AugmentedRealityWeatherAppTests-Info.plist */,
+				28E99FFA19B6CB2900E327DE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		28E99FCE19B6CB2300E327DE /* AugmentedRealityWeatherApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28E9A00119B6CB2900E327DE /* Build configuration list for PBXNativeTarget "AugmentedRealityWeatherApp" */;
+			buildPhases = (
+				28E99FCB19B6CB2300E327DE /* Sources */,
+				28E99FCC19B6CB2300E327DE /* Frameworks */,
+				28E99FCD19B6CB2300E327DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AugmentedRealityWeatherApp;
+			productName = AugmentedRealityWeatherApp;
+			productReference = 28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		28E99FEF19B6CB2700E327DE /* AugmentedRealityWeatherAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28E9A00419B6CB2900E327DE /* Build configuration list for PBXNativeTarget "AugmentedRealityWeatherAppTests" */;
+			buildPhases = (
+				28E99FEC19B6CB2700E327DE /* Sources */,
+				28E99FED19B6CB2700E327DE /* Frameworks */,
+				28E99FEE19B6CB2700E327DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28E99FF619B6CB2700E327DE /* PBXTargetDependency */,
+			);
+			name = AugmentedRealityWeatherAppTests;
+			productName = AugmentedRealityWeatherAppTests;
+			productReference = 28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		28E99FC719B6CB2300E327DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SM;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "True Merit Development";
+				TargetAttributes = {
+					28E99FEF19B6CB2700E327DE = {
+						TestTargetID = 28E99FCE19B6CB2300E327DE;
+					};
+				};
+			};
+			buildConfigurationList = 28E99FCA19B6CB2300E327DE /* Build configuration list for PBXProject "AugmentedRealityWeatherApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 28E99FC619B6CB2300E327DE;
+			productRefGroup = 28E99FD019B6CB2300E327DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				28E99FCE19B6CB2300E327DE /* AugmentedRealityWeatherApp */,
+				28E99FEF19B6CB2700E327DE /* AugmentedRealityWeatherAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		28E99FCD19B6CB2300E327DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E99FEB19B6CB2700E327DE /* Images.xcassets in Resources */,
+				28E99FDD19B6CB2500E327DE /* InfoPlist.strings in Resources */,
+				28E99FE619B6CB2600E327DE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28E99FEE19B6CB2700E327DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E99FFC19B6CB2900E327DE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		28E99FCB19B6CB2300E327DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
+				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
+				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28E99FEC19B6CB2700E327DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E99FFE19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		28E99FF619B6CB2700E327DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28E99FCE19B6CB2300E327DE /* AugmentedRealityWeatherApp */;
+			targetProxy = 28E99FF519B6CB2700E327DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		28E99FDB19B6CB2500E327DE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28E99FDC19B6CB2500E327DE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		28E99FE419B6CB2600E327DE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28E99FE519B6CB2600E327DE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		28E99FFA19B6CB2900E327DE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28E99FFB19B6CB2900E327DE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		28E99FFF19B6CB2900E327DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		28E9A00019B6CB2900E327DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		28E9A00219B6CB2900E327DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
+				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		28E9A00319B6CB2900E327DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
+				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		28E9A00519B6CB2900E327DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AugmentedRealityWeatherApp.app/AugmentedRealityWeatherApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "AugmentedRealityWeatherAppTests/AugmentedRealityWeatherAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		28E9A00619B6CB2900E327DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AugmentedRealityWeatherApp.app/AugmentedRealityWeatherApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
+				INFOPLIST_FILE = "AugmentedRealityWeatherAppTests/AugmentedRealityWeatherAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28E99FCA19B6CB2300E327DE /* Build configuration list for PBXProject "AugmentedRealityWeatherApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28E99FFF19B6CB2900E327DE /* Debug */,
+				28E9A00019B6CB2900E327DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28E9A00119B6CB2900E327DE /* Build configuration list for PBXNativeTarget "AugmentedRealityWeatherApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28E9A00219B6CB2900E327DE /* Debug */,
+				28E9A00319B6CB2900E327DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		28E9A00419B6CB2900E327DE /* Build configuration list for PBXNativeTarget "AugmentedRealityWeatherAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28E9A00519B6CB2900E327DE /* Debug */,
+				28E9A00619B6CB2900E327DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 28E99FC719B6CB2300E327DE /* Project object */;
+}
