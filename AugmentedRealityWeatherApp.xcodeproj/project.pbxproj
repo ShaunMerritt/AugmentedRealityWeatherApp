@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28B45E2119BD2B790018600F /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2019BD2B790018600F /* GPUImage.framework */; };
+		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
+		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
 		28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
 		28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD419B6CB2300E327DE /* CoreGraphics.framework */; };
 		28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28B45E2019BD2B790018600F /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUImage.framework; path = "../../Downloads/Video Blurring/GPUImage.framework"; sourceTree = "<group>"; };
+		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		28B45E2319BD2B830018600F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AugmentedRealityWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28E99FD219B6CB2300E327DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28E99FD419B6CB2300E327DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */,
+				28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */,
+				28B45E2119BD2B790018600F /* GPUImage.framework in Frameworks */,
 				28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */,
 				28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */,
 				28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */,
@@ -103,6 +112,9 @@
 		28E99FD119B6CB2300E327DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28B45E2219BD2B830018600F /* QuartzCore.framework */,
+				28B45E2319BD2B830018600F /* CFNetwork.framework */,
+				28B45E2019BD2B790018600F /* GPUImage.framework */,
 				28E99FD219B6CB2300E327DE /* Foundation.framework */,
 				28E99FD419B6CB2300E327DE /* CoreGraphics.framework */,
 				28E99FD619B6CB2300E327DE /* UIKit.framework */,
@@ -381,6 +393,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Shaun/Downloads/Video,
+					Blurring,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
 				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
@@ -394,6 +411,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Shaun/Downloads/Video,
+					Blurring,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
 				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
