@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28B45E2119BD2B790018600F /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2019BD2B790018600F /* GPUImage.framework */; };
+		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
 		28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
@@ -26,6 +26,7 @@
 		28E99FFE19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */; };
 		28E9A00919B6D21100E327DE /* AugmentedRealityWeatherApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */; };
 		28E9A00A19B6D21100E327DE /* AugmentedRealityWeatherAppTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */; };
+		851E08CEE3DA4E2AA2DB18B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB128C2F59414EDAB284CA8B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		28B45E2019BD2B790018600F /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUImage.framework; path = "../../Downloads/Video Blurring/GPUImage.framework"; sourceTree = "<group>"; };
+		0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBlurredCameraBackgroundView.h; sourceTree = "<group>"; };
+		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		28B45E2319BD2B830018600F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AugmentedRealityWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +64,7 @@
 		28E99FF919B6CB2800E327DE /* AugmentedRealityWeatherAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AugmentedRealityWeatherAppTests-Info.plist"; sourceTree = "<group>"; };
 		28E99FFB19B6CB2900E327DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AugmentedRealityWeatherAppTests.m; sourceTree = "<group>"; };
+		BB128C2F59414EDAB284CA8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +74,10 @@
 			files = (
 				28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */,
 				28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */,
-				28B45E2119BD2B790018600F /* GPUImage.framework in Frameworks */,
 				28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */,
 				28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */,
 				28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */,
+				851E08CEE3DA4E2AA2DB18B6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +101,7 @@
 				28E99FF719B6CB2700E327DE /* AugmentedRealityWeatherAppTests */,
 				28E99FD119B6CB2300E327DE /* Frameworks */,
 				28E99FD019B6CB2300E327DE /* Products */,
+				0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,11 +119,11 @@
 			children = (
 				28B45E2219BD2B830018600F /* QuartzCore.framework */,
 				28B45E2319BD2B830018600F /* CFNetwork.framework */,
-				28B45E2019BD2B790018600F /* GPUImage.framework */,
 				28E99FD219B6CB2300E327DE /* Foundation.framework */,
 				28E99FD419B6CB2300E327DE /* CoreGraphics.framework */,
 				28E99FD619B6CB2300E327DE /* UIKit.framework */,
 				28E99FF119B6CB2700E327DE /* XCTest.framework */,
+				BB128C2F59414EDAB284CA8B /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,6 +136,8 @@
 				28E99FE419B6CB2600E327DE /* Main.storyboard */,
 				28E99FE719B6CB2700E327DE /* SMViewController.h */,
 				28E99FE819B6CB2700E327DE /* SMViewController.m */,
+				28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */,
+				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
 				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
 				28E99FD919B6CB2400E327DE /* Supporting Files */,
 			);
@@ -173,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28E9A00119B6CB2900E327DE /* Build configuration list for PBXNativeTarget "AugmentedRealityWeatherApp" */;
 			buildPhases = (
+				58A9F45D304546AFA02927EA /* Check Pods Manifest.lock */,
 				28E99FCB19B6CB2300E327DE /* Sources */,
 				28E99FCC19B6CB2300E327DE /* Frameworks */,
 				28E99FCD19B6CB2300E327DE /* Resources */,
+				B7D10EA28ACD4C2BAF16C7FA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,6 +270,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		58A9F45D304546AFA02927EA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B7D10EA28ACD4C2BAF16C7FA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		28E99FCB19B6CB2300E327DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -268,6 +310,7 @@
 			files = (
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
+				28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */,
 				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +433,7 @@
 		};
 		28E9A00219B6CB2900E327DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -408,6 +452,7 @@
 		};
 		28E9A00319B6CB2900E327DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

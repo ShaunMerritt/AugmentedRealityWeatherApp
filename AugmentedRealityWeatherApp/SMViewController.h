@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GPUImage.h"
+#import "SMBlurredCameraBackgroundView.h"
 
-@interface SMViewController : UIViewController
+
+@interface SMViewController : UIViewController {
+    GPUImageVideoCamera *videoCamera;
+    GPUImageOutput<GPUImageInput> *filter;
+    GPUImageView *filteredVideoView;
+}
+
+
+@property (nonatomic, strong) SMBlurredCameraBackgroundView *blurredCameraView;
 
 @end
