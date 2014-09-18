@@ -7,26 +7,23 @@
 //
 
 #import "SMViewController.h"
-#import <GPUImage.h>
+#import "SMBlurredCameraBackgroundView.h"
 
-@interface SMViewController ()
+@interface SMViewController () {
+    SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
+}
 
 @end
 
-@implementation SMViewController {
-    GPUImageiOSBlurFilter *_blurFilter;
-    GPUImageGaussianBlurFilter *_gausianBlurFilter;
-    GPUImageBoxBlurFilter *_boxBlur;
-//    SMBlurredCameraBackgroundView *_blurredCameraView;
-}
+@implementation SMViewController
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
     
-    _blurredCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    [self.view addSubview:_blurredCameraView];
+    _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    [self.view addSubview:_blurredBackgroundCameraView];
 	   
 }
 
