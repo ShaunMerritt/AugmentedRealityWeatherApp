@@ -7,8 +7,11 @@
 //
 
 #import "SMViewController.h"
+#import "SMBlurredCameraBackgroundView.h"
 
-@interface SMViewController ()
+@interface SMViewController () {
+    SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
+}
 
 @end
 
@@ -16,8 +19,12 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    [self.view addSubview:_blurredBackgroundCameraView];
+	   
 }
 
 - (void)didReceiveMemoryWarning
