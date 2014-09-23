@@ -10,10 +10,13 @@
 #import "SMAppDelegate.h"
 #import "SMBlurredCameraBackgroundView.h"
 #import "SMWeatherClient.h"
+#import "SMWeatherModel.h"
+#import "SMWeatherInfo.h"
+#import <JSONKit.h>
 
 @interface SMViewController () {
     SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
-    NSArray *weather;
+    NSArray *_currentWeatherInfoArray;
 }
 
 - (void)getWeatherInfo;
@@ -29,6 +32,8 @@
     
     _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [self.view addSubview:_blurredBackgroundCameraView];
+    
+    _currentWeatherInfoArray = [[NSArray alloc] init];
     
     [self getWeatherInfo];
     
@@ -50,16 +55,19 @@
         if (data != nil) {
             
             NSError *error;
-            NSMutableDictionary *returnedDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            NSLog(@"%@", [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error] class]);
             
             if (error != nil) {
                 NSLog(@"%@", [error localizedDescription]);
             }
             else{
-                NSMutableDictionary *_returnedWeatherDictionary = [[NSMutableDictionary alloc] init];
-                _returnedWeatherDictionary = returnedDict;
-                NSLog(@"Current Weather: %@", [[_returnedWeatherDictionary objectForKey:@"main"] objectForKey:@"temp"]);
+                
+                SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
+                _currentWeatherInfoArray = [[weatherParser weatherResults] mutableCopy];
+                
+                // TODO: Here is just basic testing
+                SMWeatherInfo *_currentWeatherInfoForCity = _currentWeatherInfoArray[0];
+                NSLog(@"HERE: %@", _currentWeatherInfoForCity.cityName);
+
             }
         }
 

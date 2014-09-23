@@ -11,6 +11,8 @@
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
+		28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3719D1259F003D6F50 /* SMWeatherModel.m */; };
+		28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */; };
 		28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
 		28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD419B6CB2300E327DE /* CoreGraphics.framework */; };
 		28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
@@ -48,6 +50,10 @@
 		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		28B45E2319BD2B830018600F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		28C78F3619D1259F003D6F50 /* SMWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherModel.h; sourceTree = "<group>"; };
+		28C78F3719D1259F003D6F50 /* SMWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherModel.m; sourceTree = "<group>"; };
+		28C78F3919D12963003D6F50 /* SMWeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherInfo.h; sourceTree = "<group>"; };
+		28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherInfo.m; sourceTree = "<group>"; };
 		28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AugmentedRealityWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28E99FD219B6CB2300E327DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28E99FD419B6CB2300E327DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -139,6 +145,10 @@
 				28E99FE419B6CB2600E327DE /* Main.storyboard */,
 				28E99FE719B6CB2700E327DE /* SMViewController.h */,
 				28E99FE819B6CB2700E327DE /* SMViewController.m */,
+				28C78F3619D1259F003D6F50 /* SMWeatherModel.h */,
+				28C78F3719D1259F003D6F50 /* SMWeatherModel.m */,
+				28C78F3919D12963003D6F50 /* SMWeatherInfo.h */,
+				28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */,
 				28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */,
 				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
 				280A792919D0F4CC00B47F5F /* SMWeatherClient.h */,
@@ -315,9 +325,11 @@
 			files = (
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
 				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
+				28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
 				28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */,
 				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
+				28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
