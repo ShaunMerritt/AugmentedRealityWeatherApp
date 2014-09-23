@@ -1,10 +1,13 @@
 PODS:
   - GPUImage (0.1.5)
+  - JSONKit (1.5pre)
 
 DEPENDENCIES:
   - GPUImage (~> 0.1.0)
+  - JSONKit
 
 SPEC CHECKSUMS:
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
+  JSONKit: efef3bbd3372ff33f96b9c6f34cf4fe18e74ab69
 
 COCOAPODS: 0.33.1
