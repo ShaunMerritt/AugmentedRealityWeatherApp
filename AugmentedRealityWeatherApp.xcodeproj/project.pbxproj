@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		280A792919D0F4CC00B47F5F /* SMWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherClient.h; sourceTree = "<group>"; };
+		280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherClient.m; sourceTree = "<group>"; };
 		28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBlurredCameraBackgroundView.h; sourceTree = "<group>"; };
 		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -73,10 +76,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */,
+				28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */,
 				28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */,
 				28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */,
 				28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */,
-				28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */,
 				851E08CEE3DA4E2AA2DB18B6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +141,8 @@
 				28E99FE819B6CB2700E327DE /* SMViewController.m */,
 				28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */,
 				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
+				280A792919D0F4CC00B47F5F /* SMWeatherClient.h */,
+				280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */,
 				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
 				28E99FD919B6CB2400E327DE /* Supporting Files */,
 			);
@@ -309,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
+				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
 				28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */,
 				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
@@ -445,6 +451,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
 				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -464,6 +471,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
 				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
