@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-JNWSpringAnimation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-JSONKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>01E95BF3494B4DB39185E6E6</key>
+		<key>462A40B54FAE4990A64257C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46F4792185384DBCA878152A</key>
+		<key>60CE89567E7D4154B8FD4753</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>564A0DE064F54DF091C1D4BE</key>
+		<key>69587B0A3EAA4E99A0B9CA2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BC98535185B4EB398AF6A70</key>
+		<key>770064F08DF347F7A411E356</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B4976666684B472C853969D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

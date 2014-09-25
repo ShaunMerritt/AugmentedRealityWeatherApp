@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B4976666684B472C853969D4"
-               BuildableName = "libPods-JSONKit.a"
-               BlueprintName = "Pods-JSONKit"
+               BlueprintIdentifier = "69587B0A3EAA4E99A0B9CA2E"
+               BuildableName = "libPods-JNWSpringAnimation.a"
+               BlueprintName = "Pods-JNWSpringAnimation"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

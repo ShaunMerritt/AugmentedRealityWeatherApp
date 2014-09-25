@@ -1,15 +1,18 @@
 PODS:
   - GPUImage (0.1.5)
+  - JNWSpringAnimation (0.5)
   - JSONKit (1.5pre)
   - pop (1.0.6)
 
 DEPENDENCIES:
   - GPUImage (~> 0.1.0)
+  - JNWSpringAnimation
   - JSONKit
   - pop (~> 1.0)
 
 SPEC CHECKSUMS:
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
+  JNWSpringAnimation: 823b06c4e6a6a2aa1be19f68ce48d67f63c0f0e0
   JSONKit: efef3bbd3372ff33f96b9c6f34cf4fe18e74ab69
   pop: e518794da38942c05255eb64b36d894e70cb4f00
 
