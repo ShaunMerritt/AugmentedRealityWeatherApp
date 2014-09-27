@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */; };
+		2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2855422219D37D16003B9241 /* SMInitialLoadingView.m */; };
+		2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2865F07C19D37B0D00CACA4C /* SMStyleKit.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
 		28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3719D1259F003D6F50 /* SMWeatherModel.m */; };
 		28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */; };
+		28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */; };
 		28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
 		28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD419B6CB2300E327DE /* CoreGraphics.framework */; };
 		28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
@@ -29,7 +32,7 @@
 		28E99FFE19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */; };
 		28E9A00919B6D21100E327DE /* AugmentedRealityWeatherApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */; };
 		28E9A00A19B6D21100E327DE /* AugmentedRealityWeatherAppTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */; };
-		851E08CEE3DA4E2AA2DB18B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB128C2F59414EDAB284CA8B /* libPods.a */; };
+		9C341AFEFF3A4A9EA27C00DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C2FC89EE1E349F4B458D23D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,10 @@
 		0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		280A792919D0F4CC00B47F5F /* SMWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherClient.h; sourceTree = "<group>"; };
 		280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherClient.m; sourceTree = "<group>"; };
+		2855422119D37D16003B9241 /* SMInitialLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMInitialLoadingView.h; sourceTree = "<group>"; };
+		2855422219D37D16003B9241 /* SMInitialLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMInitialLoadingView.m; sourceTree = "<group>"; };
+		2865F07B19D37B0D00CACA4C /* SMStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStyleKit.h; sourceTree = "<group>"; };
+		2865F07C19D37B0D00CACA4C /* SMStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStyleKit.m; sourceTree = "<group>"; };
 		28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBlurredCameraBackgroundView.h; sourceTree = "<group>"; };
 		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -54,6 +61,8 @@
 		28C78F3719D1259F003D6F50 /* SMWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherModel.m; sourceTree = "<group>"; };
 		28C78F3919D12963003D6F50 /* SMWeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherInfo.h; sourceTree = "<group>"; };
 		28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherInfo.m; sourceTree = "<group>"; };
+		28E0FE0319D520DA00F0F8E7 /* SMWeatherInfoCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherInfoCardView.h; sourceTree = "<group>"; };
+		28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherInfoCardView.m; sourceTree = "<group>"; };
 		28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AugmentedRealityWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28E99FD219B6CB2300E327DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28E99FD419B6CB2300E327DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,7 +82,7 @@
 		28E99FF919B6CB2800E327DE /* AugmentedRealityWeatherAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AugmentedRealityWeatherAppTests-Info.plist"; sourceTree = "<group>"; };
 		28E99FFB19B6CB2900E327DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		28E99FFD19B6CB2900E327DE /* AugmentedRealityWeatherAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AugmentedRealityWeatherAppTests.m; sourceTree = "<group>"; };
-		BB128C2F59414EDAB284CA8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C2FC89EE1E349F4B458D23D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +95,7 @@
 				28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */,
 				28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */,
 				28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */,
-				851E08CEE3DA4E2AA2DB18B6 /* libPods.a in Frameworks */,
+				9C341AFEFF3A4A9EA27C00DE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +141,7 @@
 				28E99FD419B6CB2300E327DE /* CoreGraphics.framework */,
 				28E99FD619B6CB2300E327DE /* UIKit.framework */,
 				28E99FF119B6CB2700E327DE /* XCTest.framework */,
-				BB128C2F59414EDAB284CA8B /* libPods.a */,
+				5C2FC89EE1E349F4B458D23D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,6 +149,8 @@
 		28E99FD819B6CB2400E327DE /* AugmentedRealityWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				2865F07B19D37B0D00CACA4C /* SMStyleKit.h */,
+				2865F07C19D37B0D00CACA4C /* SMStyleKit.m */,
 				28E99FE119B6CB2600E327DE /* SMAppDelegate.h */,
 				28E99FE219B6CB2600E327DE /* SMAppDelegate.m */,
 				28E99FE419B6CB2600E327DE /* Main.storyboard */,
@@ -155,6 +166,10 @@
 				280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */,
 				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
 				28E99FD919B6CB2400E327DE /* Supporting Files */,
+				2855422119D37D16003B9241 /* SMInitialLoadingView.h */,
+				2855422219D37D16003B9241 /* SMInitialLoadingView.m */,
+				28E0FE0319D520DA00F0F8E7 /* SMWeatherInfoCardView.h */,
+				28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */,
 			);
 			path = AugmentedRealityWeatherApp;
 			sourceTree = "<group>";
@@ -323,7 +338,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */,
+				28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */,
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
+				2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */,
 				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
 				28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,

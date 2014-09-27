@@ -13,10 +13,11 @@
 @interface SMWeatherModel () {
     
     NSData *_jsonData;
+    NSMutableArray *_weatherDetailsList;
     
 }
 
-@property (strong, nonatomic) NSMutableArray *weatherDetailsList;
+//@property (strong, nonatomic) NSMutableArray *weatherDetailsList;
 
 @end
 
@@ -33,31 +34,33 @@
     return self;
 }
 
-- (NSArray *)weatherResults {
+- (NSArray *)generateWeatherDetailsList {
     
     NSString *receivedDataString = [[NSString alloc] initWithData:_jsonData encoding:NSUTF8StringEncoding];
     NSDictionary *deserializedData = [receivedDataString objectFromJSONString];
     NSLog(@"%@", [deserializedData description]);
     
-    __weak SMWeatherModel *weakSelf = self;
-
-    SMWeatherInfo *_weatherInfo = [SMWeatherInfo alloc];
+    SMWeatherInfo *weatherInfo = [SMWeatherInfo alloc];
     
     // TODO: Still have more to implement
-    _weatherInfo.base = [deserializedData objectForKey:@"base"];
-    _weatherInfo.cod = [deserializedData objectForKey:@"cod"];
-    _weatherInfo.latitude = [[deserializedData objectForKey:@"coord"] objectForKey:@"lat"];
-    _weatherInfo.longitude = [[deserializedData objectForKey:@"coord"] objectForKey:@"lon"];
-    _weatherInfo.humidity = [[deserializedData objectForKey:@"main"] objectForKey:@"humidity"];
-    _weatherInfo.pressure = [[deserializedData objectForKey:@"main"] objectForKey:@"pressure"];
-    _weatherInfo.temperature = [[deserializedData objectForKey:@"main"] objectForKey:@"temp"];
-    _weatherInfo.maxTemperature = [[deserializedData objectForKey:@"main"] objectForKey:@"temp_max"];
-    _weatherInfo.minTemperature = [[deserializedData objectForKey:@"main"] objectForKey:@"temp_min"];
-    _weatherInfo.cityName = [deserializedData objectForKey:@"name"];
+    weatherInfo.base = [deserializedData objectForKey:@"base"];
+    weatherInfo.cod = [deserializedData objectForKey:@"cod"];
+    weatherInfo.latitude = [[deserializedData objectForKey:@"coord"] objectForKey:@"lat"];
+    weatherInfo.longitude = [[deserializedData objectForKey:@"coord"] objectForKey:@"lon"];
+    weatherInfo.humidity = [[deserializedData objectForKey:@"main"] objectForKey:@"humidity"];
+    weatherInfo.pressure = [[deserializedData objectForKey:@"main"] objectForKey:@"pressure"];
+    weatherInfo.temperature = [[deserializedData objectForKey:@"main"] objectForKey:@"temp"];
+    weatherInfo.maxTemperature = [[deserializedData objectForKey:@"main"] objectForKey:@"temp_max"];
+    weatherInfo.minTemperature = [[deserializedData objectForKey:@"main"] objectForKey:@"temp_min"];
+    weatherInfo.cityName = [deserializedData objectForKey:@"name"];
     
-    [weakSelf.weatherDetailsList addObject:_weatherInfo];
+    [_weatherDetailsList addObject:weatherInfo];
     
-    return self.weatherDetailsList;
+    return [self existingWeatherDetailsList];
+}
+
+- (NSArray *)existingWeatherDetailsList {
+    return _weatherDetailsList;
 }
 
 

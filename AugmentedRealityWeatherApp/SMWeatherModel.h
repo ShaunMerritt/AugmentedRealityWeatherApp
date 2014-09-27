@@ -12,7 +12,9 @@
 @interface SMWeatherModel : NSObject
 
 -(instancetype) initWithJSONData: (NSData *) jsonData;
-- (NSArray *)weatherResults;
+- (NSArray *)generateWeatherDetailsList;
+- (NSArray *)existingWeatherDetailsList;
+
 
 
 @end

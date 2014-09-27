@@ -12,11 +12,17 @@
 #import "SMWeatherClient.h"
 #import "SMWeatherModel.h"
 #import "SMWeatherInfo.h"
+#import "SMInitialLoadingView.h"
+#import "SMWeatherInfoCardView.h"
 #import <JSONKit.h>
+
 
 @interface SMViewController () {
     SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
     NSArray *_currentWeatherInfoArray;
+    SMInitialLoadingView *_initialLoadingView;
+    SMWeatherInfo *_currentWeatherInfoForCity;
+    SMWeatherInfoCardView *_infoView;
 }
 
 - (void)getWeatherInfo;
@@ -32,16 +38,14 @@
     
     _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [self.view addSubview:_blurredBackgroundCameraView];
-    
-    _currentWeatherInfoArray = [[NSArray alloc] init];
-    
+        
     [self getWeatherInfo];
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _initialLoadingView = [[SMInitialLoadingView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, 100, 100)];
+    _initialLoadingView.center = CGPointMake(self.view.center.x, self.view.center.y);
+    _initialLoadingView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_initialLoadingView];
+    
 }
 
 #pragma mark - Weather Retrieval
@@ -62,11 +66,25 @@
             else{
                 
                 SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
-                _currentWeatherInfoArray = [[weatherParser weatherResults] mutableCopy];
+                _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
                 
                 // TODO: Here is just basic testing
-                SMWeatherInfo *_currentWeatherInfoForCity = _currentWeatherInfoArray[0];
-                NSLog(@"HERE: %@", _currentWeatherInfoForCity.cityName);
+                _currentWeatherInfoForCity = _currentWeatherInfoArray[0];
+                NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
+                
+                // Called upon completion of animation
+                __weak SMViewController *self_ = self;
+                _initialLoadingView.cardCreated = ^(BOOL isCreated){
+                    if (isCreated == YES) {
+                        [self_ cardHasBeenCreated];
+                    } else {
+                        // TODO: Add handles for if a view wasn't created.
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"View Not Created" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+    
+                        [alert show];
+                    }
+                };
 
             }
         }
@@ -75,6 +93,11 @@
 
 }
 
-
+- (void)cardHasBeenCreated {
+    
+    _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
+    [self.view addSubview:_infoView];
+    
+}
 
 @end
