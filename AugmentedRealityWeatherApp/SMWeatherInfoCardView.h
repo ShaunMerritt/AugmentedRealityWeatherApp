@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMWeatherInfo.h"
 
 @interface SMWeatherInfoCardView : UIView
+
+- (void) createLabelsWithWeatherObject:(SMWeatherInfo *)weatherInfo;
+
+@property (nonatomic, strong) NSString *test;
 
 @end

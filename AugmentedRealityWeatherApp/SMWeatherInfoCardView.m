@@ -11,10 +11,14 @@
 #import <POP.h>
 
 @interface SMWeatherInfoCardView() {
-    UILabel *_currentTemperature;
+    UILabel *_currentTemperatureLabel;
     UILabel *_currentLocationLabel;
     UILabel *_maxTemperatureForDayLabel;
     UILabel *_minTemperatureForDayLabel;
+    NSString *_nameOfCurrentCity;
+    NSString *_currentTemperature;
+    NSString *_currentCityLowTemperature;
+    NSString *_currentCityHighTemperature;
 }
 
 @end
@@ -30,35 +34,49 @@
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 5;
         
-        [self setFrameForWeatherInfoLabels];
-        [self aniamteWeatherInfoLabels];
+        
         
     }
     return self;
     
 }
 
+- (void) createLabelsWithWeatherObject:(SMWeatherInfo *)weatherInfo {
+    
+    _nameOfCurrentCity = weatherInfo.cityName;
+    _currentTemperature = weatherInfo.temperature;
+    _currentCityLowTemperature = weatherInfo.minTemperature;
+    _currentCityHighTemperature = weatherInfo.maxTemperature;
+    
+    NSLog(@"YES: %@", _nameOfCurrentCity);
+    
+    [self setFrameForWeatherInfoLabels];
+    [self aniamteWeatherInfoLabels];
+    
+}
+
+
 - (void)setFrameForWeatherInfoLabels {
     
     // TODO: As of now, I just hard coded the labels text, but it will be from the actual weather query in the future
 
     // Current Temperature Label
-    _currentTemperature = [[UILabel alloc] init];
-    _currentTemperature.text = @"86°";
-    _currentTemperature.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(120.0)];
+    _currentTemperatureLabel = [[UILabel alloc] init];
+    _currentTemperatureLabel.text = [NSString stringWithFormat:@"%d", [_currentTemperature intValue]];
+    _currentTemperatureLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(120.0)];
     
-    _currentTemperature.backgroundColor = [UIColor clearColor];
-    _currentTemperature.textColor = [UIColor whiteColor];
+    _currentTemperatureLabel.backgroundColor = [UIColor clearColor];
+    _currentTemperatureLabel.textColor = [UIColor whiteColor];
     
-    _currentTemperature.textAlignment = NSTextAlignmentCenter;
-    [_currentTemperature sizeToFit];
+    _currentTemperatureLabel.textAlignment = NSTextAlignmentCenter;
+    [_currentTemperatureLabel sizeToFit];
     
-    [self addSubview:_currentTemperature];
-    _currentTemperature.center = CGPointMake(self.center.x, self.frame.origin.y - 100);
+    [self addSubview:_currentTemperatureLabel];
+    _currentTemperatureLabel.center = CGPointMake(self.center.x, self.frame.origin.y - 100);
     
     // Current Location Label
     _currentLocationLabel = [[UILabel alloc] init];
-    _currentLocationLabel.text = @"Oak Park, CA";
+    _currentLocationLabel.text = _nameOfCurrentCity;
     _currentLocationLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(20)];
     
     _currentLocationLabel.backgroundColor = [UIColor clearColor];
@@ -72,7 +90,7 @@
     
     // Current Max Temperature Label
     _maxTemperatureForDayLabel = [[UILabel alloc] init];
-    _maxTemperatureForDayLabel.text = @"˦  92°";
+    _maxTemperatureForDayLabel.text = [NSString stringWithFormat:@"˦  %@°", _currentCityHighTemperature];
     _maxTemperatureForDayLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(23)];
     
     _maxTemperatureForDayLabel.backgroundColor = [UIColor clearColor];
@@ -86,7 +104,7 @@
     
     // Current Min Temperature Label
     _minTemperatureForDayLabel = [[UILabel alloc] init];
-    _minTemperatureForDayLabel.text = @"˨  60°";
+    _minTemperatureForDayLabel.text = [NSString stringWithFormat:@"˨  %@°", _currentCityLowTemperature];
     _minTemperatureForDayLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(23)];
     
     _minTemperatureForDayLabel.backgroundColor = [UIColor clearColor];
@@ -107,25 +125,25 @@
     
     // Animations for current temperature label
     POPSpringAnimation *moveTemperatureLabelAlongY = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    moveTemperatureLabelAlongY.fromValue = @(_currentTemperature.frame.origin.y);
+    moveTemperatureLabelAlongY.fromValue = @(_currentTemperatureLabel.frame.origin.y);
     moveTemperatureLabelAlongY.toValue = @(self.frame.origin.y + 180);
     moveTemperatureLabelAlongY.springBounciness = 2;
     moveTemperatureLabelAlongY.springSpeed = 5.0f;
-    [_currentTemperature.layer pop_addAnimation:moveTemperatureLabelAlongY forKey:@"moveTemperatureLabelAlongY"];
+    [_currentTemperatureLabel.layer pop_addAnimation:moveTemperatureLabelAlongY forKey:@"moveTemperatureLabelAlongY"];
     
     POPSpringAnimation *moveTemperatureLabelAlongX = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
-    moveTemperatureLabelAlongX.fromValue = @(_currentTemperature.frame.origin.x);
+    moveTemperatureLabelAlongX.fromValue = @(_currentTemperatureLabel.frame.origin.x);
     moveTemperatureLabelAlongX.toValue = @(self.center.x);
     moveTemperatureLabelAlongX.springBounciness = 2;
     moveTemperatureLabelAlongX.springSpeed = 5.0f;
-    [_currentTemperature.layer pop_addAnimation:moveTemperatureLabelAlongX forKey:@"moveTemperatureLabelAlongX"];
+    [_currentTemperatureLabel.layer pop_addAnimation:moveTemperatureLabelAlongX forKey:@"moveTemperatureLabelAlongX"];
 
     POPSpringAnimation *scaleTemperatureLabel = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
     scaleTemperatureLabel.fromValue = [NSValue valueWithCGPoint:CGPointMake(1.5, 1.5)];
     scaleTemperatureLabel.toValue = [NSValue valueWithCGPoint:CGPointMake(1, 1)];
     scaleTemperatureLabel.springBounciness = 2;
     scaleTemperatureLabel.springSpeed = 5.0f;
-    [_currentTemperature pop_addAnimation:scaleTemperatureLabel forKey:@"scaleTemperatureLabel"];
+    [_currentTemperatureLabel pop_addAnimation:scaleTemperatureLabel forKey:@"scaleTemperatureLabel"];
 
     // Animations for current location label
     POPSpringAnimation *moveLocationLabelAlongY = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
@@ -158,7 +176,7 @@
     [_minTemperatureForDayLabel.layer pop_addAnimation:moveMinTemperatureLabelAlongY forKey:@"moveMinTemperatureLabelAlongY"];
     
     POPSpringAnimation *moveMinTemperatureLabelAlongX = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
-    moveMinTemperatureLabelAlongX.fromValue = @(_currentTemperature.frame.origin.x);
+    moveMinTemperatureLabelAlongX.fromValue = @(_currentTemperatureLabel.frame.origin.x);
     moveMinTemperatureLabelAlongX.toValue = @(self.center.x - 50);
     moveMinTemperatureLabelAlongX.springBounciness = 2;
     moveMinTemperatureLabelAlongX.springSpeed = 5.0f;
@@ -180,8 +198,8 @@
     [_maxTemperatureForDayLabel.layer pop_addAnimation:moveMaxTemperatureLabelAlongY forKey:@"moveMaxTemperatureLabelAlongY"];
     
     POPSpringAnimation *moveMaxTemperatureLabelAlongX = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
-    moveMaxTemperatureLabelAlongX.fromValue = @(_currentTemperature.frame.origin.x);
-    moveMaxTemperatureLabelAlongX.toValue = @(self.center.x + 20);
+    moveMaxTemperatureLabelAlongX.fromValue = @(_currentTemperatureLabel.frame.origin.x);
+    moveMaxTemperatureLabelAlongX.toValue = @(self.center.x + 40);
     moveMaxTemperatureLabelAlongX.springBounciness = 2;
     moveMaxTemperatureLabelAlongX.springSpeed = 5.0f;
     [_maxTemperatureForDayLabel.layer pop_addAnimation:moveMaxTemperatureLabelAlongX forKey:@"moveMaxTemperatureLabelAlongX"];

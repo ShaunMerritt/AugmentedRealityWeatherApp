@@ -23,6 +23,7 @@
     SMInitialLoadingView *_initialLoadingView;
     SMWeatherInfo *_currentWeatherInfoForCity;
     SMWeatherInfoCardView *_infoView;
+    
 }
 
 - (void)getWeatherInfo;
@@ -35,6 +36,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor blackColor];
     
     _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [self.view addSubview:_blurredBackgroundCameraView];
@@ -76,7 +79,7 @@
                 __weak SMViewController *self_ = self;
                 _initialLoadingView.cardCreated = ^(BOOL isCreated){
                     if (isCreated == YES) {
-                        [self_ cardHasBeenCreated];
+                        [self_ cardHasBeenCreated:_currentWeatherInfoForCity];
                     } else {
                         // TODO: Add handles for if a view wasn't created.
                         
@@ -93,9 +96,10 @@
 
 }
 
-- (void)cardHasBeenCreated {
+- (void)cardHasBeenCreated: (SMWeatherInfo *)weatherInfo {
     
     _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
+    [_infoView createLabelsWithWeatherObject:weatherInfo];
     [self.view addSubview:_infoView];
     
 }
