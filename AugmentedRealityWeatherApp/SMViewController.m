@@ -15,25 +15,16 @@
 #import "SMInitialLoadingView.h"
 #import "SMWeatherInfoCardView.h"
 #import <JSONKit.h>
-#import "INTULocationManager.h"
 
 
-@interface SMViewController ()  {
+@interface SMViewController () {
     SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
     NSArray *_currentWeatherInfoArray;
     SMInitialLoadingView *_initialLoadingView;
     SMWeatherInfo *_currentWeatherInfoForCity;
     SMWeatherInfoCardView *_infoView;
-    NSString *_currentLatitude;
-    NSString *_currentLongitude;
+    
 }
-
-@property (assign, nonatomic) INTULocationAccuracy desiredAccuracy;
-@property (assign, nonatomic) NSTimeInterval timeout;
-
-@property (assign, nonatomic) NSInteger locationRequestID;
-
-
 
 - (void)getWeatherInfo;
 
@@ -46,55 +37,12 @@
     
     [super viewDidLoad];
     
-    
-    
-    
-    
-    
-    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
-                                       timeout:10.0
-                          delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
-                                         block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-                                             if (status == INTULocationStatusSuccess) {
-                                                 // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
-                                                 // currentLocation contains the device's current location.
-                                                 
-                                                 NSLog(@"y");
-                                                 
-                                                 _currentLongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
-                                                 _currentLatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
-                                                 
-                                                 
-                                                 [self getWeatherInfo];
-
-                                                 NSLog(@"%@", _currentLongitude);
-                                                 NSLog(@"%@",_currentLatitude);
-
-                                             }
-                                             else if (status == INTULocationStatusTimedOut) {
-                                                 // Wasn't able to locate the user with the requested accuracy within the timeout interval.
-                                                 // However, currentLocation contains the best location available (if any) as of right now,
-                                                 // and achievedAccuracy has info on the accuracy/recency of the location in currentLocation.
-                                             }
-                                             else {
-                                                 // An error occurred, more info is available by looking at the specific status returned.
-                                             }
-                                         }];
-    
-    
-    
-    
-    
-    
-    NSLog(@"NOOO");
-    
-    
     self.view.backgroundColor = [UIColor blackColor];
     
     _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [self.view addSubview:_blurredBackgroundCameraView];
         
+    [self getWeatherInfo];
     
     _initialLoadingView = [[SMInitialLoadingView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, 100, 100)];
     _initialLoadingView.center = CGPointMake(self.view.center.x, self.view.center.y);
@@ -103,14 +51,11 @@
     
 }
 
-
-
 #pragma mark - Weather Retrieval
 - (void)getWeatherInfo {
     
     // TODO: This is just a quick test to see if it works.
-    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", _currentLongitude, _currentLatitude];
-    NSLog(@"url: %@", URLString);
+    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?q=London,uk&units=imperial"];
     NSURL *url = [NSURL URLWithString:URLString];
     
     [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
@@ -151,15 +96,6 @@
 
 }
 
-#pragma mark - Helper Methods
-
-- (void) getCurrentLocation {
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    [locationManager startUpdatingLocation];
-}
-
 - (void)cardHasBeenCreated: (SMWeatherInfo *)weatherInfo {
     
     _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
@@ -168,34 +104,4 @@
     
 }
 
-#pragma mark - CLLocationManagerDelegate
-
-- (void)setLocationRequestID:(NSInteger)locationRequestID
-{
-    _locationRequestID = locationRequestID;
-    
-    BOOL isProcessingLocationRequest = (locationRequestID != NSNotFound);
-    
-}
-
-
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

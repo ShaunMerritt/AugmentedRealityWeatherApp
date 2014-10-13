@@ -90,7 +90,7 @@
     
     // Current Max Temperature Label
     _maxTemperatureForDayLabel = [[UILabel alloc] init];
-    _maxTemperatureForDayLabel.text = [NSString stringWithFormat:@"˦  %d°", [_currentCityHighTemperature intValue]];
+    _maxTemperatureForDayLabel.text = [NSString stringWithFormat:@"˦  %@°", _currentCityHighTemperature];
     _maxTemperatureForDayLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(23)];
     
     _maxTemperatureForDayLabel.backgroundColor = [UIColor clearColor];
@@ -104,7 +104,7 @@
     
     // Current Min Temperature Label
     _minTemperatureForDayLabel = [[UILabel alloc] init];
-    _minTemperatureForDayLabel.text = [NSString stringWithFormat:@"˨  %d°", [_currentCityLowTemperature intValue]];
+    _minTemperatureForDayLabel.text = [NSString stringWithFormat:@"˨  %@°", _currentCityLowTemperature];
     _minTemperatureForDayLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(23)];
     
     _minTemperatureForDayLabel.backgroundColor = [UIColor clearColor];
