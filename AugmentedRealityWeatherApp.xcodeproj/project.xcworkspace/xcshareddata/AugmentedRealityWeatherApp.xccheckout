@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>66685139-0CA4-4B26-9BBC-AB7FC2ABFCE5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>AugmentedRealityWeatherApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>350DA967C0BF2D0DE50666CF3A21B135EF2962C3</key>
+		<string>https://github.com/ShaunOssa/AugmentedRealityWeatherApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AugmentedRealityWeatherApp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>350DA967C0BF2D0DE50666CF3A21B135EF2962C3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ShaunOssa/AugmentedRealityWeatherApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>350DA967C0BF2D0DE50666CF3A21B135EF2962C3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>350DA967C0BF2D0DE50666CF3A21B135EF2962C3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AugmentedRealityWeatherApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
