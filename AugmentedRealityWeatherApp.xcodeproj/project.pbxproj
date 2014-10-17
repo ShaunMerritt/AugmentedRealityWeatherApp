@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */; };
+		281FF34019EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */; };
+		281FF34119EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33B19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m */; };
+		281FF34219EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33D19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m */; };
+		281FF34319EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33F19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m */; };
 		2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2855422219D37D16003B9241 /* SMInitialLoadingView.m */; };
 		2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2865F07C19D37B0D00CACA4C /* SMStyleKit.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
@@ -52,6 +56,14 @@
 		0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		280A792919D0F4CC00B47F5F /* SMWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherClient.h; sourceTree = "<group>"; };
 		280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherClient.m; sourceTree = "<group>"; };
+		281FF33819EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
+		281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompletePlace.m; sourceTree = "<group>"; };
+		281FF33A19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteQuery.h; sourceTree = "<group>"; };
+		281FF33B19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompleteQuery.m; sourceTree = "<group>"; };
+		281FF33C19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
+		281FF33D19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
+		281FF33E19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesPlaceDetailQuery.h; sourceTree = "<group>"; };
+		281FF33F19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesPlaceDetailQuery.m; sourceTree = "<group>"; };
 		2855422119D37D16003B9241 /* SMInitialLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMInitialLoadingView.h; sourceTree = "<group>"; };
 		2855422219D37D16003B9241 /* SMInitialLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMInitialLoadingView.m; sourceTree = "<group>"; };
 		2865F07B19D37B0D00CACA4C /* SMStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStyleKit.h; sourceTree = "<group>"; };
@@ -160,6 +172,14 @@
 		28E99FD819B6CB2400E327DE /* AugmentedRealityWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				281FF33819EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.h */,
+				281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */,
+				281FF33A19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.h */,
+				281FF33B19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m */,
+				281FF33C19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.h */,
+				281FF33D19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m */,
+				281FF33E19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.h */,
+				281FF33F19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m */,
 				28E37C6319EC75B300B920E2 /* INTULocationManager.h */,
 				28E37C6419EC75B300B920E2 /* INTULocationManager.m */,
 				28E37C6519EC75B300B920E2 /* INTULocationRequest.h */,
@@ -356,13 +376,17 @@
 			files = (
 				2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */,
 				28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */,
+				281FF34319EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
 				2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */,
+				281FF34119EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
 				28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */,
 				28E37C6919EC75B300B920E2 /* INTULocationRequest.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
 				28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */,
+				281FF34019EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m in Sources */,
+				281FF34219EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				28E37C6819EC75B300B920E2 /* INTULocationManager.m in Sources */,
 				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
 				28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */,
