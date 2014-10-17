@@ -26,7 +26,6 @@
     SMWeatherInfoCardView *_infoView;
     NSString *_currentLatitude;
     NSString *_currentLongitude;
-    
 }
 
 @property (assign, nonatomic) INTULocationAccuracy desiredAccuracy;
@@ -58,6 +57,8 @@
     _initialLoadingView.center = CGPointMake(self.view.center.x, self.view.center.y);
     _initialLoadingView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_initialLoadingView];
+    
+    [self addGesturesToView];
     
 }
 
@@ -109,7 +110,20 @@
 
 #pragma mark - Helper Methods
 
+- (void)addGesturesToView {
+    
+    UISwipeGestureRecognizer *swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(respondToSwipeDownGesture)];
+    swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:swipeDownGestureRecognizer];
+    
+}
 
+- (void) respondToSwipeDownGesture {
+    
+    NSLog(@"Swipe Down");
+    
+}
 
 - (void)cardHasBeenCreated: (SMWeatherInfo *)weatherInfo {
     
@@ -122,8 +136,8 @@
 #pragma mark - Location
 
 - (void)findCurrentLocation {
-    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+    INTULocationManager *locationManager = [INTULocationManager sharedInstance];
+    [locationManager requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
                                        timeout:10.0
                           delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
                                          block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
@@ -131,7 +145,6 @@
                                                  // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
                                                  // currentLocation contains the device's current location.
                                                  
-                                                 NSLog(@"y");
                                                  
                                                  _currentLongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
                                                  _currentLatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
