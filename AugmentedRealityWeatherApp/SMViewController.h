@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+//@class SMWeatherLocationsViewController;
+
 @interface SMViewController : UIViewController 
-    
+
+//@property (strong, nonatomic)SMWeatherLocationsViewController *weatherLocationsViewController;
 
 @end

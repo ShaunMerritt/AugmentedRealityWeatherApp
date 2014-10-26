@@ -16,6 +16,11 @@
 #import "SMWeatherInfoCardView.h"
 #import <JSONKit.h>
 #import "INTULocationManager.h"
+#import "SMWeatherLocationsViewController.h"
+#import <POP.h>
+#import "SMAddLocationsView.h"
+
+
 
 
 @interface SMViewController () {
@@ -59,6 +64,12 @@
     [self.view addSubview:_initialLoadingView];
     
     [self addGesturesToView];
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
 }
 
@@ -121,7 +132,20 @@
 
 - (void) respondToSwipeDownGesture {
     
-    NSLog(@"Swipe Down");
+    SMAddLocationsView *addLocationsView = [[SMAddLocationsView alloc] initWithFrame: CGRectMake(0, -1 * self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+    [self.view addSubview:addLocationsView];
+    
+    [UIView animateWithDuration:0.8 delay:0
+         usingSpringWithDamping:0.7 initialSpringVelocity:0 options:0 animations:^{
+             
+             [addLocationsView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+             
+         } completion:^(BOOL finished) {
+             
+             SMWeatherLocationsViewController *weatherLocationsViewController = [[SMWeatherLocationsViewController alloc] init];
+             [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
+
+         }];
     
 }
 

@@ -15,8 +15,10 @@
 		2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2855422219D37D16003B9241 /* SMInitialLoadingView.m */; };
 		2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2865F07C19D37B0D00CACA4C /* SMStyleKit.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
+		2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887D08B19FB410C003DB35F /* SMAddLocationsView.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
+		28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */; };
 		28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3719D1259F003D6F50 /* SMWeatherModel.m */; };
 		28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */; };
 		28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */; };
@@ -70,8 +72,12 @@
 		2865F07C19D37B0D00CACA4C /* SMStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStyleKit.m; sourceTree = "<group>"; };
 		28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBlurredCameraBackgroundView.h; sourceTree = "<group>"; };
 		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
+		2887D08A19FB410C003DB35F /* SMAddLocationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddLocationsView.h; sourceTree = "<group>"; };
+		2887D08B19FB410C003DB35F /* SMAddLocationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddLocationsView.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		28B45E2319BD2B830018600F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		28C5D35F19F4B4AD00B8AE85 /* SMWeatherLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherLocationsViewController.h; sourceTree = "<group>"; };
+		28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherLocationsViewController.m; sourceTree = "<group>"; };
 		28C78F3619D1259F003D6F50 /* SMWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherModel.h; sourceTree = "<group>"; };
 		28C78F3719D1259F003D6F50 /* SMWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherModel.m; sourceTree = "<group>"; };
 		28C78F3919D12963003D6F50 /* SMWeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherInfo.h; sourceTree = "<group>"; };
@@ -134,6 +140,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2887D08719FB403C003DB35F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				28E99FE119B6CB2600E327DE /* SMAppDelegate.h */,
+				28E99FE219B6CB2600E327DE /* SMAppDelegate.m */,
+				28E99FE719B6CB2700E327DE /* SMViewController.h */,
+				28E99FE819B6CB2700E327DE /* SMViewController.m */,
+				28C5D35F19F4B4AD00B8AE85 /* SMWeatherLocationsViewController.h */,
+				28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		2887D08819FB4066003DB35F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				280A792919D0F4CC00B47F5F /* SMWeatherClient.h */,
+				280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */,
+				28C78F3619D1259F003D6F50 /* SMWeatherModel.h */,
+				28C78F3719D1259F003D6F50 /* SMWeatherModel.m */,
+				28C78F3919D12963003D6F50 /* SMWeatherInfo.h */,
+				28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2887D08919FB407C003DB35F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2855422119D37D16003B9241 /* SMInitialLoadingView.h */,
+				2855422219D37D16003B9241 /* SMInitialLoadingView.m */,
+				28E0FE0319D520DA00F0F8E7 /* SMWeatherInfoCardView.h */,
+				28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */,
+				28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */,
+				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
+				2887D08A19FB410C003DB35F /* SMAddLocationsView.h */,
+				2887D08B19FB410C003DB35F /* SMAddLocationsView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		28E99FC619B6CB2300E327DE = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +219,19 @@
 		28E99FD819B6CB2400E327DE /* AugmentedRealityWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				28E99FE419B6CB2600E327DE /* Main.storyboard */,
+				2887D08719FB403C003DB35F /* View Controllers */,
+				2887D08819FB4066003DB35F /* Models */,
+				2887D08919FB407C003DB35F /* Views */,
+				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
+				28E99FD919B6CB2400E327DE /* Supporting Files */,
+			);
+			path = AugmentedRealityWeatherApp;
+			sourceTree = "<group>";
+		};
+		28E99FD919B6CB2400E327DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				281FF33819EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.h */,
 				281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */,
 				281FF33A19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.h */,
@@ -187,32 +247,6 @@
 				28E37C6719EC75B300B920E2 /* INTULocationRequestDefines.h */,
 				2865F07B19D37B0D00CACA4C /* SMStyleKit.h */,
 				2865F07C19D37B0D00CACA4C /* SMStyleKit.m */,
-				28E99FE119B6CB2600E327DE /* SMAppDelegate.h */,
-				28E99FE219B6CB2600E327DE /* SMAppDelegate.m */,
-				28E99FE419B6CB2600E327DE /* Main.storyboard */,
-				28E99FE719B6CB2700E327DE /* SMViewController.h */,
-				28E99FE819B6CB2700E327DE /* SMViewController.m */,
-				28C78F3619D1259F003D6F50 /* SMWeatherModel.h */,
-				28C78F3719D1259F003D6F50 /* SMWeatherModel.m */,
-				28C78F3919D12963003D6F50 /* SMWeatherInfo.h */,
-				28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */,
-				28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */,
-				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
-				280A792919D0F4CC00B47F5F /* SMWeatherClient.h */,
-				280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */,
-				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
-				28E99FD919B6CB2400E327DE /* Supporting Files */,
-				2855422119D37D16003B9241 /* SMInitialLoadingView.h */,
-				2855422219D37D16003B9241 /* SMInitialLoadingView.m */,
-				28E0FE0319D520DA00F0F8E7 /* SMWeatherInfoCardView.h */,
-				28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */,
-			);
-			path = AugmentedRealityWeatherApp;
-			sourceTree = "<group>";
-		};
-		28E99FD919B6CB2400E327DE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				28E99FDA19B6CB2400E327DE /* AugmentedRealityWeatherApp-Info.plist */,
 				28E99FDB19B6CB2500E327DE /* InfoPlist.strings */,
 				28E99FDE19B6CB2500E327DE /* main.m */,
@@ -378,6 +412,7 @@
 				28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */,
 				281FF34319EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
+				28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */,
 				2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */,
 				281FF34119EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
@@ -388,6 +423,7 @@
 				281FF34019EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				281FF34219EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				28E37C6819EC75B300B920E2 /* INTULocationManager.m in Sources */,
+				2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */,
 				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
 				28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */,
 			);
@@ -519,6 +555,7 @@
 					"$(inherited)",
 					/Users/Shaun/Downloads/Video,
 					Blurring,
+					"$(PROJECT_DIR)/AugmentedRealityWeatherApp",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
@@ -539,6 +576,7 @@
 					"$(inherited)",
 					/Users/Shaun/Downloads/Video,
 					Blurring,
+					"$(PROJECT_DIR)/AugmentedRealityWeatherApp",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
