@@ -162,7 +162,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [_addLocationsView.searchField setText:@"NANANA"];
+    [_addLocationsView.searchField setText:@""];
     
     
 }
