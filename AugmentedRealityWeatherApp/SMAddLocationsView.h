@@ -10,4 +10,8 @@
 
 @interface SMAddLocationsView : UIView
 
+@property (nonatomic, retain) UITextField *searchField;
+@property (nonatomic, retain) UITableView *tableViewContainingCities;
+
+
 @end

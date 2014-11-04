@@ -11,8 +11,8 @@
 
 @interface SMAddLocationsView () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
-    UITableView *_tableViewContainingCities;
-    UITextField *_searchField;
+    //UITableView *_tableViewContainingCities;
+    //UITextField *_searchField;
 
 }
 
@@ -62,8 +62,8 @@
     tableViewForCities.userInteractionEnabled = YES;
     tableViewForCities.bounces = YES;
     
-    tableViewForCities.delegate = self;
-    tableViewForCities.dataSource = self;
+    //tableViewForCities.delegate = self;
+    //tableViewForCities.dataSource = self;
     tableViewForCities.backgroundColor = [UIColor clearColor];
     
     return tableViewForCities;

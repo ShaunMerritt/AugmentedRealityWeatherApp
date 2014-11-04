@@ -21,9 +21,9 @@
     
     // Override point for customization after application launch…
     
-    UIViewController *myVC = [[SMViewController alloc] init];
+    UIViewController *rootViewController = [[SMViewController alloc] init];
     viewController = [[UINavigationController alloc]
-    initWithRootViewController:myVC];
+    initWithRootViewController:rootViewController];
     
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];

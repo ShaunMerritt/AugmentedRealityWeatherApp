@@ -49,9 +49,8 @@
 //}
 //
 - (NSString *)googleURLString {
-    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
-                                                             [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                                                             SPBooleanStringForBool(sensor), key];
+    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=(cities)&language=EN&key=%@",
+                                                             [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], key];
     if (offset != NSNotFound) {
         [url appendFormat:@"&offset=%u", offset];
     }
