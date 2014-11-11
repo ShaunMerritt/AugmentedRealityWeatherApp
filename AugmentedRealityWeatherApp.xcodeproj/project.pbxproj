@@ -16,6 +16,7 @@
 		2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2865F07C19D37B0D00CACA4C /* SMStyleKit.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
 		2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887D08B19FB410C003DB35F /* SMAddLocationsView.m */; };
+		28978D4C1A0DDD83003C47E4 /* SMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
 		28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */; };
@@ -74,6 +75,8 @@
 		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
 		2887D08A19FB410C003DB35F /* SMAddLocationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddLocationsView.h; sourceTree = "<group>"; };
 		2887D08B19FB410C003DB35F /* SMAddLocationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddLocationsView.m; sourceTree = "<group>"; };
+		28978D4A1A0DDD83003C47E4 /* SMLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLocationModel.h; sourceTree = "<group>"; };
+		28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLocationModel.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		28B45E2319BD2B830018600F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		28C5D35F19F4B4AD00B8AE85 /* SMWeatherLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherLocationsViewController.h; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				28C78F3719D1259F003D6F50 /* SMWeatherModel.m */,
 				28C78F3919D12963003D6F50 /* SMWeatherInfo.h */,
 				28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */,
+				28978D4A1A0DDD83003C47E4 /* SMLocationModel.h */,
+				28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
 				28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */,
 				281FF34019EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m in Sources */,
+				28978D4C1A0DDD83003C47E4 /* SMLocationModel.m in Sources */,
 				281FF34219EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				28E37C6819EC75B300B920E2 /* INTULocationManager.m in Sources */,
 				2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */,

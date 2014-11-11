@@ -8,19 +8,16 @@
 
 #import "SMAddLocationsView.h"
 #import "SMBlurredCameraBackgroundView.h"
+#import "SMWeatherLocationsViewController.h"
 
 @interface SMAddLocationsView () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
-    //UITableView *_tableViewContainingCities;
-    //UITextField *_searchField;
-
+    SMWeatherLocationsViewController *_weatherLocationsController;
 }
 
 @end
 
 @implementation SMAddLocationsView
-
-
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,6 +26,7 @@
         
         _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height)];
         [self addSubview:_blurredBackgroundCameraView];
+        _dataForTableView = [[NSMutableArray alloc] init];
         
         [self createViewLayout];
         
@@ -37,12 +35,11 @@
 }
 
 - (void) createViewLayout {
-    
+
     _searchField = [[UITextField alloc] initWithFrame:CGRectMake(0, 20, self.bounds.size.width, 55)];
     _searchField.backgroundColor = [UIColor colorWithRed:0.1765 green:0.1765 blue:0.1765 alpha:.7];
     _searchField.textColor = [UIColor whiteColor];
     _searchField.textAlignment = NSTextAlignmentCenter;
-    _searchField.delegate = self;
     _searchField.text = @"Search For City";
     [self addSubview:_searchField];
     
@@ -52,25 +49,23 @@
     
 }
 
--(UITableView *)createTableView
-{
+-(UITableView *)createTableView {
     UITableView *tableViewForCities = [[UITableView alloc]initWithFrame:CGRectMake(0, 75, self.frame.size.width, self.frame.size.height - 75) style:UITableViewStylePlain];
     
     tableViewForCities.rowHeight = 45;
     tableViewForCities.scrollEnabled = YES;
-    tableViewForCities.showsVerticalScrollIndicator = YES;
+    tableViewForCities.showsVerticalScrollIndicator = NO;
     tableViewForCities.userInteractionEnabled = YES;
-    tableViewForCities.bounces = YES;
-    
-    //tableViewForCities.delegate = self;
-    //tableViewForCities.dataSource = self;
+    tableViewForCities.bounces = NO;
+    tableViewForCities.delegate = self;
+    tableViewForCities.dataSource = self;
     tableViewForCities.backgroundColor = [UIColor clearColor];
     
     return tableViewForCities;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [_dataForTableView count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"cityCell";
@@ -81,17 +76,21 @@
     else{
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    cell.backgroundColor = [UIColor colorWithRed:0.1765 green:0.1765 blue:0.1765 alpha:.6];
-    cell.textLabel.text=[NSString stringWithFormat:@"Cell %d",indexPath.row+1];
+    
+    SMLocationModel *newLocation = [_dataForTableView objectAtIndex:indexPath.row];
+    NSString *string = newLocation.cityName;
+    
+    cell.textLabel.text = string;
     cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor colorWithRed:0.1765 green:0.1765 blue:0.1765 alpha:.6];
+
     return cell;
+
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [_searchField setText:@""];
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SMLocationModel *newLocation = [_dataForTableView objectAtIndex:indexPath.row];
+    [self.delegate createWithLocation:newLocation];
 }
-
-
 
 @end

@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 True Merit Development. All rights reserved.
 //
 
-#import "SMViewController.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface SMWeatherLocationsViewController : SMViewController
+@interface SMWeatherLocationsViewController : UIViewController 
 
 @end
+
