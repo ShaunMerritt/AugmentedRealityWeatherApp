@@ -140,9 +140,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
 
 - (void) viewWillAppear:(BOOL)animated {
-    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
 }
 
 #pragma mark - Weather Retrieval
@@ -151,7 +149,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     NSString *lat = [NSString stringWithFormat:@"%f",[_locationManager location].coordinate.latitude];
     NSString *lon = [NSString stringWithFormat:@"%f",[_locationManager location].coordinate.longitude];
 
-    
     NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
     NSLog(@"url: %@", URLString);
     
@@ -286,41 +283,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     [_initialLoadingView removeFromSuperview];
     
-}
-
-#pragma mark - Location
-
-- (void)findCurrentLocation {
-    INTULocationManager *locationManager = [INTULocationManager sharedInstance];
-    [locationManager requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
-                                       timeout:10.0
-                          delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
-                                         block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-                                             if (status == INTULocationStatusSuccess) {
-                                                 // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
-                                                 // currentLocation contains the device's current location.
-                                                 
-                                                 
-                                                 _currentLongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
-                                                 _currentLatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
-                                                 
-                                                 
-                                                 [self getWeatherInfo];
-                                                 
-                                                 NSLog(@"%@", _currentLongitude);
-                                                 NSLog(@"%@",_currentLatitude);
-                                                 
-                                             }
-                                             else if (status == INTULocationStatusTimedOut) {
-                                                 // Wasn't able to locate the user with the requested accuracy within the timeout interval.
-                                                 // However, currentLocation contains the best location available (if any) as of right now,
-                                                 // and achievedAccuracy has info on the accuracy/recency of the location in currentLocation.
-                                             }
-                                             else {
-                                                 // An error occurred, more info is available by looking at the specific status returned.
-                                             }
-                                         }];
-
 }
 
 @end
