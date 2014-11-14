@@ -15,16 +15,15 @@
 #import "SMInitialLoadingView.h"
 #import "SMWeatherInfoCardView.h"
 #import <JSONKit.h>
-#import <CoreLocation/CoreLocation.h>
 #import "INTULocationManager.h"
 #import "SMWeatherLocationsViewController.h"
 #import <POP.h>
 #import "SMAddLocationsView.h"
-#import "CLLocation+Bearing.h"
 
-static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
-@interface SMViewController () <CLLocationManagerDelegate> {
+
+
+@interface SMViewController () {
     SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
     NSArray *_currentWeatherInfoArray;
     SMInitialLoadingView *_initialLoadingView;
@@ -32,15 +31,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     SMWeatherInfoCardView *_infoView;
     NSString *_currentLatitude;
     NSString *_currentLongitude;
-    CLLocationManager *_locationManager;
-    NSMutableArray *_quadrantOneLocations;
-    NSMutableArray *_quadrantTwoLocations;
-    NSMutableArray *_quadrantThreeLocations;
-    NSMutableArray *_quadrantFourLocations;
-    NSMutableArray *_savedLocations;
-    CLLocation *_currentUsersLocation;
-    NSArray *_arrayOfCitiesInDirectionOfPhoneHeading;
-
 }
 
 @property (assign, nonatomic) INTULocationAccuracy desiredAccuracy;
@@ -60,35 +50,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     [super viewDidLoad];
     
-    _quadrantOneLocations = [[NSMutableArray alloc] init];
-    _quadrantTwoLocations = [[NSMutableArray alloc] init];
-    _quadrantThreeLocations = [[NSMutableArray alloc] init];
-    _quadrantFourLocations = [[NSMutableArray alloc] init];
+    [self findCurrentLocation];
     
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
-    [_locationManager startUpdatingLocation];
-    [_locationManager startUpdatingHeading];
-
-    [self getWeatherInfo];
-    
-    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *savedArray = [currentDefaults objectForKey:kKeyForUserDefaults];
-    if (savedArray != nil)
-    {
-        NSArray *arrayOfSavedLocationObjects = [NSKeyedUnarchiver unarchiveObjectWithData:savedArray];
-        if (arrayOfSavedLocationObjects != nil) {
-            _savedLocations = [[NSMutableArray alloc] initWithArray:arrayOfSavedLocationObjects];
-            
-            [self calculateBearing];
-            
-        } else {
-            _savedLocations = [[NSMutableArray alloc] init];
-        }
-    }
-
     self.view.backgroundColor = [UIColor blackColor];
     
     _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -104,41 +67,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
 }
 
-#pragma mark - CLLocationDelegate
-
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    _currentUsersLocation = newLocation;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-    
-    float heading = newHeading.trueHeading;
-    
-    if (heading > 0 && heading <= 90) {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantOneLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantOneLocations;
-            [self createCardStack];
-        }
-    } else if (heading > 90 && heading <= 180) {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantTwoLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantTwoLocations;
-            [self createCardStack];
-        }
-    } else if (heading > 180 && heading <= 270) {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantThreeLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantThreeLocations;
-            [self createCardStack];
-        }
-    } else {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantFourLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantFourLocations;
-            [self createCardStack];
-        }
-    }
-}
-
-
-
 - (void) viewWillAppear:(BOOL)animated {
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -148,11 +76,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 #pragma mark - Weather Retrieval
 - (void)getWeatherInfo {
     
-    NSString *lat = [NSString stringWithFormat:@"%f",[_locationManager location].coordinate.latitude];
-    NSString *lon = [NSString stringWithFormat:@"%f",[_locationManager location].coordinate.longitude];
-
-    
-    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
+    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", _currentLongitude, _currentLatitude];
     NSLog(@"url: %@", URLString);
     
     NSURL *url = [NSURL URLWithString:URLString];
@@ -197,59 +121,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
 #pragma mark - Helper Methods
 
-- (void) calculateBearing {
-    
-    for (SMLocationModel *currentLocationObject in _savedLocations) {
-        
-        CLLocation *distantLocation = [[CLLocation alloc] initWithLatitude:currentLocationObject.cityLocationLatitude longitude:currentLocationObject.cityLocationLongitude];
-        
-        CLLocationBearing bearing = [[_locationManager location] bearingToLocation: distantLocation];
-        switch (bearing) {
-            case CLLocationBearingEast:
-                [_quadrantOneLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingNorth:
-                [_quadrantFourLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingNorthEast:
-                [_quadrantOneLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingNorthWest:
-                [_quadrantFourLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingSouth:
-                [_quadrantTwoLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingSouthEast:
-                [_quadrantTwoLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingSouthWest:
-                [_quadrantThreeLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingWest:
-                [_quadrantThreeLocations addObject:currentLocationObject];
-                break;
-            case CLLocationBearingUnknown:
-                NSLog(@"Unknown");
-                break;
-            default:
-                NSLog(@"Unknown");
-                break;
-        }
-    }
-}
-
-- (void) createCardStack {
-    
-    //TODO: make it so this reads from _arrayOfCitiesInDirectionOfPhoneHeading and shows appropriate locations
-    
-    [UIView animateWithDuration:1 animations:^{
-        _infoView.frame = CGRectMake(0, self.view.frame.size.height, _infoView.frame.size.width, _infoView.frame.size.height);
-        
-    }];
-    
-}
-
 - (void)addGesturesToView {
     
     UISwipeGestureRecognizer *swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc]
@@ -283,8 +154,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
     [_infoView createLabelsWithWeatherObject:weatherInfo];
     [self.view addSubview:_infoView];
-    
-    [_initialLoadingView removeFromSuperview];
     
 }
 

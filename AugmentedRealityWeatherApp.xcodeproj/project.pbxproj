@@ -15,8 +15,6 @@
 		2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2855422219D37D16003B9241 /* SMInitialLoadingView.m */; };
 		2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2865F07C19D37B0D00CACA4C /* SMStyleKit.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
-		287559181A1464AC0014648E /* CLLocation+Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 287559171A1464AC0014648E /* CLLocation+Direction.m */; };
-		2875591B1A146CF90014648E /* CLLocation+Bearing.m in Sources */ = {isa = PBXBuildFile; fileRef = 287559191A146CF90014648E /* CLLocation+Bearing.m */; };
 		2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887D08B19FB410C003DB35F /* SMAddLocationsView.m */; };
 		28978D4C1A0DDD83003C47E4 /* SMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
@@ -75,10 +73,6 @@
 		2865F07C19D37B0D00CACA4C /* SMStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStyleKit.m; sourceTree = "<group>"; };
 		28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBlurredCameraBackgroundView.h; sourceTree = "<group>"; };
 		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
-		287559161A1464AC0014648E /* CLLocation+Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Direction.h"; sourceTree = "<group>"; };
-		287559171A1464AC0014648E /* CLLocation+Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Direction.m"; sourceTree = "<group>"; };
-		287559191A146CF90014648E /* CLLocation+Bearing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Bearing.m"; sourceTree = "<group>"; };
-		2875591A1A146CF90014648E /* CLLocation+Bearing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Bearing.h"; sourceTree = "<group>"; };
 		2887D08A19FB410C003DB35F /* SMAddLocationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddLocationsView.h; sourceTree = "<group>"; };
 		2887D08B19FB410C003DB35F /* SMAddLocationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddLocationsView.m; sourceTree = "<group>"; };
 		28978D4A1A0DDD83003C47E4 /* SMLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLocationModel.h; sourceTree = "<group>"; };
@@ -236,8 +230,6 @@
 				2887D08919FB407C003DB35F /* Views */,
 				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
 				28E99FD919B6CB2400E327DE /* Supporting Files */,
-				287559161A1464AC0014648E /* CLLocation+Direction.h */,
-				287559171A1464AC0014648E /* CLLocation+Direction.m */,
 			);
 			path = AugmentedRealityWeatherApp;
 			sourceTree = "<group>";
@@ -245,8 +237,6 @@
 		28E99FD919B6CB2400E327DE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				287559191A146CF90014648E /* CLLocation+Bearing.m */,
-				2875591A1A146CF90014648E /* CLLocation+Bearing.h */,
 				281FF33819EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.h */,
 				281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */,
 				281FF33A19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.h */,
@@ -428,12 +418,10 @@
 				281FF34319EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
 				28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */,
-				2875591B1A146CF90014648E /* CLLocation+Bearing.m in Sources */,
 				2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */,
 				281FF34119EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
 				28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */,
-				287559181A1464AC0014648E /* CLLocation+Direction.m in Sources */,
 				28E37C6919EC75B300B920E2 /* INTULocationRequest.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
 				28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */,
