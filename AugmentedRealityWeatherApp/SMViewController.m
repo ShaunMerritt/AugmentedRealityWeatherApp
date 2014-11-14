@@ -16,6 +16,11 @@
 #import "SMWeatherInfoCardView.h"
 #import <JSONKit.h>
 #import "INTULocationManager.h"
+#import "SMWeatherLocationsViewController.h"
+#import <POP.h>
+#import "SMAddLocationsView.h"
+
+
 
 
 @interface SMViewController () {
@@ -26,7 +31,6 @@
     SMWeatherInfoCardView *_infoView;
     NSString *_currentLatitude;
     NSString *_currentLongitude;
-    
 }
 
 @property (assign, nonatomic) INTULocationAccuracy desiredAccuracy;
@@ -58,6 +62,14 @@
     _initialLoadingView.center = CGPointMake(self.view.center.x, self.view.center.y);
     _initialLoadingView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_initialLoadingView];
+    
+    [self addGesturesToView];
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
 }
 
@@ -109,7 +121,33 @@
 
 #pragma mark - Helper Methods
 
+- (void)addGesturesToView {
+    
+    UISwipeGestureRecognizer *swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(respondToSwipeDownGesture)];
+    swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:swipeDownGestureRecognizer];
+    
+}
 
+- (void) respondToSwipeDownGesture {
+    
+    SMAddLocationsView *addLocationsView = [[SMAddLocationsView alloc] initWithFrame: CGRectMake(0, -1 * self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+    [self.view addSubview:addLocationsView];
+    
+    [UIView animateWithDuration:0.8 delay:0
+         usingSpringWithDamping:0.7 initialSpringVelocity:0 options:0 animations:^{
+             
+             [addLocationsView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+             
+         } completion:^(BOOL finished) {
+             
+             SMWeatherLocationsViewController *weatherLocationsViewController = [[SMWeatherLocationsViewController alloc] init];
+             [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
+
+         }];
+    
+}
 
 - (void)cardHasBeenCreated: (SMWeatherInfo *)weatherInfo {
     
@@ -122,8 +160,8 @@
 #pragma mark - Location
 
 - (void)findCurrentLocation {
-    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+    INTULocationManager *locationManager = [INTULocationManager sharedInstance];
+    [locationManager requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
                                        timeout:10.0
                           delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
                                          block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
@@ -131,7 +169,6 @@
                                                  // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
                                                  // currentLocation contains the device's current location.
                                                  
-                                                 NSLog(@"y");
                                                  
                                                  _currentLongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
                                                  _currentLatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
