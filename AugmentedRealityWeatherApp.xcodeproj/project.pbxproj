@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */; };
-		2819B8CA1A16CE780081A2EA /* SMWeatherCardForAugmentedReality.m in Sources */ = {isa = PBXBuildFile; fileRef = 2819B8C91A16CE780081A2EA /* SMWeatherCardForAugmentedReality.m */; };
 		281FF34019EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */; };
 		281FF34119EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33B19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m */; };
 		281FF34219EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33D19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m */; };
@@ -61,8 +60,6 @@
 		0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		280A792919D0F4CC00B47F5F /* SMWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherClient.h; sourceTree = "<group>"; };
 		280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherClient.m; sourceTree = "<group>"; };
-		2819B8C81A16CE780081A2EA /* SMWeatherCardForAugmentedReality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherCardForAugmentedReality.h; sourceTree = "<group>"; };
-		2819B8C91A16CE780081A2EA /* SMWeatherCardForAugmentedReality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherCardForAugmentedReality.m; sourceTree = "<group>"; };
 		281FF33819EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
 		281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompletePlace.m; sourceTree = "<group>"; };
 		281FF33A19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteQuery.h; sourceTree = "<group>"; };
@@ -188,8 +185,6 @@
 				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
 				2887D08A19FB410C003DB35F /* SMAddLocationsView.h */,
 				2887D08B19FB410C003DB35F /* SMAddLocationsView.m */,
-				2819B8C81A16CE780081A2EA /* SMWeatherCardForAugmentedReality.h */,
-				2819B8C91A16CE780081A2EA /* SMWeatherCardForAugmentedReality.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -423,7 +418,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2819B8CA1A16CE780081A2EA /* SMWeatherCardForAugmentedReality.m in Sources */,
 				2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */,
 				28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */,
 				281FF34319EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m in Sources */,

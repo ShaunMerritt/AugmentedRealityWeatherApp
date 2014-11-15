@@ -42,18 +42,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     NSMutableArray *_arrayOfCitiesInDirectionOfPhoneHeading;
     SMWeatherInfoCardView *_frontCardView;
     SMWeatherInfoCardView *_backCardView;
-    SMWeatherInfo *currentWeatherForOutwardLocation;
-    CGRect rect;
-
+    CGRect _frameOfFrontCard;
 }
-
-@property (assign, nonatomic) INTULocationAccuracy desiredAccuracy;
-@property (assign, nonatomic) NSTimeInterval timeout;
-
-@property (assign, nonatomic) NSInteger locationRequestID;
-
-
-- (void)getWeatherInfo;
 
 @end
 
@@ -69,36 +59,17 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     _quadrantThreeLocations = [[NSMutableArray alloc] init];
     _quadrantFourLocations = [[NSMutableArray alloc] init];
     
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
-    [_locationManager startUpdatingLocation];
-    [_locationManager startUpdatingHeading];
-
+    [self setLocationManager];
+    
     [self getWeatherInfo];
     
-    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *savedArray = [currentDefaults objectForKey:kKeyForUserDefaults];
-    if (savedArray != nil)
-    {
-        NSArray *arrayOfSavedLocationObjects = [NSKeyedUnarchiver unarchiveObjectWithData:savedArray];
-        if (arrayOfSavedLocationObjects != nil) {
-            _savedLocations = [[NSMutableArray alloc] initWithArray:arrayOfSavedLocationObjects];
-            
-            [self calculateBearing];
-            
-        } else {
-            _savedLocations = [[NSMutableArray alloc] init];
-        }
-    }
-
+    [self createSavedLocationsArray];
+    
     self.view.backgroundColor = [UIColor blackColor];
     
     _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [self.view addSubview:_blurredBackgroundCameraView];
         
-    
     _initialLoadingView = [[SMInitialLoadingView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, 100, 100)];
     _initialLoadingView.center = CGPointMake(self.view.center.x, self.view.center.y);
     _initialLoadingView.backgroundColor = [UIColor clearColor];
@@ -106,6 +77,10 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     [self addGesturesToView];
     
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 #pragma mark - CLLocationDelegate
@@ -117,7 +92,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
     
     float heading = newHeading.trueHeading;
-    
     if (heading > 0 && heading <= 90) {
         if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantOneLocations]) {
             _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantOneLocations;
@@ -139,13 +113,9 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
             [self createCardStack];
         }
     }
+    
 }
 
-
-
-- (void) viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
 
 #pragma mark - Weather Retrieval
 - (void)getWeatherInfo {
@@ -154,26 +124,19 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     NSString *lon = [NSString stringWithFormat:@"%f",[_locationManager location].coordinate.longitude];
 
     NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
-    NSLog(@"url: %@", URLString);
-    
     NSURL *url = [NSURL URLWithString:URLString];
     
     [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
         if (data != nil) {
-            
             NSError *error;
-            
             if (error != nil) {
                 NSLog(@"%@", [error localizedDescription]);
-            }
-            else{
+            } else {
                 
                 SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
                 _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
                 
-                // TODO: Here is just basic testing
                 SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
-                NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
                 
                 // Called upon completion of animation
                 __weak SMViewController *self_ = self;
@@ -196,7 +159,131 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
 }
 
-#pragma mark - Helper Methods
+#pragma mark - UILayout 
+
+- (void) animateCardsIn {
+    
+    if (_arrayOfCitiesInDirectionOfPhoneHeading.count != 0) {
+        
+        _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:_frameOfFrontCard];
+        [self.view addSubview:_frontCardView];
+        
+        if (_arrayOfCitiesInDirectionOfPhoneHeading.count >= 1) {
+            [self.view addSubview:[self createBackCard]];
+        }
+        
+        NSString *lat = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLatitude]];
+        NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
+        
+        NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
+        NSLog(@"url: %@", URLString);
+        
+        NSURL *url = [NSURL URLWithString:URLString];
+        
+        [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
+            if (data != nil) {
+                
+                NSError *error;
+                
+                if (error != nil) {
+                    NSLog(@"%@", [error localizedDescription]);
+                }
+                else{
+                    
+                    SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
+                    _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
+                    
+                    // TODO: Here is just basic testing
+                    SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
+                    NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
+                    
+                    [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
+                }
+            }
+            
+        }];
+        
+    }
+}
+
+- (void) createCardStack {
+    
+    [UIView animateWithDuration:1 animations:^{
+        
+        _infoView.frame = CGRectMake(0, self.view.frame.size.height, _infoView.frame.size.width, _infoView.frame.size.height);
+        _frontCardView.frame = _infoView.frame;
+        _backCardView.frame = _infoView.frame;
+        
+    }completion:^(BOOL finished) {
+        
+        [_infoView removeFromSuperview];
+        [_frontCardView removeFromSuperview];
+        [_backCardView removeFromSuperview];
+        
+        [self animateCardsIn];
+        
+    }];
+    
+}
+
+
+- (SMWeatherInfoCardView *)createBackCard {
+    CGRect rectForCard = CGRectMake(_frameOfFrontCard.origin.x + 10, _frameOfFrontCard.origin.y + 15, _frameOfFrontCard.size.width - 20, _frameOfFrontCard.size.height);
+    _backCardView = [[SMWeatherInfoCardView alloc] initWithFrame:rectForCard];
+    _backCardView.alpha = .4;
+    return _backCardView;
+}
+
+- (void) animateBackCardIn {
+    
+    CGRect frameForFront = _frontCardView.frame;
+    
+    _frontCardView = _backCardView;
+    
+    SMWeatherInfoCardView *backCardView = [self createBackCard];
+    backCardView.frame = frameForFront;
+    
+    [self.view addSubview:backCardView];
+    
+    [UIView animateWithDuration:.5 animations:^{
+        backCardView.frame = CGRectMake(_frameOfFrontCard.origin.x + 10, _frameOfFrontCard.origin.y + 15, _frameOfFrontCard.size.width - 20, _frameOfFrontCard.size.height);
+    }];
+    
+    NSString *lat = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLatitude]];
+    NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
+    
+    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
+    NSLog(@"url: %@", URLString);
+    
+    NSURL *url = [NSURL URLWithString:URLString];
+    
+    [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
+        if (data != nil) {
+            
+            NSError *error;
+            
+            if (error != nil) {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+            else{
+                
+                SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
+                _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
+                
+                // TODO: Here is just basic testing
+                SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
+                NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
+                
+                [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
+            }
+        }
+        
+    }];
+    
+}
+
+
+#pragma mark - Location Related Methods
 
 - (void) calculateBearing {
     
@@ -240,68 +327,39 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     }
 }
 
-- (void) createCardStack {
-    
-    //TODO: make it so this reads from _arrayOfCitiesInDirectionOfPhoneHeading and shows appropriate locations
-    
-    [UIView animateWithDuration:1 animations:^{
-        
-        _infoView.frame = CGRectMake(0, self.view.frame.size.height, _infoView.frame.size.width, _infoView.frame.size.height);
-        _frontCardView.frame = _infoView.frame;
-        _backCardView.frame = _infoView.frame;
-        
-    }completion:^(BOOL finished) {
-        
-        [_infoView removeFromSuperview];
-        [_frontCardView removeFromSuperview];
-        [_backCardView removeFromSuperview];
-        
-        [self animateCardsIn];
-        
-    }];
-    
+
+#pragma mark - Helper Methods
+
+- (void) setLocationManager {
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    [_locationManager startUpdatingLocation];
+    [_locationManager startUpdatingHeading];
 }
 
-- (void) animateCardsIn {
+- (void) createSavedLocationsArray {
     
-    _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:rect];
-    [self.view addSubview:_frontCardView];
-    
-    NSString *lat = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLatitude]];
-    NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
-
-    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
-    NSLog(@"url: %@", URLString);
-    
-    NSURL *url = [NSURL URLWithString:URLString];
-    
-    [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
-        if (data != nil) {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *savedArray = [currentDefaults objectForKey:kKeyForUserDefaults];
+    if (savedArray != nil)
+    {
+        NSArray *arrayOfSavedLocationObjects = [NSKeyedUnarchiver unarchiveObjectWithData:savedArray];
+        if (arrayOfSavedLocationObjects != nil) {
+            _savedLocations = [[NSMutableArray alloc] initWithArray:arrayOfSavedLocationObjects];
             
-            NSError *error;
+            [self calculateBearing];
             
-            if (error != nil) {
-                NSLog(@"%@", [error localizedDescription]);
-            }
-            else{
-                
-                SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
-                _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
-                
-                // TODO: Here is just basic testing
-                SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
-                NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
-                
-                [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
-            }
+        } else {
+            _savedLocations = [[NSMutableArray alloc] init];
         }
-        
-    }];
-
-
-    
+    }
     
 }
+
+
+
 
 - (void)addGesturesToView {
     
@@ -310,6 +368,53 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:swipeDownGestureRecognizer];
     
+    UISwipeGestureRecognizer *swipeleftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLeftSwipe)];
+    swipeleftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeleftGesture];
+    
+    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToRightSwipe)];
+    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeRightGesture];
+
+    
+}
+
+- (void) respondToLeftSwipe {
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        _frontCardView.alpha = 0.0;
+        _backCardView.frame = _frontCardView.frame;
+        _frontCardView.center = CGPointMake(_frontCardView.frame.size.width / 2 *-1, _frontCardView.center.y + 10);
+        _backCardView.alpha = 1.0;
+        id object = [_arrayOfCitiesInDirectionOfPhoneHeading objectAtIndex:0];
+        [_arrayOfCitiesInDirectionOfPhoneHeading removeObjectAtIndex:0];
+        [_arrayOfCitiesInDirectionOfPhoneHeading insertObject:object atIndex:_arrayOfCitiesInDirectionOfPhoneHeading.count];
+    } completion:^(BOOL finished) {
+        
+        [self animateBackCardIn];
+
+        
+    }];
+    
+}
+
+
+
+- (void) respondToRightSwipe {
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        _frontCardView.alpha = 0.0;
+        _backCardView.frame = _frontCardView.frame;
+        _frontCardView.center = CGPointMake(_frontCardView.frame.size.width * 2, _frontCardView.center.y + 10);
+        _backCardView.alpha = 1.0;
+        id object = [_arrayOfCitiesInDirectionOfPhoneHeading objectAtIndex:0];
+        [_arrayOfCitiesInDirectionOfPhoneHeading removeObjectAtIndex:0];
+        [_arrayOfCitiesInDirectionOfPhoneHeading insertObject:object atIndex:_arrayOfCitiesInDirectionOfPhoneHeading.count];
+    } completion:^(BOOL finished) {
+        
+        [self animateBackCardIn];
+        
+    }];
 }
 
 - (void) respondToSwipeDownGesture {
@@ -331,14 +436,12 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
 }
 
-
-
 - (void)cardHasBeenCreated: (SMWeatherInfo *)weatherInfo {
     
     _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
     [_infoView createLabelsWithWeatherObject:weatherInfo];
     [self.view addSubview:_infoView];
-    rect = _infoView.frame;
+    _frameOfFrontCard = _infoView.frame;
     [_initialLoadingView removeFromSuperview];
     
 }
