@@ -39,7 +39,11 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     NSMutableArray *_quadrantFourLocations;
     NSMutableArray *_savedLocations;
     CLLocation *_currentUsersLocation;
-    NSArray *_arrayOfCitiesInDirectionOfPhoneHeading;
+    NSMutableArray *_arrayOfCitiesInDirectionOfPhoneHeading;
+    SMWeatherInfoCardView *_frontCardView;
+    SMWeatherInfoCardView *_backCardView;
+    SMWeatherInfo *currentWeatherForOutwardLocation;
+    CGRect rect;
 
 }
 
@@ -168,14 +172,14 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
                 _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
                 
                 // TODO: Here is just basic testing
-                _currentWeatherInfoForCity = _currentWeatherInfoArray[0];
+                SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
                 NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
                 
                 // Called upon completion of animation
                 __weak SMViewController *self_ = self;
                 _initialLoadingView.cardCreated = ^(BOOL isCreated){
                     if (isCreated == YES) {
-                        [self_ cardHasBeenCreated:_currentWeatherInfoForCity];
+                        [self_ cardHasBeenCreated:weatherInfoForCurrentCity];
                     } else {
                         // TODO: Add handles for if a view wasn't created.
                         
@@ -241,9 +245,61 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     //TODO: make it so this reads from _arrayOfCitiesInDirectionOfPhoneHeading and shows appropriate locations
     
     [UIView animateWithDuration:1 animations:^{
+        
         _infoView.frame = CGRectMake(0, self.view.frame.size.height, _infoView.frame.size.width, _infoView.frame.size.height);
+        _frontCardView.frame = _infoView.frame;
+        _backCardView.frame = _infoView.frame;
+        
+    }completion:^(BOOL finished) {
+        
+        [_infoView removeFromSuperview];
+        [_frontCardView removeFromSuperview];
+        [_backCardView removeFromSuperview];
+        
+        [self animateCardsIn];
         
     }];
+    
+}
+
+- (void) animateCardsIn {
+    
+    _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:rect];
+    [self.view addSubview:_frontCardView];
+    
+    NSString *lat = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLatitude]];
+    NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
+
+    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
+    NSLog(@"url: %@", URLString);
+    
+    NSURL *url = [NSURL URLWithString:URLString];
+    
+    [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
+        if (data != nil) {
+            
+            NSError *error;
+            
+            if (error != nil) {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+            else{
+                
+                SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
+                _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
+                
+                // TODO: Here is just basic testing
+                SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
+                NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
+                
+                [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
+            }
+        }
+        
+    }];
+
+
+    
     
 }
 
@@ -275,12 +331,14 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
 }
 
+
+
 - (void)cardHasBeenCreated: (SMWeatherInfo *)weatherInfo {
     
     _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
     [_infoView createLabelsWithWeatherObject:weatherInfo];
     [self.view addSubview:_infoView];
-    
+    rect = _infoView.frame;
     [_initialLoadingView removeFromSuperview];
     
 }
