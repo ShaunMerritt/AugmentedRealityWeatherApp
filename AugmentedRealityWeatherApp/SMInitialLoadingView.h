@@ -16,9 +16,5 @@
 @end
 
 @interface SMInitialLoadingView : UIView
-
-@property (nonatomic, copy) void(^cardCreated)(BOOL isComplete);
-
 @property (nonatomic, weak) id<SMInitialLoadingViewDelegate> delegate;
-
 @end
