@@ -131,6 +131,7 @@
 
 - (void)displayWeather {
     
+    [self.delegate didCreateCard:YES];
     if (self.cardCreated) {
         self.cardCreated(YES);
     }

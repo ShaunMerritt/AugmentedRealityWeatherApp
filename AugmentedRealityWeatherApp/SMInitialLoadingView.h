@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "SMWeatherInfo.h"
 
+@class SMInitialLoadingView;
+
+@protocol SMInitialLoadingViewDelegate <NSObject>
+- (void)didCreateCard:(BOOL)isComplete;
+@end
+
 @interface SMInitialLoadingView : UIView
 
 @property (nonatomic, copy) void(^cardCreated)(BOOL isComplete);
+
+@property (nonatomic, weak) id<SMInitialLoadingViewDelegate> delegate;
 
 @end

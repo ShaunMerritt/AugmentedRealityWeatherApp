@@ -23,7 +23,7 @@
 
 static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
-@interface SMViewController () <CLLocationManagerDelegate> {
+@interface SMViewController () <CLLocationManagerDelegate, SMInitialLoadingViewDelegate> {
     SMBlurredCameraBackgroundView *_blurredBackgroundCameraView;
     NSArray *_currentWeatherInfoArray;
     SMInitialLoadingView *_initialLoadingView;
@@ -42,6 +42,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     SMWeatherInfoCardView *_frontCardView;
     SMWeatherInfoCardView *_backCardView;
     CGRect _frameOfFrontCard;
+    SMWeatherInfo *_weatherInfoForCurrentCity;
 }
 
 @end
@@ -73,6 +74,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     _initialLoadingView.center = CGPointMake(self.view.center.x, self.view.center.y);
     _initialLoadingView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_initialLoadingView];
+    _initialLoadingView.delegate = self;
     
     [self addGesturesToView];
     
@@ -131,26 +133,9 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
             if (error != nil) {
                 NSLog(@"%@", [error localizedDescription]);
             } else {
-                
                 SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
                 _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
-                
-                SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
-                
-                // Called upon completion of animation
-                __weak SMViewController *self_ = self;
-                _initialLoadingView.cardCreated = ^(BOOL isCreated){
-                    if (isCreated == YES) {
-                        [self_ cardHasBeenCreated:weatherInfoForCurrentCity];
-                    } else {
-                        // TODO: Add handles for if a view wasn't created.
-                        
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"View Not Created" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-    
-                        [alert show];
-                    }
-                };
-
+                _weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
             }
         }
 
@@ -507,15 +492,19 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
 }
 
-- (void)cardHasBeenCreated: (SMWeatherInfo *)weatherInfo {
-    
-    _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
-    [_infoView createLabelsWithWeatherObject:weatherInfo];
-    [self.view addSubview:_infoView];
-    _frameOfFrontCard = _infoView.frame;
-    [_locationManager startUpdatingHeading];
+#pragma mark - SMInitialInfoViewDelegate 
 
-    [_initialLoadingView removeFromSuperview];
+- (void) didCreateCard:(BOOL)isComplete {
+    
+    if (isComplete == YES) {
+        _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
+        [_infoView createLabelsWithWeatherObject:_weatherInfoForCurrentCity];
+        [self.view addSubview:_infoView];
+        _frameOfFrontCard = _infoView.frame;
+        [_locationManager startUpdatingHeading];
+        
+        [_initialLoadingView removeFromSuperview];
+    }
     
 }
 
