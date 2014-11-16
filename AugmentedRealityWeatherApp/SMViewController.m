@@ -16,7 +16,6 @@
 #import "SMWeatherInfoCardView.h"
 #import <JSONKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "INTULocationManager.h"
 #import "SMWeatherLocationsViewController.h"
 #import <POP.h>
 #import "SMAddLocationsView.h"

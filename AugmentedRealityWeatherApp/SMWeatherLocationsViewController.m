@@ -8,9 +8,6 @@
 
 #import "SMWeatherLocationsViewController.h"
 #import "SMAddLocationsView.h"
-#import "SPGooglePlacesAutocompleteQuery.h"
-#import "SPGooglePlacesAutocompletePlace.h"
-#import "INTULocationManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SMLocationModel.h"
 
