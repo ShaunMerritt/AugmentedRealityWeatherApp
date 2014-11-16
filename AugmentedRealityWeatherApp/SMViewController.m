@@ -165,64 +165,137 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     if (_arrayOfCitiesInDirectionOfPhoneHeading.count != 0) {
         
-        _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:_frameOfFrontCard];
+        _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(self.view.frame.size.width + 50, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];
         [self.view addSubview:_frontCardView];
         
+        
+        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/6);
+        _frontCardView.transform = transform;
+
+        POPSpringAnimation *rotate = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+        rotate.toValue = @(0);
+        rotate.springBounciness = 3;
+        rotate.springSpeed = 5.0f;
+        [_frontCardView.layer pop_addAnimation:rotate forKey:@"rotate"];
+        
+        POPSpringAnimation *move =
+        [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+        move.toValue = [NSValue valueWithCGRect:_frameOfFrontCard];;
+        move.springBounciness = 4;
+        move.springSpeed = 5.0f;
+        [_frontCardView.layer pop_addAnimation:move forKey:@"position"];
+        
+        move.completionBlock = ^(POPAnimation *frame, BOOL finished) {
+            NSString *lat = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLatitude]];
+            NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
+            
+            NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
+            NSLog(@"url: %@", URLString);
+            
+            NSURL *url = [NSURL URLWithString:URLString];
+            
+            [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
+                if (data != nil) {
+                    
+                    NSError *error;
+                    
+                    if (error != nil) {
+                        NSLog(@"%@", [error localizedDescription]);
+                    }
+                    else{
+                        
+                        SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
+                        _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
+                        
+                        // TODO: Here is just basic testing
+                        SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
+                        NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
+                        
+                        [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
+                    }
+                    
+                }
+                
+            }];
+        };
+        
+
+        
         if (_arrayOfCitiesInDirectionOfPhoneHeading.count >= 1) {
-            [self.view addSubview:[self createBackCard]];
+            SMWeatherInfoCardView *backViewForAnimating = [self createBackCard];
+            
+            CGRect backCardFrame = backViewForAnimating.frame;
+            
+            backViewForAnimating.frame = CGRectMake(backCardFrame.origin.x + self.view.frame.size.width + 100, backCardFrame.origin.y, backCardFrame.size.width, backCardFrame.size.height);
+            [self.view addSubview:backViewForAnimating];
+            
+            
+            CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/6);
+            backViewForAnimating.transform = transform;
+            
+            POPSpringAnimation *rotate = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+            rotate.toValue = @(0);
+            rotate.springBounciness = 3;
+            rotate.springSpeed = 5.0f;
+            rotate.beginTime = CACurrentMediaTime() + .2;
+            [backViewForAnimating.layer pop_addAnimation:rotate forKey:@"rotate"];
+            
+            POPSpringAnimation *move =
+            [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+            move.toValue = [NSValue valueWithCGRect:backCardFrame];;
+            move.springBounciness = 4;
+            move.springSpeed = 5.0f;
+            move.beginTime = CACurrentMediaTime() + .2;
+            [backViewForAnimating.layer pop_addAnimation:move forKey:@"position"];
+            
+
+            
         }
         
-        NSString *lat = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLatitude]];
-        NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
         
-        NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
-        NSLog(@"url: %@", URLString);
-        
-        NSURL *url = [NSURL URLWithString:URLString];
-        
-        [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
-            if (data != nil) {
-                
-                NSError *error;
-                
-                if (error != nil) {
-                    NSLog(@"%@", [error localizedDescription]);
-                }
-                else{
-                    
-                    SMWeatherModel *weatherParser = [[SMWeatherModel alloc] initWithJSONData:data];
-                    _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
-                    
-                    // TODO: Here is just basic testing
-                    SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
-                    NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
-                    
-                    [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
-                }
-            }
-            
-        }];
         
     }
 }
 
 - (void) createCardStack {
     
-    [UIView animateWithDuration:1 animations:^{
+
+    
+    POPSpringAnimation *rotate = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+    rotate.toValue = @((M_PI/6)*-1);
+    rotate.springBounciness = 3;
+    rotate.springSpeed = 1.0f;
+    //rotate.beginTime = CACurrentMediaTime() + .2;
+    [_infoView.layer pop_addAnimation:rotate forKey:@"rotate"];
+    [_frontCardView.layer pop_addAnimation:rotate forKey:@"rotate"];
+    [_backCardView.layer pop_addAnimation:rotate forKey:@"rotate"];
+
+    
+    POPSpringAnimation *move =
+    [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    move.toValue = [NSValue valueWithCGRect:CGRectMake(- 100, self.view.frame.size.height + 80, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];;
+    move.springBounciness = 4;
+    move.springSpeed = 1.0f;
+    //move.beginTime = CACurrentMediaTime() + .2;
+    [_frontCardView.layer pop_addAnimation:move forKey:@"position"];
+    [_backCardView.layer pop_addAnimation:move forKey:@"position"];
+    [_infoView.layer pop_addAnimation:move forKey:@"position"];
+    
+    SMWeatherInfoCardView *frontView = _frontCardView;
+    SMWeatherInfoCardView *backView = _backCardView;
+    
+    [self animateCardsIn];
+
+
+    move.completionBlock = ^(POPAnimation *moved, BOOL finished) {
         
-        _infoView.frame = CGRectMake(0, self.view.frame.size.height, _infoView.frame.size.width, _infoView.frame.size.height);
-        _frontCardView.frame = _infoView.frame;
-        _backCardView.frame = _infoView.frame;
+                [_infoView removeFromSuperview];
+                [frontView removeFromSuperview];
+                [backView removeFromSuperview];
+
         
-    }completion:^(BOOL finished) {
-        
-        [_infoView removeFromSuperview];
-        [_frontCardView removeFromSuperview];
-        [_backCardView removeFromSuperview];
-        
-        [self animateCardsIn];
-        
-    }];
+
+    };
     
 }
 
@@ -336,7 +409,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     [_locationManager startUpdatingLocation];
-    [_locationManager startUpdatingHeading];
 }
 
 - (void) createSavedLocationsArray {
@@ -442,6 +514,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     [_infoView createLabelsWithWeatherObject:weatherInfo];
     [self.view addSubview:_infoView];
     _frameOfFrontCard = _infoView.frame;
+    [_locationManager startUpdatingHeading];
+
     [_initialLoadingView removeFromSuperview];
     
 }
