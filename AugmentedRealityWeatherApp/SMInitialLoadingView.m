@@ -13,6 +13,10 @@
 #import "SMViewController.h"
 #import <POP.h>
 
+static const CGFloat kSpringSpeedValueForAnimation = 20;
+static const CGFloat kSpringBouncinessValueForIconAnimation = 20;
+
+
 @interface SMInitialLoadingView (){
  
     CAShapeLayer *_bezier;
@@ -67,15 +71,15 @@
     if (_scaleTheLocationIcon == nil) {
         _scaleTheLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
         _scaleTheLocationIcon.toValue = [NSValue valueWithCGPoint:CGPointMake(1.5, 1.5)];
-        _scaleTheLocationIcon.springBounciness = 8.0f; // Between 0-20
-        _scaleTheLocationIcon.springSpeed = 20.0f; // Between 0-20
+        _scaleTheLocationIcon.springBounciness = kSpringBouncinessValueForIconAnimation; // Between 0-20
+        _scaleTheLocationIcon.springSpeed = kSpringSpeedValueForAnimation; // Between 0-20
     }
     [self pop_addAnimation:_scaleTheLocationIcon forKey:@"scaleTheLocationIcon"];
 
     if (_spinTheLocationIcon == nil) {
         _spinTheLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
         _spinTheLocationIcon.toValue = @(M_PI*4);
-        _spinTheLocationIcon.springBounciness = 7;
+        _spinTheLocationIcon.springBounciness = kSpringBouncinessValueForIconAnimation;
         _spinTheLocationIcon.springSpeed = 2.0f;
     }
     [self.layer pop_addAnimation:_spinTheLocationIcon forKey:@"spinTheLocationIcon"];
@@ -83,8 +87,8 @@
     if (_scaleDownLocationIcon) {
         _scaleDownLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
         _scaleDownLocationIcon.toValue = [NSValue valueWithCGPoint:CGPointMake(1, 1)];
-        _scaleDownLocationIcon.springBounciness = 8.0f; // Between 0-20
-        _scaleDownLocationIcon.springSpeed = 20.0f; // Between 0-20
+        _scaleDownLocationIcon.springBounciness = kSpringBouncinessValueForIconAnimation; // Between 0-20
+        _scaleDownLocationIcon.springSpeed = kSpringSpeedValueForAnimation; // Between 0-20
     }
     [self pop_addAnimation:_scaleDownLocationIcon forKey:@"scaleDownLocationIcon"];
 
@@ -93,13 +97,13 @@
         POPSpringAnimation *scaleTheLocationIconOffScreen = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
         scaleTheLocationIconOffScreen.toValue = [NSValue valueWithCGPoint:CGPointMake(10, 10)];
         scaleTheLocationIconOffScreen.springBounciness = 4.0f; // Between 0-20
-        scaleTheLocationIconOffScreen.springSpeed = 20.0f; // Between 0-20
+        scaleTheLocationIconOffScreen.springSpeed = kSpringSpeedValueForAnimation; // Between 0-20
         [self pop_addAnimation:scaleTheLocationIconOffScreen forKey:@"scaleTheLocationIconOffScreen"];
     
         POPSpringAnimation *fadeLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewAlpha];
         fadeLocationIcon.toValue = @(0.0);
         fadeLocationIcon.springBounciness = 2.0f;
-        fadeLocationIcon.springSpeed = 20.0f;
+        fadeLocationIcon.springSpeed = kSpringSpeedValueForAnimation;
         [self pop_addAnimation:fadeLocationIcon forKey:@"fadeLocationIcon"];
         fadeLocationIcon.completionBlock = ^(POPAnimation *fade, BOOL finished) {
             
