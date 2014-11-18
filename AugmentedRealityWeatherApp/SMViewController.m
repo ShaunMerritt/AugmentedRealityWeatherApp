@@ -20,6 +20,8 @@
 #import <POP.h>
 #import "SMAddLocationsView.h"
 #import "CLLocation+Bearing.h"
+#import "SMExistingLocationsView.h"
+#import "SMExistingLocationsViewController.h"
 
 static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
@@ -475,8 +477,11 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
 - (void) respondToSwipeDownGesture {
     
-    SMAddLocationsView *addLocationsView = [[SMAddLocationsView alloc] initWithFrame: CGRectMake(0, -1 * self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
-    [self.view addSubview:addLocationsView];
+//    SMAddLocationsView *addLocationsView = [[SMAddLocationsView alloc] initWithFrame: CGRectMake(0, -1 * self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+//    [self.view addSubview:addLocationsView];
+    
+    SMExistingLocationsView *addLocationsView = [[SMExistingLocationsView alloc]  initWithFrame: CGRectMake(0, -1 * self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+     [self.view addSubview:addLocationsView];
     
     [UIView animateWithDuration:0.8 delay:0
          usingSpringWithDamping:0.7 initialSpringVelocity:0 options:0 animations:^{
@@ -485,7 +490,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
              
          } completion:^(BOOL finished) {
              
-             SMWeatherLocationsViewController *weatherLocationsViewController = [[SMWeatherLocationsViewController alloc] init];
+             SMExistingLocationsViewController *weatherLocationsViewController = [[SMExistingLocationsViewController alloc] init];
              [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
 
          }];

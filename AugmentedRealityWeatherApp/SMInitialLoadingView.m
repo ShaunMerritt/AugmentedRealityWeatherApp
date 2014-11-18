@@ -132,16 +132,11 @@ static const CGFloat kSpringBouncinessValueForIconAnimation = 20;
 
             showFrame.completionBlock = ^(POPAnimation *frame, BOOL finished) {
                 
-                [self displayWeather];
+                [self.delegate didCreateCard:YES];
 
             };
         };
     };
 }
-
-- (void)displayWeather {
-    [self.delegate didCreateCard:YES];
-}
-
 
 @end

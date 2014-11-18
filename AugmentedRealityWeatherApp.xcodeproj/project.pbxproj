@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */; };
 		281BE8041A1866EE008037E0 /* CLLocation+Bearing.m in Sources */ = {isa = PBXBuildFile; fileRef = 281BE8021A1866EE008037E0 /* CLLocation+Bearing.m */; };
+		284339A61A18895600F2C1AC /* SMExistingLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339A51A18895600F2C1AC /* SMExistingLocationsViewController.m */; };
+		284339A91A18896E00F2C1AC /* SMExistingLocationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339A81A18896E00F2C1AC /* SMExistingLocationsView.m */; };
+		284339AC1A188A1400F2C1AC /* SMPlusShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339AB1A188A1400F2C1AC /* SMPlusShapeView.m */; };
+		284339AF1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339AE1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m */; };
 		2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2855422219D37D16003B9241 /* SMInitialLoadingView.m */; };
 		2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2865F07C19D37B0D00CACA4C /* SMStyleKit.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
@@ -16,6 +20,10 @@
 		28978D4C1A0DDD83003C47E4 /* SMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
+		28B9156D1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9156C1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m */; };
+		28B915701A19468D001E3C7D /* SMAddNewLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9156F1A19468D001E3C7D /* SMAddNewLocationsViewController.m */; };
+		28B915731A1946B9001E3C7D /* SMAddNewLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B915721A1946B9001E3C7D /* SMAddNewLocationView.m */; };
+		28B915761A19473A001E3C7D /* SMCustomSearchUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B915751A19473A001E3C7D /* SMCustomSearchUITextField.m */; };
 		28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */; };
 		28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3719D1259F003D6F50 /* SMWeatherModel.m */; };
 		28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */; };
@@ -56,6 +64,15 @@
 		280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherClient.m; sourceTree = "<group>"; };
 		281BE8021A1866EE008037E0 /* CLLocation+Bearing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Bearing.m"; sourceTree = "<group>"; };
 		281BE8031A1866EE008037E0 /* CLLocation+Bearing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Bearing.h"; sourceTree = "<group>"; };
+		284339A41A18895600F2C1AC /* SMExistingLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMExistingLocationsViewController.h; sourceTree = "<group>"; };
+		284339A51A18895600F2C1AC /* SMExistingLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMExistingLocationsViewController.m; sourceTree = "<group>"; };
+		284339A71A18896E00F2C1AC /* SMExistingLocationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMExistingLocationsView.h; sourceTree = "<group>"; };
+		284339A81A18896E00F2C1AC /* SMExistingLocationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMExistingLocationsView.m; sourceTree = "<group>"; };
+		284339AA1A188A1400F2C1AC /* SMPlusShapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlusShapeView.h; sourceTree = "<group>"; };
+		284339AB1A188A1400F2C1AC /* SMPlusShapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPlusShapeView.m; sourceTree = "<group>"; };
+		284339AD1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SMAugmentedRealityAppColors.h"; sourceTree = "<group>"; };
+		284339AE1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SMAugmentedRealityAppColors.m"; sourceTree = "<group>"; };
+		284339B01A188DA300F2C1AC /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		2855422119D37D16003B9241 /* SMInitialLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMInitialLoadingView.h; sourceTree = "<group>"; };
 		2855422219D37D16003B9241 /* SMInitialLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMInitialLoadingView.m; sourceTree = "<group>"; };
 		2865F07B19D37B0D00CACA4C /* SMStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStyleKit.h; sourceTree = "<group>"; };
@@ -68,6 +85,14 @@
 		28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLocationModel.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		28B45E2319BD2B830018600F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		28B9156B1A190E3C001E3C7D /* SMExistingLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMExistingLocationTableViewCell.h; sourceTree = "<group>"; };
+		28B9156C1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMExistingLocationTableViewCell.m; sourceTree = "<group>"; };
+		28B9156E1A19468D001E3C7D /* SMAddNewLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddNewLocationsViewController.h; sourceTree = "<group>"; };
+		28B9156F1A19468D001E3C7D /* SMAddNewLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddNewLocationsViewController.m; sourceTree = "<group>"; };
+		28B915711A1946B9001E3C7D /* SMAddNewLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddNewLocationView.h; sourceTree = "<group>"; };
+		28B915721A1946B9001E3C7D /* SMAddNewLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddNewLocationView.m; sourceTree = "<group>"; };
+		28B915741A19473A001E3C7D /* SMCustomSearchUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCustomSearchUITextField.h; sourceTree = "<group>"; };
+		28B915751A19473A001E3C7D /* SMCustomSearchUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCustomSearchUITextField.m; sourceTree = "<group>"; };
 		28C5D35F19F4B4AD00B8AE85 /* SMWeatherLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherLocationsViewController.h; sourceTree = "<group>"; };
 		28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherLocationsViewController.m; sourceTree = "<group>"; };
 		28C78F3619D1259F003D6F50 /* SMWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherModel.h; sourceTree = "<group>"; };
@@ -136,6 +161,10 @@
 				28E99FE819B6CB2700E327DE /* SMViewController.m */,
 				28C5D35F19F4B4AD00B8AE85 /* SMWeatherLocationsViewController.h */,
 				28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */,
+				284339A41A18895600F2C1AC /* SMExistingLocationsViewController.h */,
+				284339A51A18895600F2C1AC /* SMExistingLocationsViewController.m */,
+				28B9156E1A19468D001E3C7D /* SMAddNewLocationsViewController.h */,
+				28B9156F1A19468D001E3C7D /* SMAddNewLocationsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -158,6 +187,8 @@
 		2887D08919FB407C003DB35F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				284339AA1A188A1400F2C1AC /* SMPlusShapeView.h */,
+				284339AB1A188A1400F2C1AC /* SMPlusShapeView.m */,
 				2855422119D37D16003B9241 /* SMInitialLoadingView.h */,
 				2855422219D37D16003B9241 /* SMInitialLoadingView.m */,
 				28E0FE0319D520DA00F0F8E7 /* SMWeatherInfoCardView.h */,
@@ -166,6 +197,14 @@
 				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
 				2887D08A19FB410C003DB35F /* SMAddLocationsView.h */,
 				2887D08B19FB410C003DB35F /* SMAddLocationsView.m */,
+				284339A71A18896E00F2C1AC /* SMExistingLocationsView.h */,
+				284339A81A18896E00F2C1AC /* SMExistingLocationsView.m */,
+				28B9156B1A190E3C001E3C7D /* SMExistingLocationTableViewCell.h */,
+				28B9156C1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m */,
+				28B915711A1946B9001E3C7D /* SMAddNewLocationView.h */,
+				28B915721A1946B9001E3C7D /* SMAddNewLocationView.m */,
+				28B915741A19473A001E3C7D /* SMCustomSearchUITextField.h */,
+				28B915751A19473A001E3C7D /* SMCustomSearchUITextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -221,6 +260,7 @@
 		28E99FD919B6CB2400E327DE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				284339B01A188DA300F2C1AC /* Avenir.ttc */,
 				281BE8021A1866EE008037E0 /* CLLocation+Bearing.m */,
 				281BE8031A1866EE008037E0 /* CLLocation+Bearing.h */,
 				2865F07B19D37B0D00CACA4C /* SMStyleKit.h */,
@@ -229,6 +269,8 @@
 				28E99FDB19B6CB2500E327DE /* InfoPlist.strings */,
 				28E99FDE19B6CB2500E327DE /* main.m */,
 				28E99FE019B6CB2500E327DE /* AugmentedRealityWeatherApp-Prefix.pch */,
+				284339AD1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.h */,
+				284339AE1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -301,6 +343,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "True Merit Development";
 				TargetAttributes = {
+					28E99FCE19B6CB2300E327DE = {
+						DevelopmentTeam = W5PAS38F44;
+					};
 					28E99FEF19B6CB2700E327DE = {
 						TestTargetID = 28E99FCE19B6CB2300E327DE;
 					};
@@ -388,10 +433,17 @@
 			files = (
 				2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */,
 				28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */,
+				28B915701A19468D001E3C7D /* SMAddNewLocationsViewController.m in Sources */,
+				28B915731A1946B9001E3C7D /* SMAddNewLocationView.m in Sources */,
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
 				28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */,
+				284339AC1A188A1400F2C1AC /* SMPlusShapeView.m in Sources */,
+				284339A61A18895600F2C1AC /* SMExistingLocationsViewController.m in Sources */,
+				28B915761A19473A001E3C7D /* SMCustomSearchUITextField.m in Sources */,
 				2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */,
+				284339A91A18896E00F2C1AC /* SMExistingLocationsView.m in Sources */,
 				281BE8041A1866EE008037E0 /* CLLocation+Bearing.m in Sources */,
+				28B9156D1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m in Sources */,
 				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
 				28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
@@ -400,6 +452,7 @@
 				2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */,
 				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
 				28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */,
+				284339AF1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +578,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Shaun/Downloads/Video,
@@ -546,6 +600,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Shaun/Downloads/Video,
