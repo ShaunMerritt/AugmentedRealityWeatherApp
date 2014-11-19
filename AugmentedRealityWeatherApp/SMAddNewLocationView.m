@@ -11,11 +11,6 @@
 #import "UIColor+SMAugmentedRealityAppColors.h"
 #import "SMLocationModel.h"
 
-@interface SMAddNewLocationView () <UITableViewDelegate, UITableViewDataSource> {
-    UIImageView *_xShape;
-}
-@end
-
 @implementation SMAddNewLocationView
 
 - (id)initWithFrame:(CGRect)frame
@@ -90,6 +85,8 @@
 
     [moveXAlongXAxis setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
         
+        self.backgroundColor = [UIColor slightlyLessWhiteThanWhite];
+        
         POPSpringAnimation *searchBarAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
         searchBarAnimation.toValue = @(self.frame.origin.x + 20 + _searchBar.frame.size.width / 2);
         searchBarAnimation.springBounciness = 2;
@@ -99,6 +96,8 @@
         _tableViewContainingSearchResults = [self createTableView];
         [_tableViewContainingSearchResults registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cityCell"];
         [self addSubview:_tableViewContainingSearchResults];
+        
+        [whiteCircle removeFromSuperview];
     }];
 
     
@@ -173,8 +172,8 @@
 }
 
 
-- (void)cancelButtonPressed: (UITapGestureRecognizer *)recognizer {
-    //TODO: Add implementation for cancel button
+- (void)cancelButtonPressed: (UITapGestureRecognizer *)recognizer {    
+    [self.delegate cancelButtonPressedReturnToExisting];
 }
 
 @end

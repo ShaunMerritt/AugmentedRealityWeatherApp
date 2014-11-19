@@ -29,16 +29,14 @@
 }
 
 - (void)drawPlaceholderInRect:(CGRect)rect {
-    // Set color and font size and style of placeholder text
     
-     UIColor *color = [UIColor colorWithRed:0.4588 green:0.4588 blue:0.4588 alpha:1.0];
+    UIColor *color = [UIColor colorWithRed:0.4588 green:0.4588 blue:0.4588 alpha:1.0];
     UIFont *font = [UIFont fontWithName:@"Avenir" size:30];
 
     NSDictionary *attributes = @{ NSFontAttributeName: font,
                                   NSForegroundColorAttributeName: color};
 
-    [[self placeholder] drawInRect:rect withAttributes:attributes]; //set custom font style and size to placeholder text
-    
+    [[self placeholder] drawInRect:rect withAttributes:attributes];
     
 }
 

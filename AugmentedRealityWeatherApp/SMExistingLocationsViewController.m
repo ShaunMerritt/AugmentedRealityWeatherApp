@@ -10,6 +10,7 @@
 #import "SMExistingLocationsView.h"
 #import "SMLocationModel.h"
 #import "SMAddNewLocationsViewController.h"
+#import "SMViewController.h"
 
 
 
@@ -41,6 +42,17 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [self accessStoredData];
+    _existingLocationsView.dataForTableView = _dataToDisplayOnTableViewArray;
+    [_existingLocationsView.tableViewContainingSavedCities performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+
+    
+}
+
 - (void) accessStoredData {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *savedArray = [currentDefaults objectForKey:kKeyForUserDefaults];
@@ -60,5 +72,29 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     SMAddNewLocationsViewController *weatherLocationsViewController = [[SMAddNewLocationsViewController alloc] init];
     [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
 }
+
+- (void) doneButtonClicked {
+ 
+    [UIView animateWithDuration:1.0 animations:^{
+        _existingLocationsView.frame = CGRectMake(0, self.view.frame.size.height, _existingLocationsView.frame.size.width, _existingLocationsView.frame.size.width);
+        
+    } completion:^(BOOL finished) {
+        SMViewController *weatherLocationsViewController = [[SMViewController alloc] init];
+        [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
+    }];
+    
+    
+}
+
+- (void) removeCellAtIndex:(NSInteger)row {
+    
+    [_dataToDisplayOnTableViewArray removeObjectAtIndex:row];
+    _existingLocationsView.dataForTableView = _dataToDisplayOnTableViewArray;
+    [_existingLocationsView.tableViewContainingSavedCities performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:_dataToDisplayOnTableViewArray] forKey:kKeyForUserDefaults];
+
+}
+
 
 @end

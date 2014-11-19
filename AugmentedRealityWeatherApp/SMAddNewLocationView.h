@@ -14,6 +14,7 @@
 
 @protocol SMAddNewLocationsDelegate <NSObject>
 - (void)createWithLocationAndSaveToDataStore: (SMLocationModel *)location;
+- (void)cancelButtonPressedReturnToExisting;
 @end
 
 
@@ -23,6 +24,8 @@
 
 @property (nonatomic, strong) NSArray *dataForTableView;
 @property (nonatomic, strong) UITextField *searchBar;
+@property (nonatomic, strong) UIImageView *xShape;
+
 @property (nonatomic, weak) id<SMAddNewLocationsDelegate>delegate;
 
 

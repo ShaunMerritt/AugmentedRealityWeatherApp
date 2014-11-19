@@ -11,6 +11,8 @@
 @protocol SMExistingLocationsDelegate <NSObject>
 
 - (void)addCityButtonPressed;
+- (void)doneButtonClicked;
+- (void)removeCellAtIndex:(NSInteger)row;
 
 @end
 
@@ -18,6 +20,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataForTableView;
 @property (nonatomic, retain) UITableView *tableViewContainingSavedCities;
+@property (nonatomic, strong) UIImageView *plusShape;
 @property (nonatomic, strong) id<SMExistingLocationsDelegate> delegate;
 
 @end

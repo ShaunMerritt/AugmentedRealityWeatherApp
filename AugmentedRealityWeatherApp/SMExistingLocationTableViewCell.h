@@ -11,7 +11,7 @@
 @class SMExistingLocationTableViewCell;
 
 @protocol SMExistingLocationsCellDelegate <NSObject>
-- (void)deleteButtonPressedInCell: (SMExistingLocationTableViewCell *)cell index:(int)index;
+- (void)deleteButtonPressedInCell: (SMExistingLocationTableViewCell *)cell;
 @end
 @interface SMExistingLocationTableViewCell : UITableViewCell
 
