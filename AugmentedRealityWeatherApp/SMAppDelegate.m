@@ -8,6 +8,7 @@
 
 #import "SMAppDelegate.h"
 #import "SMViewController.h"
+#import "SMWelcomePageViewController.h"
 
 @implementation SMAppDelegate {
     UIViewController *viewController;
@@ -16,25 +17,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Override point for customization after application launch…
-    
-    UIViewController *rootViewController = [[SMViewController alloc] init];
-    viewController = [[UINavigationController alloc]
-    initWithRootViewController:rootViewController];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notFirstLaunch"]) {
+        NSLog(@"Once");
+        UIViewController *rootViewController = [[SMViewController alloc] init];
+        viewController = [[UINavigationController alloc]
+                          initWithRootViewController:rootViewController];
+    } else {
+        NSLog(@"First");
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notFirstLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        UIViewController *rootViewController = [[SMWelcomePageViewController alloc] init];
+        viewController = [[UINavigationController alloc]
+                          initWithRootViewController:rootViewController];
+    }
     
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];

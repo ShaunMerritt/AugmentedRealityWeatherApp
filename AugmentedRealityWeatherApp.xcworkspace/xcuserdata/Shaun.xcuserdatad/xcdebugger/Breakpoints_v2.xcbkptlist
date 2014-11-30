@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMWeatherInfoCardView.m"
-            timestampString = "434675717.169493"
+            timestampString = "438411452.076992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "-setFrameForWeatherInfoLabels"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMWeatherInfoCardView.m"
-            timestampString = "434675757.322512"
+            timestampString = "438411452.076992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-setFrameForWeatherInfoLabels"
             landmarkType = "5">
          </BreakpointContent>
