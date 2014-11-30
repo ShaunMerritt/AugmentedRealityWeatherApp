@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UILabel *cityNameLabel;
 @property (nonatomic, strong) UIButton *deleteButton;
+@property (nonatomic, strong) UIView *backgroundViews;
+@property (nonatomic, strong) UIButton *xButton;
 
 @property (nonatomic, weak) id<SMExistingLocationsCellDelegate>delegate;
 

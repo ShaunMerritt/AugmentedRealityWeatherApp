@@ -41,13 +41,27 @@
         
         [self.contentView addSubview:self.deleteButton];
         
+        _xButton = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width, self.backgroundViews.bounds.origin.y + 20, 24, 24)];
+        
+        [_xButton setBackgroundImage:[UIImage imageNamed:@"XShape"] forState:UIControlStateNormal];
+        
+        for (UIView *view in _xButton.subviews) {
+            if ([view isKindOfClass:[UIImageView class]]) {
+                [view setContentMode:UIViewContentModeCenter];
+            }
+        }
+
+        
+        _backgroundViews = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width, self.bounds.origin.y, 100, 100)];
+        _backgroundViews.backgroundColor = [UIColor darkGrayColorForBackgroundsAndText];
+        _backgroundViews.layer.cornerRadius = _backgroundViews.frame.size.width / 2;
         
         self.contentView.backgroundColor = [UIColor lightGrayColorForCellBackgrounds];
     }
     return self;
 }
 
--(IBAction)deleteButtonPressed:(UIButton*)button
+-(void)deleteButtonPressed:(UIButton*)button
 {
     NSLog(@"indexPath.row value : %d", button.tag);
     [_delegate deleteButtonPressedInCell:self];

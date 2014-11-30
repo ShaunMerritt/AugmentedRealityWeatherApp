@@ -15,10 +15,12 @@
     UILabel *_currentLocationLabel;
     UILabel *_maxTemperatureForDayLabel;
     UILabel *_minTemperatureForDayLabel;
+    UIImageView *_weatherInfoView;
     NSString *_nameOfCurrentCity;
     NSString *_currentTemperature;
     NSString *_currentCityLowTemperature;
     NSString *_currentCityHighTemperature;
+    UIImage *_weatherImage;
 }
 
 @end
@@ -33,9 +35,7 @@
         self.layer.cornerRadius = 18;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 5;
-        
-        
-        
+       
     }
     return self;
     
@@ -47,6 +47,7 @@
     _currentTemperature = weatherInfo.temperature;
     _currentCityLowTemperature = weatherInfo.minTemperature;
     _currentCityHighTemperature = weatherInfo.maxTemperature;
+    _weatherImage = weatherInfo.weatherImage;
     
     NSLog(@"YES: %@", _nameOfCurrentCity);
     
@@ -116,6 +117,14 @@
     [self addSubview:_minTemperatureForDayLabel];
     _minTemperatureForDayLabel.center = CGPointMake(self.center.x, self.frame.origin.y - 100);
     
+    // Weather Image View
+    _weatherInfoView = [[UIImageView alloc] initWithImage:_weatherImage];
+    //_weatherInfoView.frame = CGRectMake(-100, -100, _currentTemperatureLabel.frame.size.width, _currentTemperatureLabel.frame.size.height);
+    _weatherInfoView.backgroundColor = [UIColor clearColor];
+    
+    [self addSubview:_weatherInfoView];
+    _weatherInfoView.center = CGPointMake(self.center.x, self.frame.origin.y - 100);
+    
     
     
     
@@ -170,14 +179,14 @@
     // Animations for min temperature label
     POPSpringAnimation *moveMinTemperatureLabelAlongY = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     moveMinTemperatureLabelAlongY.fromValue = @(_minTemperatureForDayLabel.frame.origin.y);
-    moveMinTemperatureLabelAlongY.toValue = @(self.bounds.size.height / 2 - 5);
+    moveMinTemperatureLabelAlongY.toValue = @(self.bounds.size.height / 2 + 5);
     moveMinTemperatureLabelAlongY.springBounciness = 2;
     moveMinTemperatureLabelAlongY.springSpeed = 5.0f;
     [_minTemperatureForDayLabel.layer pop_addAnimation:moveMinTemperatureLabelAlongY forKey:@"moveMinTemperatureLabelAlongY"];
     
     POPSpringAnimation *moveMinTemperatureLabelAlongX = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
     moveMinTemperatureLabelAlongX.fromValue = @(_currentTemperatureLabel.frame.origin.x);
-    moveMinTemperatureLabelAlongX.toValue = @(self.center.x - 50);
+    moveMinTemperatureLabelAlongX.toValue = @(self.center.x - 60);
     moveMinTemperatureLabelAlongX.springBounciness = 2;
     moveMinTemperatureLabelAlongX.springSpeed = 5.0f;
     [_minTemperatureForDayLabel.layer pop_addAnimation:moveMinTemperatureLabelAlongX forKey:@"moveMinTemperatureLabelAlongX"];
@@ -192,14 +201,14 @@
     // Animations for max temperature label
     POPSpringAnimation *moveMaxTemperatureLabelAlongY = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     moveMaxTemperatureLabelAlongY.fromValue = @(_minTemperatureForDayLabel.frame.origin.y);
-    moveMaxTemperatureLabelAlongY.toValue = @(self.bounds.size.height / 2 - 5);
+    moveMaxTemperatureLabelAlongY.toValue = @(self.bounds.size.height / 2 + 5);
     moveMaxTemperatureLabelAlongY.springBounciness = 2;
     moveMaxTemperatureLabelAlongY.springSpeed = 5.0f;
     [_maxTemperatureForDayLabel.layer pop_addAnimation:moveMaxTemperatureLabelAlongY forKey:@"moveMaxTemperatureLabelAlongY"];
     
     POPSpringAnimation *moveMaxTemperatureLabelAlongX = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
     moveMaxTemperatureLabelAlongX.fromValue = @(_currentTemperatureLabel.frame.origin.x);
-    moveMaxTemperatureLabelAlongX.toValue = @(self.center.x + 40);
+    moveMaxTemperatureLabelAlongX.toValue = @(self.center.x + 60);
     moveMaxTemperatureLabelAlongX.springBounciness = 2;
     moveMaxTemperatureLabelAlongX.springSpeed = 5.0f;
     [_maxTemperatureForDayLabel.layer pop_addAnimation:moveMaxTemperatureLabelAlongX forKey:@"moveMaxTemperatureLabelAlongX"];
@@ -209,6 +218,28 @@
     scaleMaxTemperatureLabel.toValue = [NSValue valueWithCGPoint:CGPointMake(1, 1)];
     scaleMaxTemperatureLabel.springBounciness = 2;
     scaleMaxTemperatureLabel.springSpeed = 5.0f;
+    [_maxTemperatureForDayLabel pop_addAnimation:scaleMaxTemperatureLabel forKey:@"scaleMaxTemperatureLabel"];
+    
+    // Animations for weather image
+    POPSpringAnimation *moveWeatherImageAlongYAxis = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveWeatherImageAlongYAxis.fromValue = @(_minTemperatureForDayLabel.frame.origin.y);
+    moveWeatherImageAlongYAxis.toValue = @(self.bounds.size.height / 2 + 5);
+    moveWeatherImageAlongYAxis.springBounciness = 2;
+    moveWeatherImageAlongYAxis.springSpeed = 5.0f;
+    [_weatherInfoView.layer pop_addAnimation:moveWeatherImageAlongYAxis forKey:@"moveMaxTemperatureLabelAlongY"];
+    
+    POPSpringAnimation *moveWeatherImageAlongXAxis = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    moveWeatherImageAlongXAxis.fromValue = @(_currentTemperatureLabel.frame.origin.x);
+    moveWeatherImageAlongXAxis.toValue = @(self.center.x);
+    moveWeatherImageAlongXAxis.springBounciness = 2;
+    moveWeatherImageAlongXAxis.springSpeed = 5.0f;
+    [_maxTemperatureForDayLabel.layer pop_addAnimation:moveMaxTemperatureLabelAlongX forKey:@"moveMaxTemperatureLabelAlongX"];
+    
+    POPSpringAnimation *scaleWeatherImage = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    scaleWeatherImage.fromValue = [NSValue valueWithCGPoint:CGPointMake(1.5, 1.5)];
+    scaleWeatherImage.toValue = [NSValue valueWithCGPoint:CGPointMake(1, 1)];
+    scaleWeatherImage.springBounciness = 2;
+    scaleWeatherImage.springSpeed = 5.0f;
     [_maxTemperatureForDayLabel pop_addAnimation:scaleMaxTemperatureLabel forKey:@"scaleMaxTemperatureLabel"];
 
 }

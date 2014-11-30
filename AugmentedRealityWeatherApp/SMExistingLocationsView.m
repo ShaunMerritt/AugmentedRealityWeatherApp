@@ -132,8 +132,13 @@
     
     cell.cityNameLabel.text = string;
     
-    cell.deleteButton.tag = indexPath.row;
+   // cell.deleteButton.tag = indexPath.row;
     cell.delegate = self;
+    
+    cell.backgroundViews.tag = 100;
+    cell.cityNameLabel.tag = 101;
+    cell.deleteButton.tag = 102;
+    cell.xButton.tag = 103;
     
     return cell;
 }
@@ -155,33 +160,76 @@
     
     cell.deleteButton.alpha = 0;
     
-    UIView *backgroundViews = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width, cell.bounds.origin.y, 100, 100)];
-    backgroundViews.backgroundColor = [UIColor darkGrayColorForBackgroundsAndText];
-    backgroundViews.layer.cornerRadius = backgroundViews.frame.size.width / 2;
     
-    [cell.contentView insertSubview:backgroundViews atIndex:0];
+    
+    [cell.contentView insertSubview:cell.backgroundViews atIndex:0];
     cell.cityNameLabel.textColor = [UIColor colorWithRed:1.0000 green:1.0000 blue:1.0000 alpha:1.0];
     
     [cell.contentView.superview setClipsToBounds:YES];
+    
+    cell.backgroundViews.alpha = 1;
     
     POPSpringAnimation *scaleMinTemperatureLabel = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
     scaleMinTemperatureLabel.toValue = [NSValue valueWithCGPoint:CGPointMake(10, 10)];
     scaleMinTemperatureLabel.springBounciness = 2;
     scaleMinTemperatureLabel.springSpeed = 2.0f;
-    [backgroundViews pop_addAnimation:scaleMinTemperatureLabel forKey:@"scaleMinTemperatureLabel"];
-    backgroundViews.layer.cornerRadius = cell.deleteButton.frame.size.width / 2;
+    [cell.backgroundViews pop_addAnimation:scaleMinTemperatureLabel forKey:@"scaleMinTemperatureLabel"];
+    cell.backgroundViews.layer.cornerRadius = cell.deleteButton.frame.size.width / 2;
     
     POPSpringAnimation *move =
     [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
     move.toValue = @(-10);
     move.springBounciness = 15;
     move.springSpeed = 2.0f;
-    [backgroundViews.layer pop_addAnimation:move forKey:@"position"];
+    [cell.backgroundViews.layer pop_addAnimation:move forKey:@"position"];
     
     cell.deleteButton.layer.cornerRadius = cell.deleteButton.frame.size.width / 2;
     
     
-    UIButton *xButton = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width, backgroundViews.bounds.origin.y + 20, 24, 24)];
+    
+    _deleteButtonCellIndex = index;
+
+    
+    [cell.xButton addTarget:self
+                          action:@selector(deleteCellButtonPressed:)
+                forControlEvents:UIControlEventTouchDown];
+    
+    [cell.contentView insertSubview:cell.xButton atIndex:1];
+    
+    cell.xButton.transform = CGAffineTransformMakeRotation(M_PI/6);
+
+    
+    POPSpringAnimation *moveDeleteButton =
+    [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    moveDeleteButton.toValue = @(self.frame.size.width - cell.xButton.frame.size.width);
+    moveDeleteButton.springBounciness = 10;
+    moveDeleteButton.springSpeed = 2.0f;
+    [cell.xButton.layer pop_addAnimation:moveDeleteButton forKey:@"position"];
+
+    POPSpringAnimation *spin =
+    [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+    spin.toValue = @(0);
+    spin.springBounciness = 10;
+    spin.springSpeed = 5.0f;
+    [cell.xButton.layer pop_addAnimation:spin forKey:@"spin"];
+}
+
+- (void) deleteCellButtonPressed: (id)sender {
+
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableViewContainingSavedCities];
+    NSIndexPath *indexPath = [self.tableViewContainingSavedCities indexPathForRowAtPoint:buttonPosition];
+    
+    UITableViewCell *cell = [_tableViewContainingSavedCities cellForRowAtIndexPath:indexPath];
+
+    UIView *backgroundViewForCell = [cell viewWithTag:100];
+    backgroundViewForCell.alpha = 0;
+    
+    UILabel *cityNameLabel = (UILabel *)[cell viewWithTag:101];
+    cityNameLabel.textColor = [UIColor darkGrayColorForBackgroundsAndText];
+    
+    
+    UIButton *xButton = (UIButton *)[cell viewWithTag:103];
+    xButton.frame = CGRectMake(self.frame.size.width, cell.backgroundView.bounds.origin.y + 20, 24, 24);
     
     [xButton setBackgroundImage:[UIImage imageNamed:@"XShape"] forState:UIControlStateNormal];
     
@@ -191,37 +239,8 @@
         }
     }
     
-    _deleteButtonCellIndex = index;
-
-    
-    [xButton addTarget:self
-                          action:@selector(deleteCellButtonPressed:)
-                forControlEvents:UIControlEventTouchDown];
-    
-    [cell.contentView insertSubview:xButton atIndex:1];
-    
-    xButton.transform = CGAffineTransformMakeRotation(M_PI/6);
-
-    
-    POPSpringAnimation *moveDeleteButton =
-    [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
-    moveDeleteButton.toValue = @(self.frame.size.width - xButton.frame.size.width);
-    moveDeleteButton.springBounciness = 10;
-    moveDeleteButton.springSpeed = 2.0f;
-    [xButton.layer pop_addAnimation:moveDeleteButton forKey:@"position"];
-
-    POPSpringAnimation *spin =
-    [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
-    spin.toValue = @(0);
-    spin.springBounciness = 10;
-    spin.springSpeed = 5.0f;
-    [xButton.layer pop_addAnimation:spin forKey:@"spin"];
-}
-
-- (void) deleteCellButtonPressed: (id)sender {
-
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableViewContainingSavedCities];
-    NSIndexPath *indexPath = [self.tableViewContainingSavedCities indexPathForRowAtPoint:buttonPosition];
+    UIButton *deleteButton = (UIButton *)[cell viewWithTag:102];
+    deleteButton.alpha = 1;
     
     [self.delegate removeCellAtIndex:indexPath.row];
     

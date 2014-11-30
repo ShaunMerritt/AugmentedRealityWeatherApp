@@ -27,5 +27,6 @@
 @property (strong, nonatomic) NSString *country;
 @property (strong, nonatomic) NSString *sunrise;
 @property (strong, nonatomic) NSString *sunset;
+@property (strong, nonatomic) UIImage *weatherImage;
 
 @end
