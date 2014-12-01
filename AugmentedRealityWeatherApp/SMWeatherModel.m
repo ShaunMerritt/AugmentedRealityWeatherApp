@@ -38,7 +38,7 @@
     
     NSString *receivedDataString = [[NSString alloc] initWithData:_jsonData encoding:NSUTF8StringEncoding];
     NSDictionary *deserializedData = [receivedDataString objectFromJSONString];
-    NSLog(@"%@", [deserializedData description]);
+    //NSLog(@"%@", [deserializedData description]);
     
     SMWeatherInfo *weatherInfo = [SMWeatherInfo alloc];
     

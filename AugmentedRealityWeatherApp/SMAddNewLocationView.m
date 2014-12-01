@@ -157,7 +157,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    SMLocationModel *newLocation = [_dataForTableView objectAtIndex:indexPath.row];
+    SMLocationModel *newLocation = [[SMLocationModel alloc] init];
+    
+    if (_dataForTableView.count > 0) {
+        newLocation = [_dataForTableView objectAtIndex:indexPath.row];
+    } else {
+        newLocation = [[SMLocationModel alloc] initWithCityName:@"" latitude:0 longitude:0 degreesFromNorth:0];
+    }
+    
+//    SMLocationModel *newLocation = ([_dataForTableView objectAtIndex:indexPath.row] ?: [[SMLocationModel alloc] initWithCityName:@"" latitude:0 longitude:0 degreesFromNorth:0]);
+    
     NSString *string = newLocation.cityName;
     
     cell.textLabel.text = string;

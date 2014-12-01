@@ -83,7 +83,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
                 }
                 else {
                     
-                    NSArray *returnedResultArray = [NSArray arrayWithObject:[jsonArray objectForKey:@"predictions"]];
+                    NSArray *returnedResultArray = [NSArray arrayWithObject:jsonArray[@"predictions"]];
+                    
                     _dataToDisplayOnTableViewArray  = [[NSMutableArray alloc] initWithArray:returnedResultArray[0]];
                     _addLocationsView.dataForTableView = _dataToDisplayOnTableViewArray;
                     NSArray *addressArray = [[returnedResultArray valueForKey:@"description"] firstObject];
@@ -98,6 +99,18 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
                             _addLocationsView.dataForTableView = _searchResultArray;
                             [_addLocationsView.tableViewContainingSearchResults performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
                         }
+                    }
+                    
+                    if (addressArray.count == 0) {
+                        NSLog(@"YEP");
+                        SMLocationModel *locationModelObject = [[SMLocationModel alloc] initWithCityName:@"" latitude:0 longitude:0 degreesFromNorth:0];
+                        NSLog(@"NAme here: %@", locationModelObject.cityName);
+                        [_searchResultArray addObject: locationModelObject];
+                        
+                            _addLocationsView.dataForTableView = _searchResultArray;
+                            [_addLocationsView.tableViewContainingSearchResults performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+                        
+
                     }
                 }
                 
@@ -117,6 +130,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
         
         if(placemarks.count > 0) {
             
+            NSLog(@"Added");
+            
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
             CLLocation *locationAutocompleted = placemark.location;
             
@@ -125,8 +140,29 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
             
             SMLocationModel *selectedLocation = [[SMLocationModel alloc] initWithCityName:cityName latitude:_latitude longitude:_longitude degreesFromNorth:0];
             
-            [_savedLocations addObject:selectedLocation];
+            if (_savedLocations == nil) {
+                _savedLocations = [[NSMutableArray alloc]initWithObjects:selectedLocation, nil];
+            } else {
+                [_savedLocations addObject:selectedLocation];
+            }
+            
+            
+            
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:kKeyForUserDefaults]) {
+                NSLog(@"Once");
+                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:_savedLocations] forKey:kKeyForUserDefaults];
+            } else {
+                NSLog(@"First");
+                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:_savedLocations] forKey:kKeyForUserDefaults];
+                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:_savedLocations] forKey:kKeyForUserDefaults];
+
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+        }
+
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:_savedLocations] forKey:kKeyForUserDefaults];
+            
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
 
             // TODO: Animations for popping back to existingloactionsviewcontroller

@@ -62,8 +62,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
             _savedLocations = [[NSMutableArray alloc] initWithArray:arrayOfSavedLocationObjects];
             _dataToDisplayOnTableViewArray = _savedLocations;
         } else {
-            _savedLocations = [[NSMutableArray alloc] init];
-            _dataToDisplayOnTableViewArray = [[NSMutableArray alloc] init];
+            _savedLocations = [[NSMutableArray alloc] initWithArray:arrayOfSavedLocationObjects];
+            _dataToDisplayOnTableViewArray = _savedLocations;
         }
     }
 }

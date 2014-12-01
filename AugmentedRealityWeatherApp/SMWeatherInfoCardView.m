@@ -41,9 +41,9 @@
     
 }
 
-- (void) createLabelsWithWeatherObject:(SMWeatherInfo *)weatherInfo {
+- (void) createLabelsWithWeatherObject:(SMWeatherInfo *)weatherInfo withCityName:(NSString *)cityName{
     
-    _nameOfCurrentCity = weatherInfo.cityName;
+    _nameOfCurrentCity = cityName;
     _currentTemperature = weatherInfo.temperature;
     _currentCityLowTemperature = weatherInfo.minTemperature;
     _currentCityHighTemperature = weatherInfo.maxTemperature;
@@ -59,8 +59,6 @@
 
 - (void)setFrameForWeatherInfoLabels {
     
-    // TODO: As of now, I just hard coded the labels text, but it will be from the actual weather query in the future
-
     // Current Temperature Label
     _currentTemperatureLabel = [[UILabel alloc] init];
     _currentTemperatureLabel.text = [NSString stringWithFormat:@"%d", [_currentTemperature intValue]];

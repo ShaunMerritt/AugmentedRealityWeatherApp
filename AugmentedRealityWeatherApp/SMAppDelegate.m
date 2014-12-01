@@ -9,6 +9,7 @@
 #import "SMAppDelegate.h"
 #import "SMViewController.h"
 #import "SMWelcomePageViewController.h"
+#import "SMLocationModel.h"
 
 @implementation SMAppDelegate {
     UIViewController *viewController;
@@ -30,6 +31,13 @@
         NSLog(@"First");
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+//        SMLocationModel *selectedLocation = [[SMLocationModel alloc] initWithCityName:@"" latitude:0 longitude:0 degreesFromNorth:0];
+//        NSArray *array = [[NSArray alloc] initWithObjects:selectedLocation, nil];
+//        
+//        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:array] forKey:@"savedLocationsArray"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+
         
         UIViewController *rootViewController = [[SMWelcomePageViewController alloc] init];
         viewController = [[UINavigationController alloc]

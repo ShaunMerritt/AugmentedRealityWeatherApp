@@ -22,6 +22,7 @@
 #import "CLLocation+Bearing.h"
 #import "SMExistingLocationsView.h"
 #import "SMExistingLocationsViewController.h"
+#import "UIButton+SMBackgroundColorForButton.h"
 
 static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
@@ -48,7 +49,13 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     BOOL _doubleTappedToPauseUpdateHeading;
     float _degreeLastPointedTo;
     float _degreeCurrentlyPointingTo;
-
+    BOOL _lookingAtCurrentLocation;
+    UIButton *_doneLookingAtCurrentLocation;
+    UISwipeGestureRecognizer *_swipeUpGesture;
+    UISwipeGestureRecognizer *_swipeDownGestureRecognizer;
+    UISwipeGestureRecognizer *_swipeRightGesture;
+    UISwipeGestureRecognizer *_swipeLeftGesture;
+    UILabel *_bottomInstructionsLabel;
 }
 
 @end
@@ -61,7 +68,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     
     [super viewDidLoad];
-    
     
     
     _quadrantOneLocations = [[NSMutableArray alloc] init];
@@ -87,8 +93,63 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     _initialLoadingView.delegate = self;
     
     [self addGesturesToView];
-    UIImageView *i = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Location Icon And Description"]];
-    [self.view addSubview:i];
+
+    
+    
+
+    
+}
+
+- (UIButton *)buttonToReturnToApp {
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 100, self.view.frame.size.height - 80, 200, 50)];
+    button.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height + 50);
+    button.alpha = 1;
+    button.layer.borderColor = [UIColor whiteColor].CGColor;
+    button.layer.borderWidth = 2.0;
+    button.titleLabel.text = @"Back to app";
+    [button setTitle:@"Back to app" forState:UIControlStateNormal];
+    button.titleLabel.textColor = [UIColor colorWithRed:0.4980 green:0.7373 blue:0.9020 alpha:1.0];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor grayColor] forState:UIControlEventTouchDown | UIControlEventTouchDown];
+    [button setBackgroundImage:[UIButton imageFromColor:[UIColor whiteColor]] forState:UIControlEventTouchDown | UIControlEventTouchDown];
+    button.titleLabel.font = [UIFont fontWithName:@"Avenir" size:22.0];
+    button.layer.cornerRadius = 5;
+    button.clipsToBounds = YES;
+    return button;
+
+}
+
+- (UILabel *)bottomInstructionLabel {
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"Swipe up for current local weather";
+    label.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(15)];
+    label.textColor = [UIColor whiteColor];
+    [label sizeToFit];
+    
+    return label;
+}
+
+- (void) displayBottomInstruction:(BOOL)display {
+        // Current Location Label
+        
+        _bottomInstructionsLabel = [self bottomInstructionLabel];
+        _bottomInstructionsLabel.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height + 40);
+        [self.view addSubview:_bottomInstructionsLabel];
+        POPSpringAnimation *moveLabelUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        moveLabelUp.toValue = @(self.view.frame.size.height - 40);
+        moveLabelUp.springSpeed = 2;
+        moveLabelUp.springBounciness = 4;
+        [_bottomInstructionsLabel pop_addAnimation:moveLabelUp forKey:@"moveDirectionsViewIn"];
+    
+}
+
+- (void) showButtonToReturn {
+    _doneLookingAtCurrentLocation = [self buttonToReturnToApp];
+
+    [_doneLookingAtCurrentLocation addTarget:self action:@selector(continueButtonLiftedUp:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_doneLookingAtCurrentLocation];
+
     
 }
 
@@ -165,9 +226,15 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     if (_arrayOfCitiesInDirectionOfPhoneHeading.count != 0) {
         
-        NSLog(@"Pointing to: %f", _degreeCurrentlyPointingTo);
-        NSLog(@"Last Pointed to: %f", _degreeLastPointedTo);
-        if (_degreeCurrentlyPointingTo > _degreeLastPointedTo) {
+        if (_degreeLastPointedTo - _degreeCurrentlyPointingTo > 90 ) {
+            _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(self.view.frame.size.width + 50, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];
+            CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/6);
+            _frontCardView.transform = transform;
+        } else if (_degreeLastPointedTo - _degreeCurrentlyPointingTo < -90) {
+            _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(-200, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];
+            CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/-6);
+            _frontCardView.transform = transform;
+        } else if (_degreeLastPointedTo < _degreeCurrentlyPointingTo) {
             _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(self.view.frame.size.width + 50, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];
             CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/6);
             _frontCardView.transform = transform;
@@ -175,14 +242,10 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
             _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(-200, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];
             CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/-6);
             _frontCardView.transform = transform;
-
         }
-        
         
         [self.view addSubview:_frontCardView];
         
-        
-
         POPSpringAnimation *rotate = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
         rotate.toValue = @(0);
         rotate.springBounciness = 3;
@@ -221,10 +284,15 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
                             _currentWeatherInfoArray = [[weatherParser generateWeatherDetailsList] mutableCopy];
                             
                             // TODO: Here is just basic testing
-                            SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
-                            //NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
                             
-                            [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
+                            if (_arrayOfCitiesInDirectionOfPhoneHeading.count > 0) {
+                                SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
+                                NSLog(@"Name of city here! = %@", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityName]);
+                                //NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
+                                
+                                [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity withCityName:[_arrayOfCitiesInDirectionOfPhoneHeading[0] cityName]];
+                            }
+                            
                         }
                         
                     }
@@ -236,48 +304,68 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
         
 
         
-        if (_arrayOfCitiesInDirectionOfPhoneHeading.count >= 1) {
-            SMWeatherInfoCardView *backViewForAnimating = [self createBackCard];
+        if (_arrayOfCitiesInDirectionOfPhoneHeading.count > 1) {
             
-            CGRect backCardFrame = backViewForAnimating.frame;
+            _backCardView = [self createBackCard];
+            CGRect backCardFrame = _backCardView.frame;
             
-            backViewForAnimating.frame = CGRectMake(backCardFrame.origin.x + self.view.frame.size.width + 100, backCardFrame.origin.y, backCardFrame.size.width, backCardFrame.size.height);
-            [self.view addSubview:backViewForAnimating];
-            
-            
-            CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/6);
-            backViewForAnimating.transform = transform;
+            if (_degreeLastPointedTo - _degreeCurrentlyPointingTo > 90 ) {
+                _backCardView.frame = CGRectMake(self.view.frame.origin.x + 200, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width - 20, _frameOfFrontCard.size.height);
+                CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/6);
+                _backCardView.transform = transform;
+            } else if (_degreeLastPointedTo - _degreeCurrentlyPointingTo < -90) {
+                _backCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(-200, _frameOfFrontCard.origin.y, backCardFrame.size.width, backCardFrame.size.height)];
+                CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/-6);
+                _backCardView.transform = transform;
+            } else if (_degreeLastPointedTo < _degreeCurrentlyPointingTo) {
+                _backCardView.frame = CGRectMake(self.view.frame.origin.x + 200, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width - 20, _frameOfFrontCard.size.height);
+                CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/6);
+                _backCardView.transform = transform;
+            } else {
+                _backCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(-200, _frameOfFrontCard.origin.y, backCardFrame.size.width, backCardFrame.size.height)];
+                CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI/-6);
+                _backCardView.transform = transform;
+            }
+        
+            [self.view addSubview:_backCardView];
+            _backCardView.alpha = .4;
             
             POPSpringAnimation *rotate = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
             rotate.toValue = @(0);
             rotate.springBounciness = 3;
             rotate.springSpeed = 5.0f;
             rotate.beginTime = CACurrentMediaTime() + .2;
-            [backViewForAnimating.layer pop_addAnimation:rotate forKey:@"rotate"];
+            [_backCardView.layer pop_addAnimation:rotate forKey:@"rotate"];
             
-            POPSpringAnimation *move =
-            [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
-            move.toValue = [NSValue valueWithCGRect:backCardFrame];;
-            move.springBounciness = 4;
-            move.springSpeed = 5.0f;
-            move.beginTime = CACurrentMediaTime() + .2;
-            [backViewForAnimating.layer pop_addAnimation:move forKey:@"position"];
+            POPSpringAnimation *moveBackCardToTheSide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+            moveBackCardToTheSide.toValue = @(self.view.center.x);
+            moveBackCardToTheSide.springSpeed = 2;
+            moveBackCardToTheSide.springBounciness = 4;
+            [_backCardView pop_addAnimation:moveBackCardToTheSide forKey:@"moveIn"];
             
+            POPSpringAnimation *moveBackCardDown = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+            moveBackCardDown.toValue = @(_frameOfFrontCard.origin.y + _backCardView.frame.size.height*.48);
+            moveBackCardDown.springSpeed = 2;
+            moveBackCardDown.springBounciness = 4;
+            [_backCardView pop_addAnimation:moveBackCardDown forKey:@"moveDown"];
+            
+            _swipeLeftGesture.enabled = YES;
+            _swipeRightGesture.enabled = YES;
+            
+        } else {
+            _swipeLeftGesture.enabled = NO;
+            _swipeRightGesture.enabled = NO;
         }
         
     }
 }
 
 - (void) createCardStack {
-    
 
-    
     POPSpringAnimation *rotate = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
     rotate.toValue = @((M_PI/6)*-1);
     rotate.springBounciness = 3;
     rotate.springSpeed = 1.0f;
-    //rotate.beginTime = CACurrentMediaTime() + .2;
-    [_infoView.layer pop_addAnimation:rotate forKey:@"rotate"];
     [_frontCardView.layer pop_addAnimation:rotate forKey:@"rotate"];
     [_backCardView.layer pop_addAnimation:rotate forKey:@"rotate"];
 
@@ -287,7 +375,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     move.toValue = [NSValue valueWithCGRect:CGRectMake(- 100, self.view.frame.size.height + 80, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];;
     move.springBounciness = 4;
     move.springSpeed = 1.0f;
-    //move.beginTime = CACurrentMediaTime() + .2;
     [_frontCardView.layer pop_addAnimation:move forKey:@"position"];
     [_backCardView.layer pop_addAnimation:move forKey:@"position"];
     [_infoView.layer pop_addAnimation:move forKey:@"position"];
@@ -297,14 +384,10 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     [self animateCardsIn];
 
-
     move.completionBlock = ^(POPAnimation *moved, BOOL finished) {
         
-                [_infoView removeFromSuperview];
-                [frontView removeFromSuperview];
-                [backView removeFromSuperview];
-
-        
+        [frontView removeFromSuperview];
+        [backView removeFromSuperview];
 
     };
     
@@ -358,7 +441,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
                 SMWeatherInfo *weatherInfoForCurrentCity = _currentWeatherInfoArray[0];
                 //NSLog(@"Temperature For City: %@", _currentWeatherInfoForCity.temperature);
                 
-                [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity];
+                [_frontCardView createLabelsWithWeatherObject:weatherInfoForCurrentCity withCityName:[_arrayOfCitiesInDirectionOfPhoneHeading[0] cityName]];
             }
         }
         
@@ -441,7 +524,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
 }
 
-
 - (void)doubleTapGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer {
     NSLog(@"%s", __FUNCTION__);
     if (_doubleTappedToPauseUpdateHeading == NO) {
@@ -460,20 +542,146 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     dtapGestureRecognize.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:dtapGestureRecognize];
     
-    UISwipeGestureRecognizer *swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+    _swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc]
                                              initWithTarget:self action:@selector(respondToSwipeDownGesture)];
-    swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.view addGestureRecognizer:swipeDownGestureRecognizer];
+    _swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:_swipeDownGestureRecognizer];
     
-    UISwipeGestureRecognizer *swipeleftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLeftSwipe)];
-    swipeleftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:swipeleftGesture];
+    _swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLeftSwipe)];
+    _swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:_swipeLeftGesture];
     
-    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToRightSwipe)];
-    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:swipeRightGesture];
+    _swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToRightSwipe)];
+    _swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:_swipeRightGesture];
+    
+    _swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToUpSwipe:)];
+    _swipeUpGesture.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:_swipeUpGesture];
+
 
     
+}
+
+- (void) respondToUpSwipe: (UISwipeGestureRecognizer *)recognizer {
+    
+    POPSpringAnimation *moveBottomInstructionLabelUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveBottomInstructionLabelUp.toValue = @(self.view.frame.size.height + 40);
+    moveBottomInstructionLabelUp.springSpeed = 2;
+    moveBottomInstructionLabelUp.springBounciness = 4;
+    [_bottomInstructionsLabel pop_addAnimation:moveBottomInstructionLabelUp forKey:@"moveDirectionsViewIn"];
+    
+    POPSpringAnimation *moveCardsUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveCardsUp.toValue = @(_frontCardView.frame.origin.y + 60);
+    moveCardsUp.springSpeed = 2;
+    moveCardsUp.springBounciness = 4;
+    [_frontCardView pop_addAnimation:moveCardsUp forKey:@"moveDirectionsViewIn"];
+    [_backCardView pop_addAnimation:moveCardsUp forKey:@"moveDirectionsViewIn"];
+    
+    POPSpringAnimation *moveCardsToTheSide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    moveCardsToTheSide.toValue = @(self.view.frame.size.width + _frontCardView.frame.size.width);
+    moveCardsToTheSide.springSpeed = 2;
+    moveCardsToTheSide.springBounciness = 4;
+    [_frontCardView pop_addAnimation:moveCardsToTheSide forKey:@"moveDirectionsViewOut"];
+    [_backCardView pop_addAnimation:moveCardsToTheSide forKey:@"moveDirectionsViewOut"];
+    [_bottomInstructionsLabel pop_addAnimation:moveCardsToTheSide forKey:@"moveDirectionsViewOut"];
+    
+    
+    POPSpringAnimation *spin = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+    spin.toValue = @(M_PI/6);
+    spin.springBounciness = 15;
+    spin.springSpeed = 5.0f;
+    [_frontCardView.layer pop_addAnimation:spin forKey:@"spin"];
+    [_backCardView.layer pop_addAnimation:spin forKey:@"rotationAnimation"];
+    [_bottomInstructionsLabel.layer pop_addAnimation:spin forKey:@"rotate"];
+    
+    [_locationManager stopUpdatingHeading];
+    
+    POPSpringAnimation *moveCurrentIn = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveCurrentIn.toValue = @((_frameOfFrontCard.origin.y + _frameOfFrontCard.size.height/2));
+    moveCurrentIn.springSpeed = 2;
+    moveCurrentIn.springBounciness = 4;
+    [_infoView pop_addAnimation:moveCurrentIn forKey:@"moveCurrentIn"];
+    
+    POPSpringAnimation *moveCurrentX = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    moveCurrentX.toValue = @(self.view.center.x);
+    moveCurrentX.springSpeed = 2;
+    moveCurrentX.springBounciness = 4;
+    [_infoView pop_addAnimation:moveCurrentX forKey:@"moveCurrentX"];
+    
+    POPSpringAnimation *moveButtonUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveButtonUp.toValue = @(self.view.frame.size.height - 40);
+    moveButtonUp.springSpeed = 2;
+    moveButtonUp.springBounciness = 4;
+    [_doneLookingAtCurrentLocation pop_addAnimation:moveButtonUp forKey:@"moveButtonUp"];
+    
+    _swipeUpGesture.enabled = NO;
+    _swipeLeftGesture.enabled = NO;
+    _swipeRightGesture.enabled = NO;
+    _swipeDownGestureRecognizer.enabled = NO;
+
+}
+
+- (void)continueButtonLiftedUp:(UIButton*)button {
+    
+    POPSpringAnimation *moveBottomInstructionLabelUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveBottomInstructionLabelUp.toValue = @(self.view.frame.size.height - 40);
+    moveBottomInstructionLabelUp.springSpeed = 2;
+    moveBottomInstructionLabelUp.springBounciness = 4;
+    [_bottomInstructionsLabel pop_addAnimation:moveBottomInstructionLabelUp forKey:@"moveDirectionsViewIn"];
+    
+    POPSpringAnimation *moveCardsDown = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveCardsDown.toValue = @(_frameOfFrontCard.origin.y + _frameOfFrontCard.size.height / 2);
+    moveCardsDown.springSpeed = 2;
+    moveCardsDown.springBounciness = 4;
+    [_frontCardView pop_addAnimation:moveCardsDown forKey:@"moveDirectionsViewIn"];
+    [_backCardView pop_addAnimation:moveCardsDown forKey:@"moveDirectionsViewIn"];
+    
+    POPSpringAnimation *moveCardsToTheSide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    moveCardsToTheSide.toValue = @(self.view.frame.size.width / 2);
+    moveCardsToTheSide.springSpeed = 2;
+    moveCardsToTheSide.springBounciness = 4;
+    [_frontCardView pop_addAnimation:moveCardsToTheSide forKey:@"moveDirectionsViewOut"];
+    [_backCardView pop_addAnimation:moveCardsToTheSide forKey:@"moveDirectionsViewOut"];
+    [_bottomInstructionsLabel pop_addAnimation:moveCardsToTheSide forKey:@"moveDirectionsViewOut"];
+
+    
+    
+    POPSpringAnimation *spin = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+    spin.toValue = @(0);
+    spin.springBounciness = 15;
+    spin.springSpeed = 5.0f;
+    [_frontCardView.layer pop_addAnimation:spin forKey:@"spin"];
+    [_backCardView.layer pop_addAnimation:spin forKey:@"rotationAnimation"];
+    [_bottomInstructionsLabel.layer pop_addAnimation:spin forKey:@"rotate"];
+
+    
+    
+    [_locationManager startUpdatingHeading];
+    
+    POPSpringAnimation *moveCurrentIn = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveCurrentIn.toValue = @((_frameOfFrontCard.origin.y + _frameOfFrontCard.size.height * 2 ));
+    moveCurrentIn.springSpeed = 2;
+    moveCurrentIn.springBounciness = 4;
+    [_infoView pop_addAnimation:moveCurrentIn forKey:@"moveCurrentIn"];
+    
+    POPSpringAnimation *moveCurrentX = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    moveCurrentX.toValue = @(self.view.center.x );
+    moveCurrentX.springSpeed = 2;
+    moveCurrentX.springBounciness = 4;
+    [_infoView pop_addAnimation:moveCurrentX forKey:@"moveCurrentX"];
+    
+    POPSpringAnimation *moveButtonUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    moveButtonUp.toValue = @(self.view.frame.size.height + 40);
+    moveButtonUp.springSpeed = 2;
+    moveButtonUp.springBounciness = 4;
+    [_doneLookingAtCurrentLocation pop_addAnimation:moveButtonUp forKey:@"moveButtonUp"];
+    
+    
+    _swipeUpGesture.enabled = YES;
+    _swipeLeftGesture.enabled = YES;
+    _swipeRightGesture.enabled = YES;
+    _swipeDownGestureRecognizer.enabled = YES;
 }
 
 - (void) respondToLeftSwipe {
@@ -494,8 +702,6 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     }];
     
 }
-
-
 
 - (void) respondToRightSwipe {
     
@@ -542,12 +748,24 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     if (isComplete == YES) {
         _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
-        [_infoView createLabelsWithWeatherObject:_weatherInfoForCurrentCity];
+        
+        
+        
+        [_infoView createLabelsWithWeatherObject:_weatherInfoForCurrentCity withCityName:[_arrayOfCitiesInDirectionOfPhoneHeading[0] cityName]];
         [self.view addSubview:_infoView];
         _frameOfFrontCard = _infoView.frame;
         [_locationManager startUpdatingHeading];
         
         [_initialLoadingView removeFromSuperview];
+        
+        _lookingAtCurrentLocation = YES;
+        [self displayBottomInstruction:_lookingAtCurrentLocation];
+        
+        _doneLookingAtCurrentLocation = [self buttonToReturnToApp];
+        [_doneLookingAtCurrentLocation addTarget:self action:@selector(continueButtonLiftedUp:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_doneLookingAtCurrentLocation];
+
+
     }
     
 }
