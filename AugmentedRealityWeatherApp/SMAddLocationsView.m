@@ -23,13 +23,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        _blurredBackgroundCameraView = [[SMBlurredCameraBackgroundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height)];
-        [self addSubview:_blurredBackgroundCameraView];
         _dataForTableView = [[NSMutableArray alloc] init];
-        
         [self createViewLayout];
-        
     }
     return self;
 }
@@ -56,7 +51,7 @@
     tableViewForCities.scrollEnabled = YES;
     tableViewForCities.showsVerticalScrollIndicator = NO;
     tableViewForCities.userInteractionEnabled = YES;
-    tableViewForCities.bounces = NO;
+    tableViewForCities.bounces = YES;
     tableViewForCities.delegate = self;
     tableViewForCities.dataSource = self;
     tableViewForCities.backgroundColor = [UIColor clearColor];

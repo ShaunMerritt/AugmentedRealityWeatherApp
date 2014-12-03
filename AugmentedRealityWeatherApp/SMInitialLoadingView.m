@@ -13,6 +13,10 @@
 #import "SMViewController.h"
 #import <POP.h>
 
+static const CGFloat kSpringSpeedValueForAnimation = 20;
+static const CGFloat kSpringBouncinessValueForIconAnimation = 20;
+
+
 @interface SMInitialLoadingView (){
  
     CAShapeLayer *_bezier;
@@ -20,7 +24,9 @@
     NSArray *_currentWeather;
     SMWeatherInfo *_weatherInfoForCity;
     SMViewController *_viewController;
-    
+    POPSpringAnimation *_scaleTheLocationIcon;
+    POPSpringAnimation *_spinTheLocationIcon;
+    POPSpringAnimation *_scaleDownLocationIcon;
 }
 
 @end
@@ -38,7 +44,7 @@
 
 - (void)drawRect:(CGRect)rect {
     
-    UIBezierPath *bezierPath = [SMStyleKit drawLocationIcon];
+    UIBezierPath *bezierPath = [SMStyleKit drawCloud];
     bezierPath.lineCapStyle = kCGLineCapRound;
     
     _bezier = [[CAShapeLayer alloc] init];
@@ -62,38 +68,28 @@
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
 {
-    POPSpringAnimation *scaleTheLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
-    scaleTheLocationIcon.toValue = [NSValue valueWithCGPoint:CGPointMake(1.5, 1.5)];
-    scaleTheLocationIcon.springBounciness = 8.0f; // Between 0-20
-    scaleTheLocationIcon.springSpeed = 20.0f; // Between 0-20
-    [self pop_addAnimation:scaleTheLocationIcon forKey:@"scaleTheLocationIcon"];
+    if (_scaleTheLocationIcon == nil) {
+        _scaleTheLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+        _scaleTheLocationIcon.toValue = [NSValue valueWithCGPoint:CGPointMake(1.5, 1.5)];
+        _scaleTheLocationIcon.springBounciness = kSpringBouncinessValueForIconAnimation; // Between 0-20
+        _scaleTheLocationIcon.springSpeed = kSpringSpeedValueForAnimation; // Between 0-20
+    }
+    [self pop_addAnimation:_scaleTheLocationIcon forKey:@"scaleTheLocationIcon"];
 
     
-    POPSpringAnimation *spinTheLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
-    spinTheLocationIcon.toValue = @(M_PI*4);
-    spinTheLocationIcon.springBounciness = 7;
-    spinTheLocationIcon.springSpeed = 2.0f;
-    [self.layer pop_addAnimation:spinTheLocationIcon forKey:@"spinTheLocationIcon"];
-    
-    POPSpringAnimation *scaleDownLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
-    scaleDownLocationIcon.toValue = [NSValue valueWithCGPoint:CGPointMake(1, 1)];
-    scaleDownLocationIcon.springBounciness = 8.0f; // Between 0-20
-    scaleDownLocationIcon.springSpeed = 20.0f; // Between 0-20
-    [self pop_addAnimation:scaleDownLocationIcon forKey:@"scaleDownLocationIcon"];
 
-    
-    spinTheLocationIcon.completionBlock = ^(POPAnimation *frame, BOOL finished) {
+    _scaleTheLocationIcon.completionBlock = ^(POPAnimation *frame, BOOL finished) {
     
         POPSpringAnimation *scaleTheLocationIconOffScreen = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
         scaleTheLocationIconOffScreen.toValue = [NSValue valueWithCGPoint:CGPointMake(10, 10)];
         scaleTheLocationIconOffScreen.springBounciness = 4.0f; // Between 0-20
-        scaleTheLocationIconOffScreen.springSpeed = 20.0f; // Between 0-20
+        scaleTheLocationIconOffScreen.springSpeed = kSpringSpeedValueForAnimation; // Between 0-20
         [self pop_addAnimation:scaleTheLocationIconOffScreen forKey:@"scaleTheLocationIconOffScreen"];
     
         POPSpringAnimation *fadeLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewAlpha];
         fadeLocationIcon.toValue = @(0.0);
         fadeLocationIcon.springBounciness = 2.0f;
-        fadeLocationIcon.springSpeed = 20.0f;
+        fadeLocationIcon.springSpeed = kSpringSpeedValueForAnimation;
         [self pop_addAnimation:fadeLocationIcon forKey:@"fadeLocationIcon"];
         fadeLocationIcon.completionBlock = ^(POPAnimation *fade, BOOL finished) {
             
@@ -122,20 +118,11 @@
 
             showFrame.completionBlock = ^(POPAnimation *frame, BOOL finished) {
                 
-                [self displayWeather];
+                [self.delegate didCreateCard:YES];
 
             };
         };
     };
 }
-
-- (void)displayWeather {
-    
-    if (self.cardCreated) {
-        self.cardCreated(YES);
-    }
-
-}
-
 
 @end

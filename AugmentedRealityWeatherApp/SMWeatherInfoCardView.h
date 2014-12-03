@@ -11,7 +11,7 @@
 
 @interface SMWeatherInfoCardView : UIView
 
-- (void) createLabelsWithWeatherObject:(SMWeatherInfo *)weatherInfo;
+- (void) createLabelsWithWeatherObject:(SMWeatherInfo *)weatherInfo withCityName:(NSString *)cityName;
 
 @property (nonatomic, strong) NSString *test;
 

@@ -16,5 +16,9 @@
 
 // Drawing Methods
 + (UIBezierPath *)drawLocationIcon;
++ (NSArray *)drawiPhone;
++(UIBezierPath *)drawCloud;
++ (UIBezierPath *)drawRect;
+
 
 @end

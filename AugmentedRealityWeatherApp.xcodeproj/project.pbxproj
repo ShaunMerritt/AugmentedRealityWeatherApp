@@ -8,25 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */; };
+		28107BC51A26FDA700E3312A /* SMSwipeExplanationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28107BC41A26FDA700E3312A /* SMSwipeExplanationView.m */; };
+		28107BC81A26FDC200E3312A /* SMSwipeExplanationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28107BC71A26FDC200E3312A /* SMSwipeExplanationViewController.m */; };
+		281718FD1A2EDFF000F67D7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 281718FC1A2EDFF000F67D7E /* SystemConfiguration.framework */; };
+		281719011A2EE47400F67D7E /* libFlurry_5.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 281719001A2EE47400F67D7E /* libFlurry_5.4.0.a */; };
 		281BE8041A1866EE008037E0 /* CLLocation+Bearing.m in Sources */ = {isa = PBXBuildFile; fileRef = 281BE8021A1866EE008037E0 /* CLLocation+Bearing.m */; };
-		281FF34019EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */; };
-		281FF34119EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33B19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m */; };
-		281FF34219EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33D19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m */; };
-		281FF34319EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 281FF33F19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m */; };
+		281CA7FD1A2171D6007F5E0B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 281CA7FC1A2171D6007F5E0B /* Images.xcassets */; };
+		28368D4A1A21A1F10070D392 /* SMWelcomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28368D491A21A1F10070D392 /* SMWelcomePageViewController.m */; };
+		28368D4D1A21A2290070D392 /* SMWelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28368D4C1A21A2290070D392 /* SMWelcomeView.m */; };
+		28368D501A21B6F80070D392 /* SMDirectionsForPointingPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28368D4F1A21B6F80070D392 /* SMDirectionsForPointingPhoneView.m */; };
+		28368D531A21B75F0070D392 /* SMDirectionsForPointingPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28368D521A21B75E0070D392 /* SMDirectionsForPointingPhoneViewController.m */; };
+		284339A61A18895600F2C1AC /* SMExistingLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339A51A18895600F2C1AC /* SMExistingLocationsViewController.m */; };
+		284339A91A18896E00F2C1AC /* SMExistingLocationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339A81A18896E00F2C1AC /* SMExistingLocationsView.m */; };
+		284339AC1A188A1400F2C1AC /* SMPlusShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339AB1A188A1400F2C1AC /* SMPlusShapeView.m */; };
+		284339AF1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 284339AE1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m */; };
 		2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2855422219D37D16003B9241 /* SMInitialLoadingView.m */; };
 		2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2865F07C19D37B0D00CACA4C /* SMStyleKit.m */; };
 		28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */; };
+		28825F1C1A2D696C0058D1A1 /* PCAngularActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28825F1B1A2D696C0058D1A1 /* PCAngularActivityIndicatorView.m */; };
 		2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887D08B19FB410C003DB35F /* SMAddLocationsView.m */; };
+		2888770D1A22FFB20023FFF1 /* UIButton+SMBackgroundColorForButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2888770C1A22FFB20023FFF1 /* UIButton+SMBackgroundColorForButton.m */; };
+		288877101A2303C10023FFF1 /* SMDirectionsForAddingLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2888770F1A2303C10023FFF1 /* SMDirectionsForAddingLocationsViewController.m */; };
+		288877131A2303D70023FFF1 /* SMDirectionsForAddingLocationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 288877121A2303D70023FFF1 /* SMDirectionsForAddingLocationsView.m */; };
+		288877161A23089C0023FFF1 /* SMAskForPermissionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288877151A23089C0023FFF1 /* SMAskForPermissionsViewController.m */; };
+		288877191A2308B10023FFF1 /* SMAskForPermissionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 288877181A2308B10023FFF1 /* SMAskForPermissionsView.m */; };
 		28978D4C1A0DDD83003C47E4 /* SMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */; };
 		28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2219BD2B830018600F /* QuartzCore.framework */; };
 		28B45E2519BD2B830018600F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B45E2319BD2B830018600F /* CFNetwork.framework */; };
+		28B9156D1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9156C1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m */; };
+		28B915701A19468D001E3C7D /* SMAddNewLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9156F1A19468D001E3C7D /* SMAddNewLocationsViewController.m */; };
+		28B915731A1946B9001E3C7D /* SMAddNewLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B915721A1946B9001E3C7D /* SMAddNewLocationView.m */; };
+		28B915761A19473A001E3C7D /* SMCustomSearchUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B915751A19473A001E3C7D /* SMCustomSearchUITextField.m */; };
 		28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */; };
 		28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3719D1259F003D6F50 /* SMWeatherModel.m */; };
 		28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */; };
 		28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */; };
 		28E37C6219EC74F500B920E2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E37C6119EC74F500B920E2 /* CoreLocation.framework */; };
-		28E37C6819EC75B300B920E2 /* INTULocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E37C6419EC75B300B920E2 /* INTULocationManager.m */; };
-		28E37C6919EC75B300B920E2 /* INTULocationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E37C6619EC75B300B920E2 /* INTULocationRequest.m */; };
 		28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
 		28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD419B6CB2300E327DE /* CoreGraphics.framework */; };
 		28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
@@ -35,7 +52,6 @@
 		28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FE219B6CB2600E327DE /* SMAppDelegate.m */; };
 		28E99FE619B6CB2600E327DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FE419B6CB2600E327DE /* Main.storyboard */; };
 		28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E99FE819B6CB2700E327DE /* SMViewController.m */; };
-		28E99FEB19B6CB2700E327DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28E99FEA19B6CB2700E327DE /* Images.xcassets */; };
 		28E99FF219B6CB2700E327DE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FF119B6CB2700E327DE /* XCTest.framework */; };
 		28E99FF319B6CB2700E327DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD219B6CB2300E327DE /* Foundation.framework */; };
 		28E99FF419B6CB2700E327DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E99FD619B6CB2300E327DE /* UIKit.framework */; };
@@ -60,28 +76,65 @@
 		0E91A5B7184E48D388EF6BB1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		280A792919D0F4CC00B47F5F /* SMWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherClient.h; sourceTree = "<group>"; };
 		280A792A19D0F4CC00B47F5F /* SMWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherClient.m; sourceTree = "<group>"; };
+		28107BC31A26FDA700E3312A /* SMSwipeExplanationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSwipeExplanationView.h; sourceTree = "<group>"; };
+		28107BC41A26FDA700E3312A /* SMSwipeExplanationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwipeExplanationView.m; sourceTree = "<group>"; };
+		28107BC61A26FDC200E3312A /* SMSwipeExplanationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSwipeExplanationViewController.h; sourceTree = "<group>"; };
+		28107BC71A26FDC200E3312A /* SMSwipeExplanationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwipeExplanationViewController.m; sourceTree = "<group>"; };
+		281718FC1A2EDFF000F67D7E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		281718FF1A2EE47400F67D7E /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		281719001A2EE47400F67D7E /* libFlurry_5.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_5.4.0.a; sourceTree = "<group>"; };
 		281BE8021A1866EE008037E0 /* CLLocation+Bearing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Bearing.m"; sourceTree = "<group>"; };
 		281BE8031A1866EE008037E0 /* CLLocation+Bearing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Bearing.h"; sourceTree = "<group>"; };
-		281FF33819EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
-		281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompletePlace.m; sourceTree = "<group>"; };
-		281FF33A19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteQuery.h; sourceTree = "<group>"; };
-		281FF33B19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompleteQuery.m; sourceTree = "<group>"; };
-		281FF33C19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
-		281FF33D19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
-		281FF33E19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesPlaceDetailQuery.h; sourceTree = "<group>"; };
-		281FF33F19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesPlaceDetailQuery.m; sourceTree = "<group>"; };
+		281CA7FC1A2171D6007F5E0B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		28368D481A21A1F10070D392 /* SMWelcomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWelcomePageViewController.h; sourceTree = "<group>"; };
+		28368D491A21A1F10070D392 /* SMWelcomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWelcomePageViewController.m; sourceTree = "<group>"; };
+		28368D4B1A21A2290070D392 /* SMWelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWelcomeView.h; sourceTree = "<group>"; };
+		28368D4C1A21A2290070D392 /* SMWelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWelcomeView.m; sourceTree = "<group>"; };
+		28368D4E1A21B6F80070D392 /* SMDirectionsForPointingPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionsForPointingPhoneView.h; sourceTree = "<group>"; };
+		28368D4F1A21B6F80070D392 /* SMDirectionsForPointingPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionsForPointingPhoneView.m; sourceTree = "<group>"; };
+		28368D511A21B75E0070D392 /* SMDirectionsForPointingPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionsForPointingPhoneViewController.h; sourceTree = "<group>"; };
+		28368D521A21B75E0070D392 /* SMDirectionsForPointingPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionsForPointingPhoneViewController.m; sourceTree = "<group>"; };
+		284339A41A18895600F2C1AC /* SMExistingLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMExistingLocationsViewController.h; sourceTree = "<group>"; };
+		284339A51A18895600F2C1AC /* SMExistingLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMExistingLocationsViewController.m; sourceTree = "<group>"; };
+		284339A71A18896E00F2C1AC /* SMExistingLocationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMExistingLocationsView.h; sourceTree = "<group>"; };
+		284339A81A18896E00F2C1AC /* SMExistingLocationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMExistingLocationsView.m; sourceTree = "<group>"; };
+		284339AA1A188A1400F2C1AC /* SMPlusShapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPlusShapeView.h; sourceTree = "<group>"; };
+		284339AB1A188A1400F2C1AC /* SMPlusShapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPlusShapeView.m; sourceTree = "<group>"; };
+		284339AD1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SMAugmentedRealityAppColors.h"; sourceTree = "<group>"; };
+		284339AE1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SMAugmentedRealityAppColors.m"; sourceTree = "<group>"; };
+		284339B01A188DA300F2C1AC /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		2855422119D37D16003B9241 /* SMInitialLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMInitialLoadingView.h; sourceTree = "<group>"; };
 		2855422219D37D16003B9241 /* SMInitialLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMInitialLoadingView.m; sourceTree = "<group>"; };
 		2865F07B19D37B0D00CACA4C /* SMStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStyleKit.h; sourceTree = "<group>"; };
 		2865F07C19D37B0D00CACA4C /* SMStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStyleKit.m; sourceTree = "<group>"; };
 		28735EEF19C007E10057DA64 /* SMBlurredCameraBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBlurredCameraBackgroundView.h; sourceTree = "<group>"; };
 		28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBlurredCameraBackgroundView.m; sourceTree = "<group>"; };
+		28825F1A1A2D696C0058D1A1 /* PCAngularActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCAngularActivityIndicatorView.h; sourceTree = "<group>"; };
+		28825F1B1A2D696C0058D1A1 /* PCAngularActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCAngularActivityIndicatorView.m; sourceTree = "<group>"; };
 		2887D08A19FB410C003DB35F /* SMAddLocationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddLocationsView.h; sourceTree = "<group>"; };
 		2887D08B19FB410C003DB35F /* SMAddLocationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddLocationsView.m; sourceTree = "<group>"; };
+		2888770B1A22FFB20023FFF1 /* UIButton+SMBackgroundColorForButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SMBackgroundColorForButton.h"; sourceTree = "<group>"; };
+		2888770C1A22FFB20023FFF1 /* UIButton+SMBackgroundColorForButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SMBackgroundColorForButton.m"; sourceTree = "<group>"; };
+		2888770E1A2303C10023FFF1 /* SMDirectionsForAddingLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionsForAddingLocationsViewController.h; sourceTree = "<group>"; };
+		2888770F1A2303C10023FFF1 /* SMDirectionsForAddingLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionsForAddingLocationsViewController.m; sourceTree = "<group>"; };
+		288877111A2303D70023FFF1 /* SMDirectionsForAddingLocationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionsForAddingLocationsView.h; sourceTree = "<group>"; };
+		288877121A2303D70023FFF1 /* SMDirectionsForAddingLocationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionsForAddingLocationsView.m; sourceTree = "<group>"; };
+		288877141A23089C0023FFF1 /* SMAskForPermissionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAskForPermissionsViewController.h; sourceTree = "<group>"; };
+		288877151A23089C0023FFF1 /* SMAskForPermissionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAskForPermissionsViewController.m; sourceTree = "<group>"; };
+		288877171A2308B10023FFF1 /* SMAskForPermissionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAskForPermissionsView.h; sourceTree = "<group>"; };
+		288877181A2308B10023FFF1 /* SMAskForPermissionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAskForPermissionsView.m; sourceTree = "<group>"; };
 		28978D4A1A0DDD83003C47E4 /* SMLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLocationModel.h; sourceTree = "<group>"; };
 		28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLocationModel.m; sourceTree = "<group>"; };
 		28B45E2219BD2B830018600F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		28B45E2319BD2B830018600F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		28B9156B1A190E3C001E3C7D /* SMExistingLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMExistingLocationTableViewCell.h; sourceTree = "<group>"; };
+		28B9156C1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMExistingLocationTableViewCell.m; sourceTree = "<group>"; };
+		28B9156E1A19468D001E3C7D /* SMAddNewLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddNewLocationsViewController.h; sourceTree = "<group>"; };
+		28B9156F1A19468D001E3C7D /* SMAddNewLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddNewLocationsViewController.m; sourceTree = "<group>"; };
+		28B915711A1946B9001E3C7D /* SMAddNewLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddNewLocationView.h; sourceTree = "<group>"; };
+		28B915721A1946B9001E3C7D /* SMAddNewLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddNewLocationView.m; sourceTree = "<group>"; };
+		28B915741A19473A001E3C7D /* SMCustomSearchUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCustomSearchUITextField.h; sourceTree = "<group>"; };
+		28B915751A19473A001E3C7D /* SMCustomSearchUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCustomSearchUITextField.m; sourceTree = "<group>"; };
 		28C5D35F19F4B4AD00B8AE85 /* SMWeatherLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherLocationsViewController.h; sourceTree = "<group>"; };
 		28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherLocationsViewController.m; sourceTree = "<group>"; };
 		28C78F3619D1259F003D6F50 /* SMWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherModel.h; sourceTree = "<group>"; };
@@ -91,11 +144,6 @@
 		28E0FE0319D520DA00F0F8E7 /* SMWeatherInfoCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWeatherInfoCardView.h; sourceTree = "<group>"; };
 		28E0FE0419D520DA00F0F8E7 /* SMWeatherInfoCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWeatherInfoCardView.m; sourceTree = "<group>"; };
 		28E37C6119EC74F500B920E2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		28E37C6319EC75B300B920E2 /* INTULocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationManager.h; sourceTree = "<group>"; };
-		28E37C6419EC75B300B920E2 /* INTULocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INTULocationManager.m; sourceTree = "<group>"; };
-		28E37C6519EC75B300B920E2 /* INTULocationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationRequest.h; sourceTree = "<group>"; };
-		28E37C6619EC75B300B920E2 /* INTULocationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INTULocationRequest.m; sourceTree = "<group>"; };
-		28E37C6719EC75B300B920E2 /* INTULocationRequestDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationRequestDefines.h; sourceTree = "<group>"; };
 		28E99FCF19B6CB2300E327DE /* AugmentedRealityWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AugmentedRealityWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28E99FD219B6CB2300E327DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28E99FD419B6CB2300E327DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,7 +157,6 @@
 		28E99FE519B6CB2600E327DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28E99FE719B6CB2700E327DE /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMViewController.h; sourceTree = "<group>"; };
 		28E99FE819B6CB2700E327DE /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMViewController.m; sourceTree = "<group>"; };
-		28E99FEA19B6CB2700E327DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28E99FF019B6CB2700E327DE /* AugmentedRealityWeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AugmentedRealityWeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28E99FF119B6CB2700E327DE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		28E99FF919B6CB2800E327DE /* AugmentedRealityWeatherAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AugmentedRealityWeatherAppTests-Info.plist"; sourceTree = "<group>"; };
@@ -123,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				281718FD1A2EDFF000F67D7E /* SystemConfiguration.framework in Frameworks */,
 				28E37C6219EC74F500B920E2 /* CoreLocation.framework in Frameworks */,
 				28B45E2419BD2B830018600F /* QuartzCore.framework in Frameworks */,
 				28E99FD319B6CB2300E327DE /* Foundation.framework in Frameworks */,
@@ -130,6 +178,7 @@
 				28E99FD519B6CB2300E327DE /* CoreGraphics.framework in Frameworks */,
 				28E99FD719B6CB2300E327DE /* UIKit.framework in Frameworks */,
 				9C341AFEFF3A4A9EA27C00DE /* libPods.a in Frameworks */,
+				281719011A2EE47400F67D7E /* libFlurry_5.4.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +195,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		281718FE1A2EE47400F67D7E /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				281718FF1A2EE47400F67D7E /* Flurry.h */,
+				281719001A2EE47400F67D7E /* libFlurry_5.4.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 		2887D08719FB403C003DB35F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +213,20 @@
 				28E99FE819B6CB2700E327DE /* SMViewController.m */,
 				28C5D35F19F4B4AD00B8AE85 /* SMWeatherLocationsViewController.h */,
 				28C5D36019F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m */,
+				284339A41A18895600F2C1AC /* SMExistingLocationsViewController.h */,
+				284339A51A18895600F2C1AC /* SMExistingLocationsViewController.m */,
+				28B9156E1A19468D001E3C7D /* SMAddNewLocationsViewController.h */,
+				28B9156F1A19468D001E3C7D /* SMAddNewLocationsViewController.m */,
+				28368D481A21A1F10070D392 /* SMWelcomePageViewController.h */,
+				28368D491A21A1F10070D392 /* SMWelcomePageViewController.m */,
+				28368D511A21B75E0070D392 /* SMDirectionsForPointingPhoneViewController.h */,
+				28368D521A21B75E0070D392 /* SMDirectionsForPointingPhoneViewController.m */,
+				2888770E1A2303C10023FFF1 /* SMDirectionsForAddingLocationsViewController.h */,
+				2888770F1A2303C10023FFF1 /* SMDirectionsForAddingLocationsViewController.m */,
+				288877141A23089C0023FFF1 /* SMAskForPermissionsViewController.h */,
+				288877151A23089C0023FFF1 /* SMAskForPermissionsViewController.m */,
+				28107BC61A26FDC200E3312A /* SMSwipeExplanationViewController.h */,
+				28107BC71A26FDC200E3312A /* SMSwipeExplanationViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -170,6 +242,8 @@
 				28C78F3A19D12963003D6F50 /* SMWeatherInfo.m */,
 				28978D4A1A0DDD83003C47E4 /* SMLocationModel.h */,
 				28978D4B1A0DDD83003C47E4 /* SMLocationModel.m */,
+				2888770B1A22FFB20023FFF1 /* UIButton+SMBackgroundColorForButton.h */,
+				2888770C1A22FFB20023FFF1 /* UIButton+SMBackgroundColorForButton.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -177,6 +251,8 @@
 		2887D08919FB407C003DB35F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				284339AA1A188A1400F2C1AC /* SMPlusShapeView.h */,
+				284339AB1A188A1400F2C1AC /* SMPlusShapeView.m */,
 				2855422119D37D16003B9241 /* SMInitialLoadingView.h */,
 				2855422219D37D16003B9241 /* SMInitialLoadingView.m */,
 				28E0FE0319D520DA00F0F8E7 /* SMWeatherInfoCardView.h */,
@@ -185,6 +261,25 @@
 				28735EF019C007E10057DA64 /* SMBlurredCameraBackgroundView.m */,
 				2887D08A19FB410C003DB35F /* SMAddLocationsView.h */,
 				2887D08B19FB410C003DB35F /* SMAddLocationsView.m */,
+				284339A71A18896E00F2C1AC /* SMExistingLocationsView.h */,
+				284339A81A18896E00F2C1AC /* SMExistingLocationsView.m */,
+				28B9156B1A190E3C001E3C7D /* SMExistingLocationTableViewCell.h */,
+				28B9156C1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m */,
+				28B915711A1946B9001E3C7D /* SMAddNewLocationView.h */,
+				28B915721A1946B9001E3C7D /* SMAddNewLocationView.m */,
+				28B915741A19473A001E3C7D /* SMCustomSearchUITextField.h */,
+				28B915751A19473A001E3C7D /* SMCustomSearchUITextField.m */,
+				281CA7FC1A2171D6007F5E0B /* Images.xcassets */,
+				28368D4B1A21A2290070D392 /* SMWelcomeView.h */,
+				28368D4C1A21A2290070D392 /* SMWelcomeView.m */,
+				28368D4E1A21B6F80070D392 /* SMDirectionsForPointingPhoneView.h */,
+				28368D4F1A21B6F80070D392 /* SMDirectionsForPointingPhoneView.m */,
+				288877111A2303D70023FFF1 /* SMDirectionsForAddingLocationsView.h */,
+				288877121A2303D70023FFF1 /* SMDirectionsForAddingLocationsView.m */,
+				288877171A2308B10023FFF1 /* SMAskForPermissionsView.h */,
+				288877181A2308B10023FFF1 /* SMAskForPermissionsView.m */,
+				28107BC31A26FDA700E3312A /* SMSwipeExplanationView.h */,
+				28107BC41A26FDA700E3312A /* SMSwipeExplanationView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -212,6 +307,7 @@
 		28E99FD119B6CB2300E327DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				281718FC1A2EDFF000F67D7E /* SystemConfiguration.framework */,
 				28E37C6119EC74F500B920E2 /* CoreLocation.framework */,
 				28B45E2219BD2B830018600F /* QuartzCore.framework */,
 				28B45E2319BD2B830018600F /* CFNetwork.framework */,
@@ -227,11 +323,11 @@
 		28E99FD819B6CB2400E327DE /* AugmentedRealityWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				281718FE1A2EE47400F67D7E /* Flurry */,
 				28E99FE419B6CB2600E327DE /* Main.storyboard */,
 				2887D08719FB403C003DB35F /* View Controllers */,
 				2887D08819FB4066003DB35F /* Models */,
 				2887D08919FB407C003DB35F /* Views */,
-				28E99FEA19B6CB2700E327DE /* Images.xcassets */,
 				28E99FD919B6CB2400E327DE /* Supporting Files */,
 			);
 			path = AugmentedRealityWeatherApp;
@@ -240,27 +336,19 @@
 		28E99FD919B6CB2400E327DE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				28825F1A1A2D696C0058D1A1 /* PCAngularActivityIndicatorView.h */,
+				28825F1B1A2D696C0058D1A1 /* PCAngularActivityIndicatorView.m */,
+				284339B01A188DA300F2C1AC /* Avenir.ttc */,
 				281BE8021A1866EE008037E0 /* CLLocation+Bearing.m */,
 				281BE8031A1866EE008037E0 /* CLLocation+Bearing.h */,
-				281FF33819EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.h */,
-				281FF33919EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m */,
-				281FF33A19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.h */,
-				281FF33B19EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m */,
-				281FF33C19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.h */,
-				281FF33D19EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m */,
-				281FF33E19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.h */,
-				281FF33F19EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m */,
-				28E37C6319EC75B300B920E2 /* INTULocationManager.h */,
-				28E37C6419EC75B300B920E2 /* INTULocationManager.m */,
-				28E37C6519EC75B300B920E2 /* INTULocationRequest.h */,
-				28E37C6619EC75B300B920E2 /* INTULocationRequest.m */,
-				28E37C6719EC75B300B920E2 /* INTULocationRequestDefines.h */,
 				2865F07B19D37B0D00CACA4C /* SMStyleKit.h */,
 				2865F07C19D37B0D00CACA4C /* SMStyleKit.m */,
 				28E99FDA19B6CB2400E327DE /* AugmentedRealityWeatherApp-Info.plist */,
 				28E99FDB19B6CB2500E327DE /* InfoPlist.strings */,
 				28E99FDE19B6CB2500E327DE /* main.m */,
 				28E99FE019B6CB2500E327DE /* AugmentedRealityWeatherApp-Prefix.pch */,
+				284339AD1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.h */,
+				284339AE1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -333,6 +421,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "True Merit Development";
 				TargetAttributes = {
+					28E99FCE19B6CB2300E327DE = {
+						DevelopmentTeam = W5PAS38F44;
+					};
 					28E99FEF19B6CB2700E327DE = {
 						TestTargetID = 28E99FCE19B6CB2300E327DE;
 					};
@@ -362,7 +453,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28E99FEB19B6CB2700E327DE /* Images.xcassets in Resources */,
+				281CA7FD1A2171D6007F5E0B /* Images.xcassets in Resources */,
 				28E99FDD19B6CB2500E327DE /* InfoPlist.strings in Resources */,
 				28E99FE619B6CB2600E327DE /* Main.storyboard in Resources */,
 			);
@@ -419,25 +510,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				2865F07D19D37B0D00CACA4C /* SMStyleKit.m in Sources */,
+				2888770D1A22FFB20023FFF1 /* UIButton+SMBackgroundColorForButton.m in Sources */,
 				28E0FE0519D520DA00F0F8E7 /* SMWeatherInfoCardView.m in Sources */,
-				281FF34319EE3FD300A604CD /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
+				28B915701A19468D001E3C7D /* SMAddNewLocationsViewController.m in Sources */,
+				28B915731A1946B9001E3C7D /* SMAddNewLocationView.m in Sources */,
 				28E99FE319B6CB2600E327DE /* SMAppDelegate.m in Sources */,
 				28C5D36119F4B4AD00B8AE85 /* SMWeatherLocationsViewController.m in Sources */,
+				28107BC81A26FDC200E3312A /* SMSwipeExplanationViewController.m in Sources */,
+				28368D501A21B6F80070D392 /* SMDirectionsForPointingPhoneView.m in Sources */,
+				288877191A2308B10023FFF1 /* SMAskForPermissionsView.m in Sources */,
+				284339AC1A188A1400F2C1AC /* SMPlusShapeView.m in Sources */,
+				284339A61A18895600F2C1AC /* SMExistingLocationsViewController.m in Sources */,
+				288877101A2303C10023FFF1 /* SMDirectionsForAddingLocationsViewController.m in Sources */,
+				28B915761A19473A001E3C7D /* SMCustomSearchUITextField.m in Sources */,
 				2855422319D37D16003B9241 /* SMInitialLoadingView.m in Sources */,
+				284339A91A18896E00F2C1AC /* SMExistingLocationsView.m in Sources */,
 				281BE8041A1866EE008037E0 /* CLLocation+Bearing.m in Sources */,
-				281FF34119EE3FD300A604CD /* SPGooglePlacesAutocompleteQuery.m in Sources */,
+				28B9156D1A190E3C001E3C7D /* SMExistingLocationTableViewCell.m in Sources */,
+				28825F1C1A2D696C0058D1A1 /* PCAngularActivityIndicatorView.m in Sources */,
+				288877131A2303D70023FFF1 /* SMDirectionsForAddingLocationsView.m in Sources */,
 				280A792B19D0F4CC00B47F5F /* SMWeatherClient.m in Sources */,
 				28C78F3819D1259F003D6F50 /* SMWeatherModel.m in Sources */,
-				28E37C6919EC75B300B920E2 /* INTULocationRequest.m in Sources */,
+				28368D4A1A21A1F10070D392 /* SMWelcomePageViewController.m in Sources */,
 				28E99FE919B6CB2700E327DE /* SMViewController.m in Sources */,
+				28368D4D1A21A2290070D392 /* SMWelcomeView.m in Sources */,
 				28735EF119C007E10057DA64 /* SMBlurredCameraBackgroundView.m in Sources */,
-				281FF34019EE3FD300A604CD /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				28978D4C1A0DDD83003C47E4 /* SMLocationModel.m in Sources */,
-				281FF34219EE3FD300A604CD /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
-				28E37C6819EC75B300B920E2 /* INTULocationManager.m in Sources */,
+				28107BC51A26FDA700E3312A /* SMSwipeExplanationView.m in Sources */,
+				28368D531A21B75F0070D392 /* SMDirectionsForPointingPhoneViewController.m in Sources */,
 				2887D08C19FB410C003DB35F /* SMAddLocationsView.m in Sources */,
 				28E99FDF19B6CB2500E327DE /* main.m in Sources */,
 				28C78F3B19D12963003D6F50 /* SMWeatherInfo.m in Sources */,
+				284339AF1A188B3D00F2C1AC /* UIColor+SMAugmentedRealityAppColors.m in Sources */,
+				288877161A23089C0023FFF1 /* SMAskForPermissionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +668,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Shaun/Downloads/Video,
@@ -573,7 +680,21 @@
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
 				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AugmentedRealityWeatherApp/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.4.0/Flurry",
+					"$(PROJECT_DIR)/AugmentedRealityWeatherApp/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.4.0/FlurryAds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "57b2043e-ae16-44cb-b599-70a22f02a797";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -584,6 +705,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: William Merritt (W5PAS38F44)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: William Merritt (W5PAS38F44)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Shaun/Downloads/Video,
@@ -594,7 +717,21 @@
 				GCC_PREFIX_HEADER = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Prefix.pch";
 				INFOPLIST_FILE = "AugmentedRealityWeatherApp/AugmentedRealityWeatherApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AugmentedRealityWeatherApp/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.4.0/Flurry",
+					"$(PROJECT_DIR)/AugmentedRealityWeatherApp/Flurry",
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.4.0/FlurryAds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "57b2043e-ae16-44cb-b599-70a22f02a797";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

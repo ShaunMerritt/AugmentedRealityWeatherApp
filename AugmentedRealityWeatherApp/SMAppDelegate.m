@@ -8,6 +8,9 @@
 
 #import "SMAppDelegate.h"
 #import "SMViewController.h"
+#import "SMWelcomePageViewController.h"
+#import "SMLocationModel.h"
+#import "Flurry.h"
 
 @implementation SMAppDelegate {
     UIViewController *viewController;
@@ -19,14 +22,32 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Override point for customization after application launch…
-    
-    UIViewController *rootViewController = [[SMViewController alloc] init];
-    viewController = [[UINavigationController alloc]
-    initWithRootViewController:rootViewController];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"notFirstLaunch"]) {
+        NSLog(@"Once");
+        UIViewController *rootViewController = [[SMViewController alloc] init];
+        viewController = [[UINavigationController alloc]
+                          initWithRootViewController:rootViewController];
+    } else {
+        NSLog(@"First");
+        
+        
+//        SMLocationModel *selectedLocation = [[SMLocationModel alloc] initWithCityName:@"" latitude:0 longitude:0 degreesFromNorth:0];
+//        NSArray *array = [[NSArray alloc] initWithObjects:selectedLocation, nil];
+//        
+//        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:array] forKey:@"savedLocationsArray"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        
+        UIViewController *rootViewController = [[SMWelcomePageViewController alloc] init];
+        viewController = [[UINavigationController alloc]
+                          initWithRootViewController:rootViewController];
+    }
     
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
+    
+    [Flurry startSession:@"7WSQFDFG23724FKS8ZZF"];
+
 
     return YES;
 }
