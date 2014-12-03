@@ -13,6 +13,12 @@
 #import <POP.h>
 #import <CoreLocation/CoreLocation.h>
 
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
 @interface SMAskForPermissionsViewController ()<SMAskForPermissionsViewDelegate, CLLocationManagerDelegate> {
     SMAskForPermissionsView *_askForPermissionsView;
     CLLocationManager *_locationManager;
@@ -35,7 +41,17 @@
 - (void) sayYesButtonPressed {
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
-    [_locationManager requestWhenInUseAuthorization];
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"8")) {
+        NSLog(@"In here");
+        [_locationManager startUpdatingLocation];
+        [self moveToNextScreen];
+
+    }
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8")) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
