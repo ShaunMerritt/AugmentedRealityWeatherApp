@@ -76,7 +76,7 @@
     // Current Location Label
     _currentLocationLabel = [[UILabel alloc] init];
     _currentLocationLabel.text = _nameOfCurrentCity;
-    _currentLocationLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(20)];
+    _currentLocationLabel.font = [UIFont fontWithName:@"Avenir Next Ultra Light" size:(17)];
     
     _currentLocationLabel.backgroundColor = [UIColor clearColor];
     _currentLocationLabel.textColor = [UIColor whiteColor];
@@ -133,7 +133,7 @@
     // Animations for current temperature label
     POPSpringAnimation *moveTemperatureLabelAlongY = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     moveTemperatureLabelAlongY.fromValue = @(_currentTemperatureLabel.frame.origin.y);
-    moveTemperatureLabelAlongY.toValue = @(self.frame.origin.y + 180);
+    moveTemperatureLabelAlongY.toValue = @(self.frame.origin.y + 100);
     moveTemperatureLabelAlongY.springBounciness = 2;
     moveTemperatureLabelAlongY.springSpeed = 5.0f;
     [_currentTemperatureLabel.layer pop_addAnimation:moveTemperatureLabelAlongY forKey:@"moveTemperatureLabelAlongY"];
@@ -155,7 +155,7 @@
     // Animations for current location label
     POPSpringAnimation *moveLocationLabelAlongY = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     moveLocationLabelAlongY.fromValue = @(_currentLocationLabel.frame.origin.y);
-    moveLocationLabelAlongY.toValue = @(self.bounds.origin.y + 30);
+    moveLocationLabelAlongY.toValue = @(self.bounds.origin.y + 40);
     moveLocationLabelAlongY.springBounciness = 2;
     moveLocationLabelAlongY.springSpeed = 5.0f;
     [_currentLocationLabel.layer pop_addAnimation:moveLocationLabelAlongY forKey:@"moveLocationLabelAlongY"];

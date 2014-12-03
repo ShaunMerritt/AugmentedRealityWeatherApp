@@ -44,7 +44,7 @@ static const CGFloat kSpringBouncinessValueForIconAnimation = 20;
 
 - (void)drawRect:(CGRect)rect {
     
-    UIBezierPath *bezierPath = [SMStyleKit drawLocationIcon];
+    UIBezierPath *bezierPath = [SMStyleKit drawCloud];
     bezierPath.lineCapStyle = kCGLineCapRound;
     
     _bezier = [[CAShapeLayer alloc] init];
@@ -76,23 +76,9 @@ static const CGFloat kSpringBouncinessValueForIconAnimation = 20;
     }
     [self pop_addAnimation:_scaleTheLocationIcon forKey:@"scaleTheLocationIcon"];
 
-    if (_spinTheLocationIcon == nil) {
-        _spinTheLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
-        _spinTheLocationIcon.toValue = @(M_PI*4);
-        _spinTheLocationIcon.springBounciness = kSpringBouncinessValueForIconAnimation;
-        _spinTheLocationIcon.springSpeed = 2.0f;
-    }
-    [self.layer pop_addAnimation:_spinTheLocationIcon forKey:@"spinTheLocationIcon"];
     
-    if (_scaleDownLocationIcon) {
-        _scaleDownLocationIcon = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
-        _scaleDownLocationIcon.toValue = [NSValue valueWithCGPoint:CGPointMake(1, 1)];
-        _scaleDownLocationIcon.springBounciness = kSpringBouncinessValueForIconAnimation; // Between 0-20
-        _scaleDownLocationIcon.springSpeed = kSpringSpeedValueForAnimation; // Between 0-20
-    }
-    [self pop_addAnimation:_scaleDownLocationIcon forKey:@"scaleDownLocationIcon"];
 
-    _spinTheLocationIcon.completionBlock = ^(POPAnimation *frame, BOOL finished) {
+    _scaleTheLocationIcon.completionBlock = ^(POPAnimation *frame, BOOL finished) {
     
         POPSpringAnimation *scaleTheLocationIconOffScreen = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
         scaleTheLocationIconOffScreen.toValue = [NSValue valueWithCGPoint:CGPointMake(10, 10)];

@@ -167,7 +167,7 @@
     
 //    SMLocationModel *newLocation = ([_dataForTableView objectAtIndex:indexPath.row] ?: [[SMLocationModel alloc] initWithCityName:@"" latitude:0 longitude:0 degreesFromNorth:0]);
     
-    NSString *string = newLocation.cityName;
+    NSString *string =  (newLocation.cityName) ?: newLocation.cityName;
     
     cell.textLabel.text = string;
     cell.textLabel.textColor = [UIColor colorWithRed:0.4588 green:0.4588 blue:0.4588 alpha:1.0];

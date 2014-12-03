@@ -14,6 +14,7 @@
 #import <POP.h>
 #import "UIColor+SMAugmentedRealityAppColors.h"
 #import "SMExistingLocationsViewController.h"
+#import "Flurry.h"
 
 static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
@@ -165,7 +166,9 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
             [[NSUserDefaults standardUserDefaults] synchronize];
             
 
-            // TODO: Animations for popping back to existingloactionsviewcontroller
+
+            [Flurry logEvent:@"AddedNewLocation"];
+
             [self.navigationController popViewControllerAnimated:NO];
             
             
@@ -225,6 +228,10 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
         
     }completion:^(BOOL finished) {
+        
+        [Flurry logEvent:@"Cancel_AddNewLocation"];
+
+        
         SMExistingLocationsViewController *weatherLocationsViewController = [[SMExistingLocationsViewController alloc] init];
         [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
 

@@ -10,6 +10,7 @@
 #import "SMViewController.h"
 #import "SMWelcomePageViewController.h"
 #import "SMLocationModel.h"
+#import "Flurry.h"
 
 @implementation SMAppDelegate {
     UIViewController *viewController;
@@ -17,7 +18,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -29,8 +29,7 @@
                           initWithRootViewController:rootViewController];
     } else {
         NSLog(@"First");
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notFirstLaunch"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         
 //        SMLocationModel *selectedLocation = [[SMLocationModel alloc] initWithCityName:@"" latitude:0 longitude:0 degreesFromNorth:0];
 //        NSArray *array = [[NSArray alloc] initWithObjects:selectedLocation, nil];
@@ -46,6 +45,9 @@
     
     self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
+    
+    [Flurry startSession:@"7WSQFDFG23724FKS8ZZF"];
+
 
     return YES;
 }

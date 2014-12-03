@@ -23,6 +23,9 @@
 #import "SMExistingLocationsView.h"
 #import "SMExistingLocationsViewController.h"
 #import "UIButton+SMBackgroundColorForButton.h"
+#import "PCAngularActivityIndicatorView.h"
+#import "SMStyleKit.h"
+#import "Flurry.h"
 
 static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
@@ -56,6 +59,13 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     UISwipeGestureRecognizer *_swipeRightGesture;
     UISwipeGestureRecognizer *_swipeLeftGesture;
     UILabel *_bottomInstructionsLabel;
+    UIImageView *_directionPointingImage;
+    UIImageView *_rightArrow;
+    UIImageView *_leftArrow;
+    PCAngularActivityIndicatorView *_activityIndicator;
+    NSTimer *_waitForAnimationsTimer;
+    BOOL _timerInSession;
+    NSString* _currentCityName;
 }
 
 @end
@@ -93,11 +103,20 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     _initialLoadingView.delegate = self;
     
     [self addGesturesToView];
+    
+}
 
+-(UIImage *) getImageWithInvertedPixelsOfImage:(UIImage *)image {
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 2);
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeDifference);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(),[UIColor whiteColor].CGColor);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, image.size.width, image.size.height));
+    UIImage * result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
-    
-
-    
+    return result;
 }
 
 - (UIButton *)buttonToReturnToApp {
@@ -164,34 +183,95 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-    
-    float heading = newHeading.trueHeading;
-    _degreeCurrentlyPointingTo = heading;
-    if (heading > 0 && heading <= 90) {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantOneLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantOneLocations;
-            [self createCardStack];
-        }
-    } else if (heading > 90 && heading <= 180) {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantTwoLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantTwoLocations;
-            [self createCardStack];
-        }
-    } else if (heading > 180 && heading <= 270) {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantThreeLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantThreeLocations;
-            [self createCardStack];
-        }
-    } else {
-        if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantFourLocations]) {
-            _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantFourLocations;
-            [self createCardStack];
-        }
-    }
-    
-    _degreeLastPointedTo = heading;
 
+    float heading = newHeading.trueHeading;
     
+    _degreeCurrentlyPointingTo = heading;
+    if (_timerInSession == NO) {
+        
+    
+        if (heading >= 315 || heading < 45) {
+            
+            float degreesAfterSubtraction = 135 - heading;
+            if (degreesAfterSubtraction < 45) {
+                float degreesAfterDivision = degreesAfterSubtraction/90;
+                float final = degreesAfterDivision/10;
+                _leftArrow.alpha = final;
+                _rightArrow.alpha = 1.0-final;
+            }
+            
+            if (heading >= 315) {
+                float degrees = 405 - heading;
+                float newValue = degrees/90;
+                _leftArrow.alpha = newValue;
+                _rightArrow.alpha = 1.0 - newValue;
+            } else {
+                float degrees = 45 - heading;
+                float newValue = degrees/90;
+                _rightArrow.alpha = 1.0 - newValue;
+                _leftArrow.alpha = newValue;
+            }
+            
+            _directionPointingImage.image = [UIImage imageNamed:@"North"];
+            _directionPointingImage.center = CGPointMake(self.view.center.x, _leftArrow.center.y);
+            [self.view addSubview: _directionPointingImage];
+            if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantOneLocations]) {
+                _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantOneLocations;
+                [self createCardStack];
+            }
+        } else if (heading >= 45 && heading < 135) {
+            
+            float degreesAfterSubtraction = 135 - heading;
+            if (degreesAfterSubtraction < 135) {
+                float degrees = degreesAfterSubtraction/90;
+                float newValue = degrees;
+                _leftArrow.alpha = newValue;
+                _rightArrow.alpha = 1.0-newValue;
+            }
+            
+            _directionPointingImage.image = [UIImage imageNamed:@"East"];
+            _directionPointingImage.center = CGPointMake(self.view.center.x, _leftArrow.center.y);
+            if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantTwoLocations]) {
+                _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantTwoLocations;
+                [self createCardStack];
+            }
+        } else if (heading >= 135 && heading < 225) {
+            
+            float degreesAfterSubtraction = 225 - heading;
+            if (degreesAfterSubtraction < 225) {
+                float degrees = degreesAfterSubtraction/90;
+                float newValue = degrees;
+                _leftArrow.alpha = newValue;
+                _rightArrow.alpha = 1.0-newValue;
+            }
+            
+            _directionPointingImage.image = [UIImage imageNamed:@"South"];
+            _directionPointingImage.center = CGPointMake(self.view.center.x, _leftArrow.center.y);
+            if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantThreeLocations]) {
+                _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantThreeLocations;
+                [self createCardStack];
+            }
+        } else {
+            
+            float degreesAfterSubtraction = 315 - heading;
+            if (degreesAfterSubtraction < 315) {
+                float degrees = degreesAfterSubtraction/90;
+                float newValue = degrees;
+                _leftArrow.alpha = newValue;
+                _rightArrow.alpha = 1.0-newValue;
+            }
+            
+            _directionPointingImage.image = [UIImage imageNamed:@"West"];
+            _directionPointingImage.center = CGPointMake(self.view.center.x, _leftArrow.center.y);
+            if (![_arrayOfCitiesInDirectionOfPhoneHeading isEqualToArray:_quadrantFourLocations]) {
+                _arrayOfCitiesInDirectionOfPhoneHeading = _quadrantFourLocations;
+                [self createCardStack];
+            }
+        }
+        
+        _degreeLastPointedTo = heading;
+
+    }
 }
 
 
@@ -225,6 +305,11 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 - (void) animateCardsIn {
     
     if (_arrayOfCitiesInDirectionOfPhoneHeading.count != 0) {
+        
+        [Flurry logEvent:@"New_Cards_Created"];
+
+        
+        _timerInSession = YES;
         
         if (_degreeLastPointedTo - _degreeCurrentlyPointingTo > 90 ) {
             _frontCardView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(self.view.frame.size.width + 50, _frameOfFrontCard.origin.y, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];
@@ -264,15 +349,24 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
             move.completionBlock = ^(POPAnimation *frame, BOOL finished) {
                 NSString *lat = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLatitude]];
                 NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
-                
+
                 NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
                 //NSLog(@"url: %@", URLString);
                 
                 NSURL *url = [NSURL URLWithString:URLString];
                 
+                _activityIndicator = [[PCAngularActivityIndicatorView alloc] initWithActivityIndicatorStyle:PCAngularActivityIndicatorViewStyleLarge];
+                _activityIndicator.color = [UIColor whiteColor];
+                _activityIndicator.center = CGPointMake(self.view.center.x, self.view.frame.size.height*.6);
+                [_activityIndicator startAnimating];
+                [self.view addSubview:_activityIndicator];
+                
                 [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
                     if (data != nil) {
                         
+                        [_activityIndicator stopAnimating];
+                        _timerInSession = NO;
+
                         NSError *error;
                         
                         if (error != nil) {
@@ -358,6 +452,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
         }
         
     }
+    
+    
 }
 
 - (void) createCardStack {
@@ -372,7 +468,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     
     POPSpringAnimation *move =
     [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
-    move.toValue = [NSValue valueWithCGRect:CGRectMake(- 100, self.view.frame.size.height + 80, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];;
+    move.toValue = [NSValue valueWithCGRect:CGRectMake(- 100, self.view.frame.size.height* 1.5, _frameOfFrontCard.size.width, _frameOfFrontCard.size.height)];;
     move.springBounciness = 4;
     move.springSpeed = 1.0f;
     [_frontCardView.layer pop_addAnimation:move forKey:@"position"];
@@ -420,12 +516,19 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     NSString *lon = [NSString stringWithFormat:@"%f", [_arrayOfCitiesInDirectionOfPhoneHeading[0] cityLocationLongitude]];
     
     NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&units=imperial", lat, lon];
-    //NSLog(@"url: %@", URLString);
     
     NSURL *url = [NSURL URLWithString:URLString];
     
+    _activityIndicator = [[PCAngularActivityIndicatorView alloc] initWithActivityIndicatorStyle:PCAngularActivityIndicatorViewStyleLarge];
+    _activityIndicator.color = [UIColor whiteColor];
+    _activityIndicator.center = CGPointMake(self.view.center.x, self.view.frame.size.height*.6);
+    [_activityIndicator startAnimating];
+    [self.view addSubview:_activityIndicator];
+    
     [SMWeatherClient downloadDataFromURL:url withCompletionHandler:^(NSData *data) {
         if (data != nil) {
+            
+            [_activityIndicator stopAnimating];
             
             NSError *error;
             
@@ -565,6 +668,9 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 
 - (void) respondToUpSwipe: (UISwipeGestureRecognizer *)recognizer {
     
+    [Flurry logEvent:@"Swipe_Up"];
+
+    
     POPSpringAnimation *moveBottomInstructionLabelUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     moveBottomInstructionLabelUp.toValue = @(self.view.frame.size.height + 40);
     moveBottomInstructionLabelUp.springSpeed = 2;
@@ -579,7 +685,7 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     [_backCardView pop_addAnimation:moveCardsUp forKey:@"moveDirectionsViewIn"];
     
     POPSpringAnimation *moveCardsToTheSide = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
-    moveCardsToTheSide.toValue = @(self.view.frame.size.width + _frontCardView.frame.size.width);
+    moveCardsToTheSide.toValue = @(self.view.frame.size.width * 1.5 + _frontCardView.frame.size.width);
     moveCardsToTheSide.springSpeed = 2;
     moveCardsToTheSide.springBounciness = 4;
     [_frontCardView pop_addAnimation:moveCardsToTheSide forKey:@"moveDirectionsViewOut"];
@@ -623,6 +729,9 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 }
 
 - (void)continueButtonLiftedUp:(UIButton*)button {
+    
+    [Flurry logEvent:@"Done_Looking_At_Current_Location"];
+
     
     POPSpringAnimation *moveBottomInstructionLabelUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     moveBottomInstructionLabelUp.toValue = @(self.view.frame.size.height - 40);
@@ -685,45 +794,52 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 }
 
 - (void) respondToLeftSwipe {
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        _frontCardView.alpha = 0.0;
-        _backCardView.frame = _frontCardView.frame;
-        _frontCardView.center = CGPointMake(_frontCardView.frame.size.width / 2 *-1, _frontCardView.center.y + 10);
-        _backCardView.alpha = 1.0;
-        id object = [_arrayOfCitiesInDirectionOfPhoneHeading objectAtIndex:0];
-        [_arrayOfCitiesInDirectionOfPhoneHeading removeObjectAtIndex:0];
-        [_arrayOfCitiesInDirectionOfPhoneHeading insertObject:object atIndex:_arrayOfCitiesInDirectionOfPhoneHeading.count];
-    } completion:^(BOOL finished) {
-        
-        [self animateBackCardIn];
+    if (_arrayOfCitiesInDirectionOfPhoneHeading.count > 0) {
 
-        
-    }];
-    
+        [UIView animateWithDuration:0.5 animations:^{
+            _frontCardView.alpha = 0.0;
+            _backCardView.frame = _frontCardView.frame;
+            _frontCardView.center = CGPointMake(_frontCardView.frame.size.width / 2 *-1, _frontCardView.center.y + 10);
+            _backCardView.alpha = 1.0;
+            id object = [_arrayOfCitiesInDirectionOfPhoneHeading objectAtIndex:0];
+            [_arrayOfCitiesInDirectionOfPhoneHeading removeObjectAtIndex:0];
+            [_arrayOfCitiesInDirectionOfPhoneHeading insertObject:object atIndex:_arrayOfCitiesInDirectionOfPhoneHeading.count];
+        } completion:^(BOOL finished) {
+            [Flurry logEvent:@"Swipe_Left"];
+
+            [self animateBackCardIn];
+
+            
+        }];
+    }
 }
 
 - (void) respondToRightSwipe {
     
-    [UIView animateWithDuration:0.5 animations:^{
-        _frontCardView.alpha = 0.0;
-        _backCardView.frame = _frontCardView.frame;
-        _frontCardView.center = CGPointMake(_frontCardView.frame.size.width * 2, _frontCardView.center.y + 10);
-        _backCardView.alpha = 1.0;
-        id object = [_arrayOfCitiesInDirectionOfPhoneHeading objectAtIndex:0];
-        [_arrayOfCitiesInDirectionOfPhoneHeading removeObjectAtIndex:0];
-        [_arrayOfCitiesInDirectionOfPhoneHeading insertObject:object atIndex:_arrayOfCitiesInDirectionOfPhoneHeading.count];
-    } completion:^(BOOL finished) {
+    if (_arrayOfCitiesInDirectionOfPhoneHeading.count > 0) {
         
-        [self animateBackCardIn];
         
-    }];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _frontCardView.alpha = 0.0;
+            _backCardView.frame = _frontCardView.frame;
+            _frontCardView.center = CGPointMake(_frontCardView.frame.size.width * 2, _frontCardView.center.y + 10);
+            _backCardView.alpha = 1.0;
+            id object = [_arrayOfCitiesInDirectionOfPhoneHeading objectAtIndex:0];
+            [_arrayOfCitiesInDirectionOfPhoneHeading removeObjectAtIndex:0];
+            [_arrayOfCitiesInDirectionOfPhoneHeading insertObject:object atIndex:_arrayOfCitiesInDirectionOfPhoneHeading.count];
+        } completion:^(BOOL finished) {
+            [Flurry logEvent:@"Swipe_Right"];
+
+            [self animateBackCardIn];
+            
+        }];
+            
+    }
 }
 
 - (void) respondToSwipeDownGesture {
     
-//    SMAddLocationsView *addLocationsView = [[SMAddLocationsView alloc] initWithFrame: CGRectMake(0, -1 * self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
-//    [self.view addSubview:addLocationsView];
     
     SMExistingLocationsView *addLocationsView = [[SMExistingLocationsView alloc]  initWithFrame: CGRectMake(0, -1 * self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
      [self.view addSubview:addLocationsView];
@@ -734,7 +850,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
              [addLocationsView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
              
          } completion:^(BOOL finished) {
-             
+             [Flurry logEvent:@"Swipe_Down"];
+
              SMExistingLocationsViewController *weatherLocationsViewController = [[SMExistingLocationsViewController alloc] init];
              [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
 
@@ -747,25 +864,53 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
 - (void) didCreateCard:(BOOL)isComplete {
     
     if (isComplete == YES) {
-        _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:_initialLoadingView.frame];
+        _infoView = [[SMWeatherInfoCardView alloc] initWithFrame:CGRectMake(_initialLoadingView.frame.origin.x, _initialLoadingView.frame.origin.y + 100, _initialLoadingView.frame.size.width, _initialLoadingView.frame.size.height)];
         
         
+        CLGeocoder *coder = [[CLGeocoder alloc]init];
+        CLLocation *loc = [[CLLocation alloc]initWithLatitude:_currentUsersLocation.coordinate.latitude longitude:_currentUsersLocation.coordinate.longitude]; //insert your coordinates
         
-        [_infoView createLabelsWithWeatherObject:_weatherInfoForCurrentCity withCityName:[_arrayOfCitiesInDirectionOfPhoneHeading[0] cityName]];
-        [self.view addSubview:_infoView];
-        _frameOfFrontCard = _infoView.frame;
-        [_locationManager startUpdatingHeading];
         
-        [_initialLoadingView removeFromSuperview];
+        [coder reverseGeocodeLocation: loc completionHandler:
+         ^(NSArray *placemarks, NSError *error) {
+             CLPlacemark *placemark = [placemarks objectAtIndex:0];
+             
+             _currentCityName = [NSString stringWithFormat:@"%@",placemark.locality];
+             [_infoView createLabelsWithWeatherObject:_weatherInfoForCurrentCity withCityName:_currentCityName];
+             [self.view addSubview:_infoView];
+             _frameOfFrontCard = _infoView.frame;
+             [_locationManager startUpdatingHeading];
+             
+             [_initialLoadingView removeFromSuperview];
+             
+             _lookingAtCurrentLocation = YES;
+             [self displayBottomInstruction:_lookingAtCurrentLocation];
+             
+             _doneLookingAtCurrentLocation = [self buttonToReturnToApp];
+             [_doneLookingAtCurrentLocation addTarget:self action:@selector(continueButtonLiftedUp:) forControlEvents:UIControlEventTouchUpInside];
+             [self.view addSubview:_doneLookingAtCurrentLocation];
+             
+             _rightArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Right Arrow"]];
+             _rightArrow.frame = CGRectMake(self.view.frame.size.width - 40 - _rightArrow.frame.size.width, 60, _rightArrow.frame.size.width, _rightArrow.frame.size.height);
+             [self.view addSubview:_rightArrow];
+             _rightArrow.alpha = .2;
+             
+             _leftArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Left Arrow"]];
+             _leftArrow.frame = CGRectMake(30, 60, _rightArrow.frame.size.width, _rightArrow.frame.size.height);
+             [self.view addSubview:_leftArrow];
+             _leftArrow.alpha = .2;
+             
+             _directionPointingImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"West"]];
+             _directionPointingImage.center = CGPointMake(-100, -100);
+             _directionPointingImage.contentMode = UIViewContentModeScaleAspectFit;
+             [self.view addSubview:_directionPointingImage];
+             
+         }];
+         
         
-        _lookingAtCurrentLocation = YES;
-        [self displayBottomInstruction:_lookingAtCurrentLocation];
         
-        _doneLookingAtCurrentLocation = [self buttonToReturnToApp];
-        [_doneLookingAtCurrentLocation addTarget:self action:@selector(continueButtonLiftedUp:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_doneLookingAtCurrentLocation];
 
-
+        
     }
     
 }

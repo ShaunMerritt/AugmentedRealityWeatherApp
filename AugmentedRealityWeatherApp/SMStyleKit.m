@@ -21,6 +21,8 @@
 
 #pragma mark Drawing Methods
 
+
+
 + (UIBezierPath *)drawLocationIcon;
 {
     
@@ -184,6 +186,57 @@
         }
     }
 
+}
+
++(UIBezierPath *)drawCloud {
+
+    //// Color Declarations
+    UIColor* color1 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
+    
+    //// Page-1
+    {
+        //// Portrait
+        {
+            //// Oval-6 Drawing
+            UIBezierPath* oval6Path = UIBezierPath.bezierPath;
+            [oval6Path moveToPoint: CGPointMake(33.28, 87.67)];
+            [oval6Path addCurveToPoint: CGPointMake(0.27, 44.84) controlPoint1: CGPointMake(14.24, 82.4) controlPoint2: CGPointMake(0.27, 65.22)];
+            [oval6Path addCurveToPoint: CGPointMake(45.61, 0.34) controlPoint1: CGPointMake(0.27, 20.26) controlPoint2: CGPointMake(20.57, 0.34)];
+            [oval6Path addCurveToPoint: CGPointMake(84.52, 21.99) controlPoint1: CGPointMake(62.14, 0.34) controlPoint2: CGPointMake(76.6, 9.02)];
+            [oval6Path addCurveToPoint: CGPointMake(100.21, 18.54) controlPoint1: CGPointMake(90.66, 19.82) controlPoint2: CGPointMake(96.14, 18.54)];
+            [oval6Path addCurveToPoint: CGPointMake(136.27, 53.94) controlPoint1: CGPointMake(120.13, 18.54) controlPoint2: CGPointMake(136.27, 34.39)];
+            [oval6Path addCurveToPoint: CGPointMake(111.12, 87.69) controlPoint1: CGPointMake(136.27, 69.75) controlPoint2: CGPointMake(125.71, 83.15)];
+            [oval6Path addCurveToPoint: CGPointMake(106.2, 88.97) controlPoint1: CGPointMake(109.97, 88.19) controlPoint2: CGPointMake(108.36, 88.63)];
+            [oval6Path addCurveToPoint: CGPointMake(38.2, 88.97) controlPoint1: CGPointMake(89.47, 91.63) controlPoint2: CGPointMake(55.17, 91.76)];
+            [oval6Path addCurveToPoint: CGPointMake(33.28, 87.67) controlPoint1: CGPointMake(36.05, 88.62) controlPoint2: CGPointMake(34.45, 88.18)];
+            [oval6Path closePath];
+            oval6Path.miterLimit = 4;
+
+            
+            return oval6Path;
+//            
+//            oval6Path.usesEvenOddFillRule = YES;
+//            
+//            [color1 setFill];
+//            [oval6Path fill];
+//            [color1 setStroke];
+//            oval6Path.lineWidth = 5;
+//            [oval6Path stroke];
+        }
+    }
+}
+
++(UIBezierPath *)drawRect {
+    //// Bezier Drawing
+    UIBezierPath* someBigRectangle = UIBezierPath.bezierPath;
+    [someBigRectangle moveToPoint: CGPointMake(3.5, 3.5)];
+    [someBigRectangle addCurveToPoint: CGPointMake(983.5, 3.5) controlPoint1: CGPointMake(980.54, 3.5) controlPoint2: CGPointMake(983.5, 3.5)];
+    [someBigRectangle addLineToPoint: CGPointMake(983.5, 1998.5)];
+    [someBigRectangle addLineToPoint: CGPointMake(3.5, 1998.5)];
+    [someBigRectangle addLineToPoint: CGPointMake(3.5, 3.5)];
+    [someBigRectangle addLineToPoint: CGPointMake(3.5, 3.5)];
+    [someBigRectangle closePath];
+    return someBigRectangle;
 }
 
 

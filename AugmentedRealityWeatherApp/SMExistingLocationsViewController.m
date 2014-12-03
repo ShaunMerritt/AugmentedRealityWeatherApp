@@ -11,6 +11,7 @@
 #import "SMLocationModel.h"
 #import "SMAddNewLocationsViewController.h"
 #import "SMViewController.h"
+#import "Flurry.h"
 
 
 
@@ -79,6 +80,10 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
         _existingLocationsView.frame = CGRectMake(0, self.view.frame.size.height, _existingLocationsView.frame.size.width, _existingLocationsView.frame.size.width);
         
     } completion:^(BOOL finished) {
+        
+        [Flurry logEvent:@"Return_To_Weather"];
+
+        
         SMViewController *weatherLocationsViewController = [[SMViewController alloc] init];
         [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
     }];
@@ -93,6 +98,8 @@ static NSString *kKeyForUserDefaults = @"savedLocationsArray";
     [_existingLocationsView.tableViewContainingSavedCities performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:_dataToDisplayOnTableViewArray] forKey:kKeyForUserDefaults];
+
+    [Flurry logEvent:@"Removed_Location"];
 
 }
 

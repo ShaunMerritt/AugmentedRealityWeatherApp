@@ -292,27 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMViewController.m"
-            timestampString = "439108717.600332"
+            timestampString = "439281295.290057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "756"
-            endingLineNumber = "756"
-            landmarkName = "-didCreateCard:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AugmentedRealityWeatherApp/SMViewController.m"
-            timestampString = "439108717.600332"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "473"
+            endingLineNumber = "473"
             landmarkName = "-createCardStack"
             landmarkType = "5">
          </BreakpointContent>
@@ -324,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMViewController.m"
-            timestampString = "439108717.600332"
+            timestampString = "439281295.290057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "475"
+            endingLineNumber = "475"
             landmarkName = "-createCardStack"
             landmarkType = "5">
          </BreakpointContent>
@@ -340,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMViewController.m"
-            timestampString = "439108717.600332"
+            timestampString = "439281295.290057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
             landmarkName = "-createCardStack"
             landmarkType = "5">
          </BreakpointContent>
@@ -356,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMViewController.m"
-            timestampString = "439108717.600332"
+            timestampString = "439281295.290057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "-animateCardsIn"
             landmarkType = "5">
          </BreakpointContent>
@@ -372,11 +356,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMViewController.m"
-            timestampString = "439108717.600332"
+            timestampString = "439281295.290057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "-animateCardsIn"
             landmarkType = "5">
          </BreakpointContent>
@@ -388,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AugmentedRealityWeatherApp/SMViewController.m"
-            timestampString = "439108717.600332"
+            timestampString = "439281295.290057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
             landmarkName = "-animateCardsIn"
             landmarkType = "5">
          </BreakpointContent>

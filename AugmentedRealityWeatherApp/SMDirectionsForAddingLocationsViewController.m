@@ -10,6 +10,7 @@
 #import "SMDirectionsForAddingLocationsView.h"
 #import "SMExistingLocationsView.h"
 #import "SMExistingLocationsViewController.h"
+#import "Flurry.h"
 
 @interface SMDirectionsForAddingLocationsViewController ()
 
@@ -19,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notFirstLaunch"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     self.view.backgroundColor = [UIColor colorWithRed:1.0000 green:1.0000 blue:1.0000 alpha:1.0];
 
@@ -44,6 +48,8 @@
              [addLocationsView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
              
          } completion:^(BOOL finished) {
+             
+             [Flurry logEvent:@"Finished_Walktrhough"];
              
              SMExistingLocationsViewController *weatherLocationsViewController = [[SMExistingLocationsViewController alloc] init];
              [[self navigationController] pushViewController:weatherLocationsViewController animated:NO];
